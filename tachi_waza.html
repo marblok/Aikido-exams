@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aikido Exam Techniques</title>
+    <style>
+        .tooltip {
+          position: relative;
+          cursor: help;
+        }
+    
+        .tooltip .tooltip-text {
+          visibility: hidden;
+          width: max-content;
+          background-color: #333;
+          color: #fff;
+          text-align: left;
+          padding: 8px;
+          border-radius: 6px;
+          position: absolute;
+          z-index: 1;
+          bottom: 125%; /* Position above the text */
+          left: 50%;
+          transform: translateX(-50%);
+          opacity: 0;
+          transition: opacity 0.3s;
+          white-space: nowrap;
+        }
+    
+        .tooltip:hover .tooltip-text {
+          visibility: visible;
+          opacity: 1;
+        }
+    
+        .tooltip-text b {
+          font-weight: bold;
+          color: #ffcc00;
+        }
+      </style>
+</head>
+
+<body>
+  <!-- <table id="aikidoTable" border="1" cellpadding="5" cellspacing="0" style="width: 100%; border-collapse: collapse;"> -->
+  <table id="aikidoTable" border="1" cellpadding="5" cellspacing="0" style="border-collapse: collapse;">
+      <h2>Tachi Waza (Standing Techniques)</h2>
+      <thead>
+        <tr>
+            <th></th>
+            <th> 
+                <span class="tooltip">
+                    Kokyu ho <br> (omote-ura)
+                    <span class="tooltip-text">
+                        sokumen-irimi nage (something like genkei <b>kokyu nage</b>)
+                    </span>
+                </span>
+            </th>
+            <th>Ikkyo</th>
+            <th>Nikyo</th>
+            <th>Sankyo</th>
+            <th>Yonkyo</th>
+            <th>Kote Gaeshi</th>
+            <th>Shiho Nage</th>
+            <th>Irimi Nage</th>
+            <th>Sokumen Irimi Nage</th>
+            <th>Tenchi Nage</th>
+            <th>Kokyu Nage</th>
+            <th>Soto Kaiten Nage</th>
+            <th>Uchi Kaiten Nage</th>
+            <th>Koshi Nage</th>
+            <th>Sumi Otoshi</th>
+            <th>Aiki Otoshi</th>
+            <th>Juji Garami</th>
+        </tr>
+      </thead>
+      <tbody>
+          <!-- Row will be inserted here -->
+      </tbody>
+  </table>
+</body>
+<script>
+    const techniques_table = [
+        // ===========================================================
+        { attack: "Katate Dori", techniques:[
+          { name: "Kokyu ho", links: [
+            { text: "1", url: "https://www.youtube.com/watch?v=7pZ1BMUF_as" },
+            { text: "2", url: "https://www.youtube.com/watch?v=sk1aLsxZ6uM" },
+            { text: "3", url: "https://www.youtube.com/watch?v=g3frwLQlJ5U&t=58s", tooltip: "Sokumen <b>irimi nage</b>" }
+          ] },
+          { name: "ikkyo", links: [
+            { text: "omote", url: "https://www.youtube.com/watch?v=twFAdMxyto8"},
+            { text: "ura 1", url: "https://www.youtube.com/watch?v=xkHG7Me1DN4" },
+            { text: "ura 2", url: "https://youtu.be/pvc063u_Qbw?t=14" }
+          ]},
+          { name: "nikyo", links: [
+            { text: "omote", url: "https://youtu.be/TZlg47sOK6s?list=PLmLk6DMwHFRAiTkF7uucOOE1_8-JDKHAR&t=11" },
+            { text: "ura", url: "https://youtu.be/w376VH0Tdq4?list=PLmLk6DMwHFRAiTkF7uucOOE1_8-JDKHAR&t=11" }
+          ] },
+          { name: "sankyo", links: [
+            { text: "omote", url: "https://youtu.be/N0xXv8cOiiM?list=PLmLk6DMwHFRAlE_Wur09Wqxr_KbUL0mw0&t=11" },
+            { text: "ura", url: "https://youtu.be/W7auIn1u_ak?list=PLmLk6DMwHFRC0SpzYAug7rKexOxb2rcOe&t=11" }
+          ] },
+          { name: "yonkyo", links: [
+            { text: "omote", url: "https://youtu.be/1eKQrXEs-aw?list=PLmLk6DMwHFRC0SpzYAug7rKexOxb2rcOe&t=12" },
+            { text: "ura", url: "https://youtu.be/W7auIn1u_ak?list=PLmLk6DMwHFRC0SpzYAug7rKexOxb2rcOe&t=11" }
+          ] },
+          { name: "kote gaeshi", links: [
+            { text: "1", url: "https://youtu.be/OQsCcfxsKcw?t=9" },
+          ] },
+          { name: "shiho nage", links: [
+            { text: "omote", url: "https://youtu.be/j8HHvYYaTBQ?t=7"},
+            { text: "ura", url: "https://youtu.be/j8HHvYYaTBQ?t=47" }
+          ]},
+          { name: "irimi nage", links: [
+            { text: "1", url: "https://youtu.be/lHcNY_B1oeA?t=27" }
+          ] },
+          { name: "sokumen irimi nage", links: [
+            { text: "omote", url: "https://youtu.be/g3frwLQlJ5U?t=19" },
+            { text: "ura", url: "https://youtu.be/g3frwLQlJ5U?t=70" }
+          ] },
+          { name: "tenchi nage", links: [
+            {text: "1", url: "https://youtu.be/2SFtUzeVXho?t=39"}
+          ] },
+          { name: "kokyu nage", links: [
+            {text:"ude kime nage", url:"https://youtu.be/f5eupcH90VQ?list=PLmLk6DMwHFRAlE_Wur09Wqxr_KbUL0mw0&t=11"},
+            {text: "4 variants", url:"https://www.youtube.com/watch?v=rPiRb-2qUDQ"},
+          ] },
+          { name: "soto kaiten nage", links: [
+            {text: "omote 1", url: "https://www.youtube.com/watch?v=rEqP_i17IOQ"},
+            {text: "omote 2", url: "https://youtu.be/UOJP2iBdgps?t=4"},
+            {text: "ura", url: "https://youtu.be/c1nhaYBZ2No?t=20"}
+          ] },
+          { name: "uchi kaiten nage", links: [
+            {text: "omote", url: "https://youtu.be/o4wwYZ8-BIU"},
+            {text: "ura", url: "https://www.youtube.com/watch?v=9UTulCYqKp0"}
+          ]},
+          { name: "koshi nage", links: [
+            {text: "1", url: "https://youtu.be/GLenPtMzTzw?t=11"},
+            {text: "2", url: "https://youtu.be/YbCHLQt7F9c?t=3"},
+            {text: "3", url: "https://youtu.be/sdUJ0fkyOgI?t=185"}
+          ]},
+          { name: "sumi otoshi", links: [
+            {text: "1", url: "https://youtu.be/dxD5O3Na9sU?t=33"},
+            {text: "2", url: "https://youtu.be/4AWzSkqnxAo?list=PLmLk6DMwHFRC0SpzYAug7rKexOxb2rcOe&t=12"}
+          ] },
+          { name: "aiki otoshi", links: [
+            {text: "1", url: "https://youtu.be/Y69RNSwFy6U?t=5"},
+            {text: "2", url: "https://youtu.be/1RAuF6JZkP0?t=25"},
+            {text: "3", url: "https://youtu.be/Y69RNSwFy6U?t=8"}
+          ]},
+          { name: "juji garami", links: [] },
+        ]},
+        
+        // ===========================================================
+        { attack: "Ai Hanmi <br> Katate Dori", techniques:[
+          { name: "Kokyu ho", links: [] },
+          { name: "ikkyo", links: [
+            { text: "omote", url: "https://youtu.be/xHfu4kWAceM" },
+            { text: "ura", url: "https://youtu.be/3-117og5KN0" }
+        ]},
+          { name: "nikyo", links: [
+            { text: "omote", url: "https://youtu.be/FDn5VRlhG0A?list=PLmLk6DMwHFRAiTkF7uucOOE1_8-JDKHAR&t=10" },
+            { text: "ura", url: "https://youtu.be/IaQmoU1IRwY?list=PLmLk6DMwHFRAiTkF7uucOOE1_8-JDKHAR&t=11" }
+          ] },
+          { name: "sankyo", links: [
+            { text: "omote", url: "https://youtu.be/yJXzbnWVOSU?list=PLmLk6DMwHFRAlE_Wur09Wqxr_KbUL0mw0&t=10" },
+            { text: "ura", url: "https://youtu.be/WQ8ugmj_9Eo?list=PLmLk6DMwHFRAlE_Wur09Wqxr_KbUL0mw0&t=10" }
+          ] },
+          { name: "yonkyo", links: [
+            { text: "omote", url: "https://youtu.be/9EdFoKa5wuI?list=PLmLk6DMwHFRC0SpzYAug7rKexOxb2rcOe&t=12" },
+            { text: "ura", url: "https://youtu.be/czCX9HjgqN0?list=PLmLk6DMwHFRC0SpzYAug7rKexOxb2rcOe&t=12" }
+          ] },
+          { name: "kote gaeshi", links: [
+            { text: "1", url: "https://www.youtube.com/watch?v=hnjD0s5devg" },
+          ] },
+          { name: "shiho nage", links: [
+            { text: "omote", url: "https://www.youtube.com/watch?v=zJn9CI-6KrU" },
+            { text: "ura", url: "https://youtu.be/kHAaes3TEEw?t=12" }
+          ]},
+          { name: "irimi nage", links: [
+            { text: "1", url: "https://youtu.be/z74nXcAJEv0" }
+          ] },
+          { name: "sokumen irimi nage", links: [] },
+          { name: "tenchi nage", links: [
+            { text: "1", url: "https://youtu.be/6swlJP17qPA?t=11" }
+          ] },
+          { name: "kokyu nage", links: [
+            { text: "omote", url: "https://youtu.be/kgbQudGx97Q?list=PLmLk6DMwHFRC0SpzYAug7rKexOxb2rcOe&t=7", tooltip: "ude kime nage" },
+            { text: "ura", url: "https://youtu.be/p2hrbkuYIQc?list=PLmLk6DMwHFRC0SpzYAug7rKexOxb2rcOe&t=11", tooltip: "ude kime nage" }
+          ] },
+          { name: "soto kaiten nage", links: [] },
+          { name: "uchi kaiten nage", links: [] },
+          { name: "koshi nage", links: [] },
+          { name: "sumi otoshi", links: [] },
+          { name: "aiki otoshi", links: [] },
+          { name: "juji garami", links: [] },
+        ]},
+
+        // ===========================================================
+        { attack: "Kata Dori", techniques:[
+          { name: "Kokyu ho", links: [] },
+          { name: "ikkyo", links: [
+            { text: "omote", url: "https://www.youtube.com/watch?v=cxRYw51XKDE" },
+            { text: "ura", url: "https://www.youtube.com/watch?v=scM_JNBWork", tooltip: "Tissier" }
+          ]},
+          { name: "nikyo", links: [
+            { text: "omote", url: "https://youtu.be/fVaF2YGPv-U?t=11" },
+            { text: "ura 1", url: "https://youtu.be/fVaF2YGPv-U?t=158" },
+            { text: "ura 2", url: "https://www.youtube.com/watch?v=dPBZWMAqvCE", tooltip: "Tissier" }
+          ] },
+          { name: "sankyo", links: [
+            { text: "omote", url: "https://youtu.be/XlMJQMbfKo8?t=5" },
+            { text: "ura", url: "https://youtu.be/XlMJQMbfKo8?t=32" }
+          ] },
+          { name: "yonkyo", links: [
+            { text: "omote", url: "https://youtu.be/n48Ip-ZZKC8?list=PLmLk6DMwHFRC0SpzYAug7rKexOxb2rcOe&t=11" },
+            { text: "ura", url: "https://youtu.be/ruXlMVLbi24?list=PLmLk6DMwHFRC0SpzYAug7rKexOxb2rcOe&t=11" }
+          ] },
+          { name: "kote gaeshi", links: [] },
+          { name: "shiho nage", links: []},
+          { name: "irimi nage", links: [] },
+          { name: "sokumen irimi nage", links: [] },
+          { name: "tenchi nage", links: [] },
+          { name: "kokyu nage", links: [] },
+          { name: "soto kaiten nage", links: [] },
+          { name: "uchi kaiten nage", links: [] },
+          { name: "koshi nage", links: [] },
+          { name: "sumi otoshi", links: [] },
+          { name: "aiki otoshi", links: [] },
+          { name: "juji garami", links: [] },
+        ]},
+
+        // ===========================================================
+        { attack: "Morote Dori", techniques:[
+          { name: "Kokyu ho", links: [] },
+          { name: "ikkyo", links: [
+            { text: "omote 1", url: "https://youtu.be/CWMeqSOGd64?list=PLmLk6DMwHFRAlE_Wur09Wqxr_KbUL0mw0&t=10" },
+            { text: "omote 2", url: "https://youtu.be/Seqq3b6xhP4?list=PLmLk6DMwHFRAlE_Wur09Wqxr_KbUL0mw0&t=11" },
+            { text: "ura 1", url: "https://youtu.be/J99NxPp9XsM?list=PLmLk6DMwHFRAlE_Wur09Wqxr_KbUL0mw0&t=11" },
+            { text: "ura 2", url: "https://youtu.be/28WtNChBnMs?list=PLmLk6DMwHFRAlE_Wur09Wqxr_KbUL0mw0&t=11" }
+          ]},
+          { name: "nikyo", links: [] },
+          { name: "sankyo", links: [] },
+          { name: "yonkyo", links: [] },
+          { name: "kote gaeshi", links: [
+            { text: "1", url: "https://youtu.be/9_dWeKkv5PA?list=PLmLk6DMwHFRC0SpzYAug7rKexOxb2rcOe&t=12" },
+          ] },
+          { name: "shiho nage", links: []},
+          { name: "irimi nage", links: [
+            { text: "1", url: "https://youtu.be/_U5o-1q77qo?t=127" }
+          ] },
+          { name: "sokumen irimi nage", links: [] },
+          { name: "tenchi nage", links: [] },
+          { name: "kokyu nage", links: [
+            { text: "1", url: "https://youtu.be/A4gz1qIfuC8?t=99" },
+            { text: "2", url: "https://www.youtube.com/watch?v=nY6UolF9IxQ" }
+          ] },
+          { name: "soto kaiten nage", links: [] },
+          { name: "uchi kaiten nage", links: [] },
+          { name: "koshi nage", links: [
+            { text: "1", url: "https://youtu.be/rTkBMl1DY8I?list=PLmLk6DMwHFRC0SpzYAug7rKexOxb2rcOe&t=12" },
+          ] },
+          { name: "sumi otoshi", links: [] },
+          { name: "aiki otoshi", links: [] },
+          { name: "juji garami", links: [
+            { text: "irimi", url: "https://youtu.be/FXghidn0lFg?list=PLmLk6DMwHFRAlE_Wur09Wqxr_KbUL0mw0&t=12" },
+            { text: "tenkan", url: "https://youtu.be/inM1FA266xA?list=PLmLk6DMwHFRAlE_Wur09Wqxr_KbUL0mw0&t=12" }
+          ] },
+        ]},
+
+        // ===========================================================
+        { attack: "Mune Dori", techniques:[
+          { name: "Kokyu ho", links: [] },
+          { name: "ikkyo", links: [
+              { text: "omote", url: "https://youtu.be/8h6RLjPvyNU?list=PLmLk6DMwHFRC0SpzYAug7rKexOxb2rcOe&t=11" },
+              { text: "ura", url: "https://youtu.be/BSIzvXZJ1dQ?list=PLmLk6DMwHFRC0SpzYAug7rKexOxb2rcOe&t=12" }
+          ]},
+          { name: "nikyo", links: [] },
+          { name: "sankyo", links: [] },
+          { name: "yonkyo", links: [] },
+          { name: "kote gaeshi", links: [] },
+          { name: "shiho nage", links: [
+              { text: "1", url: "https://youtu.be/gQXoQOCuuVA?t=312" }
+          ]},
+          { name: "irimi nage", links: [] },
+          { name: "sokumen irimi nage", links: [] },
+          { name: "tenchi nage", links: [] },
+          { name: "kokyu nage", links: [] },
+          { name: "soto kaiten nage", links: [] },
+          { name: "uchi kaiten nage", links: [] },
+          { name: "koshi nage", links: [] },
+          { name: "sumi otoshi", links: [] },
+          { name: "aiki otoshi", links: [] },
+          { name: "juji garami", links: [] },
+        ]},
+
+        // ===========================================================
+        { attack: "Ryote Dori", techniques:[
+          { name: "Kokyu ho", links: [
+            { text: "omote 1", url: "https://www.youtube.com/watch?v=n_FsCsNiExc" },
+            { text: "omote 2", url: "https://youtu.be/IoTxUTi6S4o" },
+            { text: "ura", url: "https://youtu.be/IoTxUTi6S4o?t=49" }
+          ] },
+          { name: "ikkyo", links: []},
+          { name: "nikyo", links: [] },
+          { name: "sankyo", links: [] },
+          { name: "yonkyo", links: [] },
+          { name: "kote gaeshi", links: [
+            { text: "1", url: "https://youtu.be/F02bTcJYL1o?t=128" },
+          ] },
+          { name: "shiho nage", links: [
+            { text: "omote 1", url: "https://youtu.be/r8THFOc2PrU?list=PLmLk6DMwHFRAlE_Wur09Wqxr_KbUL0mw0&t=12" },
+            { text: "omote 2", url: "https://youtu.be/GKkgTHxqlv4?list=PLmLk6DMwHFRAlE_Wur09Wqxr_KbUL0mw0&t=11" },
+            { text: "ura 1", url: "https://youtu.be/b7QAVbzAFno?list=PLmLk6DMwHFRAlE_Wur09Wqxr_KbUL0mw0&t=11" },
+            { text: "ura 2", url: "https://youtu.be/t71RQsZ4Gbc?list=PLmLk6DMwHFRAlE_Wur09Wqxr_KbUL0mw0&t=12" }
+          ]},
+          { name: "irimi nage", links: [
+            { text: "1", url: "https://youtu.be/Xs6SWgRAjMM?t=12" },
+          ] },
+          { name: "sokumen irimi nage", links: [] },
+          { name: "tenchi nage", links: [
+            { text: "1", url: "https://youtu.be/Aue9NIMEPEs?t=15" },
+          ] },
+          { name: "kokyu nage", links: [] },
+          { name: "soto kaiten nage", links: [] },
+          { name: "uchi kaiten nage", links: [] },
+          { name: "koshi nage", links: [
+            { text: "1", url: "https://youtu.be/CJf5PdOrwjE?t=4" },
+          ] },
+          { name: "sumi otoshi", links: [] },
+          { name: "aiki otoshi", links: [] },
+          { name: "juji garami", links: [] },
+        ]},
+
+        // ===========================================================
+        { attack: "Ryo Kata Dori", techniques:[
+          { name: "Kokyu ho", links: [] },
+          { name: "ikkyo", links: []},
+          { name: "nikyo", links: [] },
+          { name: "sankyo", links: [] },
+          { name: "yonkyo", links: [] },
+          { name: "kote gaeshi", links: [] },
+          { name: "shiho nage", links: []},
+          { name: "irimi nage", links: [] },
+          { name: "sokumen irimi nage", links: [] },
+          { name: "tenchi nage", links: [] },
+          { name: "kokyu nage", links: [] },
+          { name: "soto kaiten nage", links: [] },
+          { name: "uchi kaiten nage", links: [] },
+          { name: "koshi nage", links: [] },
+          { name: "sumi otoshi", links: [] },
+          { name: "aiki otoshi", links: [] },
+          { name: "juji garami", links: [] },
+        ]},
+
+        // ===========================================================
+        { attack: "Kata Dori Men Uchi", techniques:[
+          { name: "Kokyu ho", links: [] },
+          { name: "ikkyo", links: []},
+          { name: "nikyo", links: [] },
+          { name: "sankyo", links: [] },
+          { name: "yonkyo", links: [] },
+          { name: "kote gaeshi", links: [] },
+          { name: "shiho nage", links: []},
+          { name: "irimi nage", links: [] },
+          { name: "sokumen irimi nage", links: [] },
+          { name: "tenchi nage", links: [] },
+          { name: "kokyu nage", links: [] },
+          { name: "soto kaiten nage", links: [] },
+          { name: "uchi kaiten nage", links: [] },
+          { name: "koshi nage", links: [] },
+          { name: "sumi otoshi", links: [] },
+          { name: "aiki otoshi", links: [] },
+          { name: "juji garami", links: [] },
+        ]},
+
+        // ===========================================================
+        { attack: "Shomen Uchi", techniques:[
+          { name: "Kokyu ho", links: [] },
+          { name: "ikkyo", links: []},
+          { name: "nikyo", links: [] },
+          { name: "sankyo", links: [] },
+          { name: "yonkyo", links: [] },
+          { name: "kote gaeshi", links: [] },
+          { name: "shiho nage", links: []},
+          { name: "irimi nage", links: [] },
+          { name: "sokumen irimi nage", links: [] },
+          { name: "tenchi nage", links: [] },
+          { name: "kokyu nage", links: [] },
+          { name: "soto kaiten nage", links: [] },
+          { name: "uchi kaiten nage", links: [] },
+          { name: "koshi nage", links: [] },
+          { name: "sumi otoshi", links: [] },
+          { name: "aiki otoshi", links: [] },
+          { name: "juji garami", links: [] },
+        ]},
+
+        // ===========================================================
+        { attack: "Yokomen Uchi", techniques:[
+          { name: "Kokyu ho", links: [] },
+          { name: "ikkyo", links: []},
+          { name: "nikyo", links: [] },
+          { name: "sankyo", links: [] },
+          { name: "yonkyo", links: [] },
+          { name: "kote gaeshi", links: [] },
+          { name: "shiho nage", links: []},
+          { name: "irimi nage", links: [] },
+          { name: "sokumen irimi nage", links: [] },
+          { name: "tenchi nage", links: [] },
+          { name: "kokyu nage", links: [] },
+          { name: "soto kaiten nage", links: [] },
+          { name: "uchi kaiten nage", links: [] },
+          { name: "koshi nage", links: [] },
+          { name: "sumi otoshi", links: [] },
+          { name: "aiki otoshi", links: [] },
+          { name: "juji garami", links: [] },
+        ]},
+
+        // ===========================================================
+        { attack: "Tsuki", techniques:[
+          { name: "Kokyu ho", links: [] },
+          { name: "ikkyo", links: []},
+          { name: "nikyo", links: [] },
+          { name: "sankyo", links: [] },
+          { name: "yonkyo", links: [] },
+          { name: "kote gaeshi", links: [] },
+          { name: "shiho nage", links: []},
+          { name: "irimi nage", links: [] },
+          { name: "sokumen irimi nage", links: [] },
+          { name: "tenchi nage", links: [] },
+          { name: "kokyu nage", links: [] },
+          { name: "soto kaiten nage", links: [] },
+          { name: "uchi kaiten nage", links: [] },
+          { name: "koshi nage", links: [] },
+          { name: "sumi otoshi", links: [] },
+          { name: "aiki otoshi", links: [] },
+          { name: "juji garami", links: [] },
+        ]},
+
+        // ===========================================================
+        { attack: "Ushiro Ryote Dori", techniques:[
+          { name: "Kokyu ho", links: [] },
+          { name: "ikkyo", links: []},
+          { name: "nikyo", links: [] },
+          { name: "sankyo", links: [] },
+          { name: "yonkyo", links: [] },
+          { name: "kote gaeshi", links: [] },
+          { name: "shiho nage", links: []},
+          { name: "irimi nage", links: [] },
+          { name: "sokumen irimi nage", links: [] },
+          { name: "tenchi nage", links: [] },
+          { name: "kokyu nage", links: [] },
+          { name: "soto kaiten nage", links: [] },
+          { name: "uchi kaiten nage", links: [] },
+          { name: "koshi nage", links: [] },
+          { name: "sumi otoshi", links: [] },
+          { name: "aiki otoshi", links: [] },
+          { name: "juji garami", links: [] },
+        ]},
+
+        // ===========================================================
+        { attack: "Ushiro Ryo Kata Dori", techniques:[
+          { name: "Kokyu ho", links: [] },
+          { name: "ikkyo", links: []},
+          { name: "nikyo", links: [] },
+          { name: "sankyo", links: [] },
+          { name: "yonkyo", links: [] },
+          { name: "kote gaeshi", links: [] },
+          { name: "shiho nage", links: []},
+          { name: "irimi nage", links: [] },
+          { name: "sokumen irimi nage", links: [] },
+          { name: "tenchi nage", links: [] },
+          { name: "kokyu nage", links: [] },
+          { name: "soto kaiten nage", links: [] },
+          { name: "uchi kaiten nage", links: [] },
+          { name: "koshi nage", links: [] },
+          { name: "sumi otoshi", links: [] },
+          { name: "aiki otoshi", links: [] },
+          { name: "juji garami", links: [] },
+        ]},
+
+        // ===========================================================
+        { attack: "Ushiro Eri Dori", techniques:[
+          { name: "Kokyu ho", links: [] },
+          { name: "ikkyo", links: []},
+          { name: "nikyo", links: [] },
+          { name: "sankyo", links: [] },
+          { name: "yonkyo", links: [] },
+          { name: "kote gaeshi", links: [] },
+          { name: "shiho nage", links: []},
+          { name: "irimi nage", links: [] },
+          { name: "sokumen irimi nage", links: [] },
+          { name: "tenchi nage", links: [] },
+          { name: "kokyu nage", links: [] },
+          { name: "soto kaiten nage", links: [] },
+          { name: "uchi kaiten nage", links: [] },
+          { name: "koshi nage", links: [] },
+          { name: "sumi otoshi", links: [] },
+          { name: "aiki otoshi", links: [] },
+          { name: "juji garami", links: [] },
+        ]},
+
+        // ===========================================================
+        { attack: "Ushiro Dori", techniques:[
+          { name: "Kokyu ho", links: [] },
+          { name: "ikkyo", links: []},
+          { name: "nikyo", links: [] },
+          { name: "sankyo", links: [] },
+          { name: "yonkyo", links: [] },
+          { name: "kote gaeshi", links: [] },
+          { name: "shiho nage", links: []},
+          { name: "irimi nage", links: [] },
+          { name: "sokumen irimi nage", links: [] },
+          { name: "tenchi nage", links: [] },
+          { name: "kokyu nage", links: [] },
+          { name: "soto kaiten nage", links: [] },
+          { name: "uchi kaiten nage", links: [] },
+          { name: "koshi nage", links: [] },
+          { name: "sumi otoshi", links: [] },
+          { name: "aiki otoshi", links: [] },
+          { name: "juji garami", links: [] },
+        ]},
+
+        
+        // ===========================================================
+        { attack: "Ushiro Ryote Kubi Dori", techniques:[
+          { name: "Kokyu ho", links: [] },
+          { name: "ikkyo", links: []},
+          { name: "nikyo", links: [] },
+          { name: "sankyo", links: [] },
+          { name: "yonkyo", links: [] },
+          { name: "kote gaeshi", links: [] },
+          { name: "shiho nage", links: []},
+          { name: "irimi nage", links: [] },
+          { name: "sokumen irimi nage", links: [] },
+          { name: "tenchi nage", links: [] },
+          { name: "kokyu nage", links: [] },
+          { name: "soto kaiten nage", links: [] },
+          { name: "uchi kaiten nage", links: [] },
+          { name: "koshi nage", links: [] },
+          { name: "sumi otoshi", links: [] },
+          { name: "aiki otoshi", links: [] },
+          { name: "juji garami", links: [] },
+        ]},
+
+        // ===========================================================
+        { attack: "__test__", techniques:[
+          { name: "Kokyu ho", links: [] },
+          { name: "ikkyo", links: []},
+          { name: "nikyo", links: [] },
+          { name: "sankyo", links: [] },
+          { name: "yonkyo", links: [] },
+          { name: "kote gaeshi", links: [] },
+          { name: "shiho nage", links: []},
+          { name: "irimi nage", links: [] },
+          { name: "sokumen irimi nage", links: [] },
+          { name: "tenchi nage", links: [] },
+          { name: "kokyu nage", links: [] },
+          { name: "soto kaiten nage", links: [] },
+          { name: "uchi kaiten nage", links: [] },
+          { name: "koshi nage", links: [] },
+          { name: "sumi otoshi", links: [] },
+          { name: "aiki otoshi", links: [] },
+          { name: "juji garami", links: [] },
+        ]},
+    ];
+
+    techniques_table.forEach(technique => {
+        if (technique.attack === "__test__") {
+            return; // Skip the test row
+        }
+        const tr = document.createElement("tr");
+        const th = document.createElement("th");
+        // th.textContent = technique.attack;
+        th.innerHTML = technique.attack;
+        tr.appendChild(th);
+
+        technique.techniques.forEach(tech => {
+            const td = document.createElement("td");
+            tech.links.forEach((link, index) => {
+                const a = document.createElement("a");
+                a.href = link.url;
+                a.target = "_blank";
+                a.rel = "noopener noreferrer";
+                a.textContent = link.text;
+                td.appendChild(a);
+                if (index < tech.links.length - 1) {
+                    td.appendChild(document.createElement("br"));
+                }
+
+                if (link.tooltip) {
+                    a.className = "tooltip"; // add tooltip class if needed for styling
+
+                    const tooltipSpan = document.createElement("span");
+                    tooltipSpan.className = "tooltip-text";
+                    tooltipSpan.innerHTML = link.tooltip;
+                    a.appendChild(tooltipSpan);
+                }
+            });
+            tr.appendChild(td);
+        });
+
+        document.querySelector("#aikidoTable tbody").appendChild(tr);
+    });
+</script>
+</html>
