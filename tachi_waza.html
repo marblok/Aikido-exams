@@ -1043,7 +1043,21 @@
             } else {
               tech.links.forEach((link, index) => {
                   const a = document.createElement("a");
-                  a.href = link.url;
+                  // a.href = link.url;
+
+                  let isYouTubeLink = link.url.includes("youtube.com") || link.url.includes("youtu.be");
+                  if (isYouTubeLink && /Android|iPhone|iPad/i.test(navigator.userAgent)) {
+                      // Try to convert to app-friendly URL
+                      const videoIdMatch = link.url.match(/(?:v=|youtu\.be\/)([a-zA-Z0-9_-]{11})/);
+                      if (videoIdMatch) {
+                          a.href = `youtube://www.youtube.com/watch?v=${videoIdMatch[1]}`;
+                      } else {
+                          a.href = link.url;
+                      }
+                  } else {
+                      a.href = link.url;
+                  }                  
+
                   a.target = "_blank";
                   a.rel = "noopener noreferrer";
                   a.textContent = link.text;

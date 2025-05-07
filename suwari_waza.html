@@ -115,6 +115,49 @@
         ]},
 
         // ===========================================================
+        { attack: "Shomen Uchi", techniques:[
+          { name: "Kokyu ho", links: [] },
+          { name: "ikkyo", links: [
+            { text: "omote", url: "https://youtu.be/sQqUeFzZaNg" },
+            { text: "ura", url: "https://youtu.be/sQqUeFzZaNg?t=17" },
+          ]},
+          { name: "nikyo", links: [
+            { text: "omote", url: "https://youtu.be/ETVi6khmA_g" },
+            { text: "ura", url: "https://youtu.be/ETVi6khmA_g?t=29" },
+          ] },
+          { name: "sankyo", links: [
+            { text: "omote 1", url: "https://youtu.be/bRc-UjpA0Jk?t=3" },
+            { text: "omote 2", url: "https://youtu.be/8OXd8gYKqd8" },
+            { text: "ura 1", url: "https://youtu.be/bRc-UjpA0Jk?t=24" },
+            { text: "ura 2", url: "https://youtu.be/8OXd8gYKqd8?t=14" },
+          ] },
+          { name: "yonkyo", links: [
+            { text: "omote", url: "https://youtu.be/LRtp2w2-pOY?t=3" },
+            { text: "ura", url: "https://youtu.be/LRtp2w2-pOY?t=14" },
+          ] },
+          { name: "gokyo", links: [] },
+          { name: "kote gaeshi", links: [
+            { text: "omote", url: "https://youtu.be/oKwQpEJM8pc?t=3" },
+            { text: "ura", url: "https://www.youtube.com/watch?v=ih4sVqR4t3Q" },
+          ] },
+          { name: "shiho nage", links: []},
+          { name: "irimi nage", links: [
+            { text: "omote", url: "https://youtu.be/zgQIIymWg_k?t=3" },
+            { text: "ura", url: "https://youtu.be/QQAb-7Rz2No?t=101" },
+          ] },
+          { name: "sokumen irimi nage", links: [] },
+          { name: "tenchi nage", links: [] },
+          { name: "kokyu nage", links: [] },
+          { name: "soto kaiten nage", links: [] },
+          { name: "uchi kaiten nage", links: [] },
+          { name: "koshi nage", links: [] },
+          { name: "sumi otoshi", links: [] },
+          { name: "aiki otoshi", links: [] },
+          { name: "juji garami", links: [] },
+          { name: "hiji kime osae", links: [] },
+        ]},
+
+        // ===========================================================
         { attack: "Yokomen Uchi", techniques:[
           { name: "Kokyu ho", links: [] },
           { name: "ikkyo", links: []},
@@ -317,7 +360,21 @@
             } else {
               tech.links.forEach((link, index) => {
                   const a = document.createElement("a");
-                  a.href = link.url;
+                  // a.href = link.url;
+
+                  let isYouTubeLink = link.url.includes("youtube.com") || link.url.includes("youtu.be");
+                  if (isYouTubeLink && /Android|iPhone|iPad/i.test(navigator.userAgent)) {
+                      // Try to convert to app-friendly URL
+                      const videoIdMatch = link.url.match(/(?:v=|youtu\.be\/)([a-zA-Z0-9_-]{11})/);
+                      if (videoIdMatch) {
+                          a.href = `youtube://www.youtube.com/watch?v=${videoIdMatch[1]}`;
+                      } else {
+                          a.href = link.url;
+                      }
+                  } else {
+                      a.href = link.url;
+                  }                  
+                  
                   a.target = "_blank";
                   a.rel = "noopener noreferrer";
                   a.textContent = link.text;
