@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aikido Exam Techniques</title>
+    <title>Aikido Exam Techniques - Hanmi Handachi Waza</title>
     <style>
         .tooltip {
           position: relative;
@@ -41,9 +41,38 @@
 </head>
 
 <body>
+  <h1>Hanmi Handachi Waza (One Person Standing, One Seated)</h1>
+  <h2>Exam Requirements</h2>
+  <div id="kyuSelector" style="margin-bottom: 1em;">
+    <label>Select Kyu Rank:</label>
+    <form id="kyuForm">
+      <label><input type="checkbox" name="kyuLevel" value="6" checked> 6th Kyu</label>
+      <label><input type="checkbox" name="kyuLevel" value="5" checked> 5th Kyu</label>
+      <label><input type="checkbox" name="kyuLevel" value="4" checked> 4th Kyu</label>
+      <label><input type="checkbox" name="kyuLevel" value="3" checked> 3rd Kyu</label>
+      <label><input type="checkbox" name="kyuLevel" value="2" checked> 2nd Kyu</label>
+      <label><input type="checkbox" name="kyuLevel" value="1" checked> 1st Kyu</label>
+      <label><input type="checkbox" name="kyuLevel" value="-1" checked> Other</label>
+    </form>
+  </div>
+
+  <table id="examRequirementsTable" border="1" cellpadding="5" cellspacing="0" style="border-collapse: collapse;">
+      <thead>
+        <tr>
+            <th>Attack</th>
+            <th>Techniques</th>
+        </tr>
+      </thead>
+      <tbody>
+          <!-- Row will be inserted here -->
+      </tbody>
+  </table>
+  <br>
+  <b>Note</b>: The list for examination techniques is based on the requiremenst of <a href="https://centrum-aikido.org.pl">Centrum Aikido Aikiai Polska</a> buy it is not guaranteed to be complete or up-to-date.
+  
   <!-- <table id="aikidoTable" border="1" cellpadding="5" cellspacing="0" style="width: 100%; border-collapse: collapse;"> -->
   <table id="aikidoTable" border="1" cellpadding="5" cellspacing="0" style="border-collapse: collapse;">
-      <h2>Hanmi Handachi Waza (One Person Standing, One Seated)</h2>
+      <h2>Links to Youtube Videos</h2>
       <thead>
         <tr>
             <th></th>
@@ -88,6 +117,47 @@
 
 </body>
 <script>
+    const examination_techniques_table = [
+      {
+        kyu: 6,
+        techniques: [ 
+        ]
+      },
+      {
+        kyu: 5,
+        techniques: [ 
+        ]
+      },
+      {
+        kyu: 4,
+        techniques: [ 
+        ]
+      },
+      {
+        kyu: 3,
+        techniques: [ 
+          { attack: "Katate Dori", techniques:["ikkyo", "kote gaeshi", "soto kaiten nage", "uchi kaiten nage"] },
+        ]
+      },
+      {
+        kyu: 2,
+        techniques: [ 
+          { attack: "Katate Dori", techniques:["shiho nage"] },
+          { attack: "Shomen Uchi", techniques:["irimi nage"] },
+          { attack: "Ushiro Ryo Kata Dori", techniques:["kokyu nage"] },
+        ]
+      },
+      {
+        kyu: 1,
+        techniques: [ 
+          { attack: "Shomen Uchi", techniques:["ikkyo"] },
+          { attack: "Katate Dori", techniques:["irimi nage"] },
+          { attack: "Ryote Dori", techniques:["shiho nage"] },
+          { attack: "Ushiro Ryo Kata Dori", techniques:["kote gaeshi"] },
+        ]
+      },
+    ]
+
     const techniques_table = [
         // ===========================================================
         { attack: "Katate Dori", techniques:[
@@ -240,208 +310,6 @@
           { name: "hiji kime osae", links: [] },
         ]},
     ];
-
-    const table = document.querySelector("#aikidoTable");
-    table.addEventListener("mouseover", (event) => {
-        const cell = event.target.closest("td, th");
-        if (!cell) return;
-
-        const row = cell.parentElement;
-        const colIndex = cell.cellIndex;
-
-        // Highlight row
-        for (const row_cell of row.children) {
-          if (row_cell != cell) {
-            if (row_cell.classList.contains("empty-cell")) {
-              row_cell.classList.add("highlight-row-dark");
-            } else {
-              row_cell.classList.add("highlight-row");
-            }
-          }
-        }
-
-        // Highlight column
-        for (const r of table.rows) {
-            const targetCell = r.cells[colIndex];
-            if (targetCell != cell) {
-              if (targetCell.classList.contains("empty-cell")) {
-                  targetCell.classList.add("highlight-col-dark");
-              } else {
-                  targetCell.classList.add("highlight-col");
-              }            
-            }
-        }
-
-        // Highlight hovered cell
-        if (cell.classList.contains("empty-cell")) {
-            cell.classList.add("highlight-cell-dark");
-            // cell.innerHTML = "dark";
-        } else {
-            cell.classList.add("highlight-cell");
-            // cell.innerHTML = "normal";
-        }        
-    });
-
-    table.addEventListener("mouseout", (event) => {
-        const cell = event.target.closest("td, th");
-        if (!cell) return;
-        // cell.innerHTML = "";
-
-        const row = cell.parentElement;
-        const colIndex = cell.cellIndex;
-
-        // Remove row highlight
-        for (const row_cell of row.children) {
-          if (row_cell != cell) {
-            row_cell.classList.remove("highlight-row", "highlight-row-dark");
-          }
-}
-        // Remove column highlight
-        for (const r of table.rows) {
-            const targetCell = r.cells[colIndex];
-            if (targetCell != cell) {
-              if (targetCell.classList.contains("empty-cell")) {
-                  targetCell.classList.remove("highlight-col-dark");
-              } else {
-                  targetCell.classList.remove("highlight-col");
-              }            
-            }
-        }
-
-        // Remove cell highlight
-        if (cell.classList.contains("empty-cell")) {
-            cell.classList.remove("highlight-cell-dark");
-        } else {
-            cell.classList.remove("highlight-cell");
-        }    
-    });
-
-    // Add highlight CSS dynamically
-    const style = document.createElement('style');
-    style.textContent = `
-      td, th {
-        transition: background-color 0.3s ease;
-      }
-
-      .highlight-col {
-        background-color: rgba(255, 235, 59, 0.3);
-      }
-
-      .highlight-row {
-        background-color: rgba(173, 216, 230, 0.6) !important;
-      }
-
-      .highlight-cell {
-        background-color: rgba(144, 238, 144, 0.5) !important;
-      }
-
-      .empty-cell {
-        background-color: lightgray;
-      }
-
-      .highlight-cell-dark {
-        background-color: rgba(40, 80, 40, 0.6) !important;
-      }
-
-      .highlight-col-dark {
-        background-color: rgba(100, 100, 70, 0.4) !important;
-      }
-
-      .highlight-row-dark {
-        background-color: rgba(80, 100, 100, 0.5) !important;
-      }
-    `;
-
-    document.head.appendChild(style);    
-
-    // get lit of technique names for the techniques_table entry with technique.attack === "__test__"
-    const techniqueNames = techniques_table.find(tech => tech.attack === "__test__").techniques.map(tech => tech.name);
-
-    techniques_table.forEach(technique => {
-        if (technique.attack === "__test__") {
-            return; // Skip the test row
-        }
-        const tr = document.createElement("tr");
-        const th = document.createElement("th");
-        // th.textContent = technique.attack;
-        th.innerHTML = technique.attack;
-        tr.appendChild(th);
-
-        // check if the techniques' names follow the same order as the techniqueNames array
-        const currentNames = technique.techniques.map(tech => tech.name);
-        const namesMatch =
-          currentNames.length === techniqueNames.length &&
-          currentNames.every((name, i) => name === techniqueNames[i]);
-
-        if (!namesMatch) {
-            console.error(`Technique names do not match for ${technique.attack}`);
-            
-            // Display the error on the page
-            const errorMessage = document.createElement("div");
-            errorMessage.textContent = `Technique names do not match for ${technique.attack}`;
-            errorMessage.style.color = "red";
-            errorMessage.style.fontWeight = "bold";
-            errorMessage.style.fontSize = "1.2em";
-            errorMessage.style.margin = "10px 0";
-            document.body.appendChild(errorMessage);
-
-            return; // Skip this row
-        }
-        technique.techniques.forEach(tech => {
-            const td = document.createElement("td");
-            if (tech.links.length === 0) {
-              // td.style.backgroundColor = "lightgray";
-              td.classList.add("empty-cell");
-            } else {
-              tech.links.forEach((link, index) => {
-                  const a = document.createElement("a");
-                  // a.href = link.url;
-
-                  let isYouTubeLink = link.url.includes("youtube.com") || link.url.includes("youtu.be");
-                  // if (isYouTubeLink && /Android|iPhone|iPad/i.test(navigator.userAgent)) {
-                  //     // Try to convert to app-friendly URL
-                  //     const videoIdMatch = link.url.match(/(?:v=|youtu\.be\/)([a-zA-Z0-9_-]{11})/);
-                  //     if (videoIdMatch) {
-                  //         a.href = `youtube://www.youtube.com/watch?v=${videoIdMatch[1]}`;
-                  //     } else {
-                  //         a.href = link.url;
-                  //     }
-                  // } else {
-                  //     a.href = link.url;
-                  // }                  
-                  if (isYouTubeLink && /Android/i.test(navigator.userAgent)) {
-                      const videoIdMatch = link.url.match(/(?:v=|youtu\.be\/)([a-zA-Z0-9_-]{11})/);
-                      if (videoIdMatch) {
-                          a.href = `intent://www.youtube.com/watch?v=${videoIdMatch[1]}#Intent;package=com.google.android.youtube;scheme=https;end`;
-                      } else {
-                          a.href = link.url;
-                      }
-                  } else {
-                      a.href = link.url;
-                  }
-
-                  a.target = "_blank";
-                  a.rel = "noopener noreferrer";
-                  a.textContent = link.text;
-                  td.appendChild(a);
-                  if (index < tech.links.length - 1) {
-                      td.appendChild(document.createElement("br"));
-                  }
-
-                  if (link.tooltip) {
-                      a.className = "tooltip"; // add tooltip class if needed for styling
-
-                      const tooltipSpan = document.createElement("span");
-                      tooltipSpan.className = "tooltip-text";
-                      tooltipSpan.innerHTML = link.tooltip;
-                      a.appendChild(tooltipSpan);
-                  }
-              });
-            }  
-            tr.appendChild(td);
-        });
-
-        document.querySelector("#aikidoTable tbody").appendChild(tr);
-    });
 </script>
+<script src="./functions.js"></script>
 </html>

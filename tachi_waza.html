@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aikido Exam Techniques</title>
+    <title>Aikido Exam Techniques - Tachi Waza</title>
     <style>
         .tooltip {
           position: relative;
@@ -41,9 +41,38 @@
 </head>
 
 <body>
+  <h1>Tachi Waza (Standing Techniques)</h1>
+  <h2>Exam Requirements</h2>
+  <div id="kyuSelector" style="margin-bottom: 1em;">
+    <label>Select Kyu Rank:</label>
+    <form id="kyuForm">
+      <label><input type="checkbox" name="kyuLevel" value="6" checked> 6th Kyu</label>
+      <label><input type="checkbox" name="kyuLevel" value="5" checked> 5th Kyu</label>
+      <label><input type="checkbox" name="kyuLevel" value="4" checked> 4th Kyu</label>
+      <label><input type="checkbox" name="kyuLevel" value="3" checked> 3rd Kyu</label>
+      <label><input type="checkbox" name="kyuLevel" value="2" checked> 2nd Kyu</label>
+      <label><input type="checkbox" name="kyuLevel" value="1" checked> 1st Kyu</label>
+      <label><input type="checkbox" name="kyuLevel" value="-1" checked> Other</label>
+    </form>
+  </div>
+
+  <table id="examRequirementsTable" border="1" cellpadding="5" cellspacing="0" style="border-collapse: collapse;">
+      <thead>
+        <tr>
+            <th>Attack</th>
+            <th>Techniques</th>
+        </tr>
+      </thead>
+      <tbody>
+          <!-- Row will be inserted here -->
+      </tbody>
+  </table>
+  <br>
+  <b>Note</b>: The list for examination techniques is based on the requiremenst of <a href="https://centrum-aikido.org.pl">Centrum Aikido Aikiai Polska</a> buy it is not guaranteed to be complete or up-to-date.
+  
   <!-- <table id="aikidoTable" border="1" cellpadding="5" cellspacing="0" style="width: 100%; border-collapse: collapse;"> -->
   <table id="aikidoTable" border="1" cellpadding="5" cellspacing="0" style="border-collapse: collapse;">
-      <h2>Tachi Waza (Standing Techniques)</h2>
+      <h2>Links to Youtube Videos</h2>
       <thead>
         <tr>
             <th></th>
@@ -92,6 +121,95 @@
 
 </body>
 <script>
+    const examination_techniques_table = [
+      {
+        kyu: 6,
+        techniques: [ 
+          { attack: "Ai Hanmi <br> Katate Dori", techniques:["ikkyo", "shiho nage", "kote gaeshi"] },
+          { attack: "Shomen Uchi", techniques:["ikkyo", "irimi nage"] },
+        ]
+      },
+      {
+        kyu: 5,
+        techniques: [ 
+          { attack: "Ai Hanmi <br> Katate Dori", techniques:["irimi nage"] },
+          { attack: "Shomen Uchi", techniques:["nikyo", "kote gaeshi"] },
+          { attack: "Katate Dori", techniques:["ikkyo", "shiho nage", "kote gaeshi"] },
+          { attack: "Tsuki", techniques:["ikkyo"] },
+        ]
+      },
+      {
+        kyu: 4,
+        techniques: [ 
+          { attack: "Ai Hanmi <br> Katate Dori", techniques:["nikyo"] },
+          { attack: "Katate Dori", techniques:["nikyo", "irimi nage", "soto kaiten nage", "uchi kaiten nage"] },
+          { attack: "Ryote Dori", techniques:["ikkyo", "tenchi nage"] },
+          { attack: "Shomen Uchi", techniques:["sankyo"] },
+          { attack: "Yokomen Uchi", techniques:["ikkyo", "nikyo", "shiho nage"] },
+          { attack: "Tsuki", techniques:["kote gaeshi"] },
+          { attack: "Ushiro Ryote Dori", techniques:["ikkyo", "kote gaeshi"] },
+        ]
+      },
+      {
+        kyu: 3,
+        techniques: [ 
+          { attack: "Ai Hanmi <br> Katate Dori", techniques:["sankyo"] },
+          { attack: "Katate Dori", techniques:["sankyo", "tenchi nage", "kokyu nage"] },
+          { attack: "Morote Dori", techniques:["ikkyo", "juji garami"] },
+          { attack: "Ryote Dori", techniques:["irimi nage", "shiho nage"] },
+          { attack: "Kata Dori", techniques:["ikkyo", "nikyo"] },
+          { attack: "Kata Dori Men Uchi", techniques:["ikkyo", "kote gaeshi"] },
+          { attack: "Shomen Uchi", techniques:["yonkyo"] },
+          { attack: "Yokomen Uchi", techniques:["sankyo", "irimi nage", "kokyu nage"] },
+          { attack: "Tsuki", techniques:["irimi nage", "hiji kime osae"] },
+          { attack: "Ushiro Ryote Dori", techniques:["nikyo", "irimi nage", "shiho nage"] },
+          { attack: "Ushiro Ryo Kata Dori", techniques:["ikkyo", "nikyo", "sokumen irimi nage"] },
+          { attack: "Ushiro Eri Dori", techniques:["ikkyo"] },
+        ]
+      },
+      {
+        kyu: 2,
+        techniques: [ 
+          { attack: "Ai Hanmi <br> Katate Dori", techniques:["yonkyo", "kokyu nage"] },
+          { attack: "Katate Dori", techniques:["yonkyo", "sumi otoshi"] },
+          { attack: "Morote Dori", techniques:["kote gaeshi", "koshi nage"] },
+          { attack: "Ryote Dori", techniques:["kote gaeshi"] },
+          { attack: "Kata Dori", techniques:["sankyo", "yonkyo"] },
+          { attack: "Ryo Kata Dori", techniques:["kokyu nage"] },
+          { attack: "Mune Dori", techniques:["ikkyo"] },
+          { attack: "Kata Dori Men Uchi", techniques:["nikyo", "sankyo", "irimi nage"] },
+          { attack: "Shomen Uchi", techniques:["gokyo", "koshi nage"] },
+          { attack: "Yokomen Uchi", techniques:["yonkyo", "kote gaeshi"] },
+          { attack: "Tsuki", techniques:["soto kaiten nage"] },
+          { attack: "Ushiro Ryote Dori", techniques:["sankyo", "juji garami", "koshi nage"] },
+          { attack: "Ushiro Eri Dori", techniques:["hiji kime osae"] },
+          { attack: "Ushiro Ryo Kata Dori", techniques:["sankyo", "kote gaeshi"] },
+          { attack: "Ushiro Dori", techniques:["kote gaeshi", "kokyu nage"] },
+        ]
+      },
+      {
+        kyu: 1,
+        techniques: [ 
+          { attack: "Ai Hanmi <br> Katate Dori", techniques:["tenchi nage"] },
+          { attack: "Katate Dori", techniques:["kokyu nage", "aiki otoshi"] },
+          { attack: "Morote Dori", techniques:["kokyu nage", "irimi nage"] },
+          { attack: "Ryote Dori", techniques:["koshi nage"] },
+          { attack: "Mune Dori", techniques:["shiho nage"] },
+          { attack: "Kata Dori", techniques:["sokumen irimi nage"] },
+          { attack: "Ryo Kata Dori", techniques:["ikkyo"] },
+          { attack: "Kata Dori Men Uchi", techniques:["yonkyo", "juji garami", "koshi nage"] },
+          { attack: "Shomen Uchi", techniques:["soto kaiten nage", "ushi kaiten nage"] },
+          { attack: "Yokomen Uchi", techniques:["gokyo", "tenchi nage", "koshi nage"] },
+          { attack: "Tsuki", techniques:["kokyu nage"] },
+          { attack: "Ushiro Ryote Dori", techniques:["yonkyo", "soto kaiten nage", "uchi kaiten nage"] },
+          { attack: "Ushiro Ryo Kata Dori", techniques:["yonkyo"] },
+          { attack: "Ushiro Eri Dori", techniques:["kote gaeshi"] },
+          { attack: "Ushiro Dori", techniques:["shiho nage"] },
+          { attack: "Ushiro Katate Dori Kubi Shime", techniques:["sankyo", "kokyu nage"] },
+        ]
+      },
+    ]
+
     const techniques_table = [
         // ===========================================================
         { attack: "Katate Dori", techniques:[
@@ -615,6 +733,7 @@
         ]},
 
         // ===========================================================
+        // Ushiro Ryote (Kubi) Dori
         { attack: "Ushiro Ryote Dori", techniques:[
           { name: "Kokyu ho", links: [] },
           { name: "ikkyo", links: [
@@ -622,13 +741,22 @@
             { text: "ura", url: "https://www.youtube.com/watch?v=n07sJtm8RPg" },
           ]},
           { name: "nikyo", links: [
-            { text: "omote", url: "https://www.youtube.com/watch?v=t_f54SvJ5IM" },
-            { text: "ura 1", url: "https://youtu.be/0qcSRQYx-dc" },
-            { text: "ura 2", url: "https://youtu.be/t_f54SvJ5IM?t=28" },
+            { text: "omote 1", url: "https://www.youtube.com/watch?v=t_f54SvJ5IM" },
+            { text: "omote 2", url: "https://youtu.be/g4qa0YQgHbk?list=PLmLk6DMwHFRAlE_Wur09Wqxr_KbUL0mw0&t=11" },
+            { text: "ura 1", url: "https://youtu.be/AYpurIi7YHk?list=PLmLk6DMwHFRAlE_Wur09Wqxr_KbUL0mw0&t=11" },
+            { text: "ura 2", url: "https://youtu.be/0qcSRQYx-dc" },
+            { text: "ura 3", url: "https://youtu.be/t_f54SvJ5IM?t=28" },
           ] },
           { name: "sankyo", links: [
-            { text: "omote", url: "https://youtu.be/--P1sYxcfZo" },
-            { text: "ura", url: "https://youtu.be/eJlRvR0sU5M" },
+            { text: "omote 1", url: "https://youtu.be/--P1sYxcfZo" },
+            { text: "omote 2", url: "https://www.youtube.com/watch?v=B-rPybNXlV8" },
+            { text: "omote 3", url: "https://youtu.be/6HhRSO826Ww?t=2101", tooltip: "Tissier" },
+            { text: "omote 4", url: "https://youtu.be/yveYeKZjTOA?list=PLmLk6DMwHFRC0SpzYAug7rKexOxb2rcOe&t=12", tooltip: "Hoffman" },
+            { text: "ura 1", url: "https://youtu.be/eJlRvR0sU5M" },
+            { text: "ura 2", url: "https://youtu.be/B-rPybNXlV8?t=27" },
+            { text: "ura 3", url: "https://youtu.be/t6hPV1bV_aM?t=11" },
+            { text: "ura 4", url: "https://youtu.be/6HhRSO826Ww?t=2137", tooltip: "Tissier" },
+            { text: "ura 5", url: "https://youtu.be/8bTEHXiFjDk?list=PLmLk6DMwHFRC0SpzYAug7rKexOxb2rcOe&t=12", tooltip: "Hoffman" },
           ] },
           { name: "yonkyo", links: [
             { text: "omote 1", url: "https://youtu.be/VchT_WOLtIM" },
@@ -641,12 +769,15 @@
             { text: "1", url: "https://www.youtube.com/watch?v=2zRk5LOzkdE" },
           ] },
           { name: "shiho nage", links: [
+            { text: "omote", url: "https://youtu.be/hWS3Gc3guGs?list=PLmLk6DMwHFRAlE_Wur09Wqxr_KbUL0mw0&t=11" },
+            { text: "ura", url: "https://youtu.be/oHySMrQ7j0U?list=PLmLk6DMwHFRAlE_Wur09Wqxr_KbUL0mw0&t=11" },
             { text: "1", url: "https://youtu.be/f91LmbGdPa0" },
             { text: "2", url: "https://youtu.be/QwVDbUx_tok?t=16" },
           ]},
           { name: "irimi nage", links: [
             { text: "1", url: "https://youtu.be/WlTchEjLeFA" },
             { text: "2", url: "https://youtu.be/KN1-lDkcuNo" },
+            { text: "3", url: "https://youtu.be/VQVVwnFsE2I?list=PLmLk6DMwHFRAlE_Wur09Wqxr_KbUL0mw0&t=11" },
           ] },
           { name: "sokumen irimi nage", links: [
             { text: "1", url: "https://www.youtube.com/watch?v=HDa95I8ArbY" },
@@ -654,7 +785,9 @@
           { name: "tenchi nage", links: [
             { text: "1", url: "https://www.youtube.com/watch?v=7ZQJF6fq8Dk" },
           ] },
-          { name: "kokyu nage", links: [] },
+          { name: "kokyu nage", links: [
+            { text: "1", url: "https://youtu.be/yj8Wgl0Se0E?t=12" },
+          ] },
           { name: "soto kaiten nage", links: [
             { text: "1", url: "https://www.youtube.com/watch?v=YZIzpeoIBTo" },
           ] },
@@ -664,11 +797,13 @@
           { name: "koshi nage", links: [
             { text: "1", url: "https://youtu.be/sdUJ0fkyOgI?t=840" },
             { text: "2", url: "https://youtu.be/Hrx8EYUgV7w" },
+            { text: "3", url: "https://youtu.be/KGPyHzC-2_0?list=PLmLk6DMwHFRC0SpzYAug7rKexOxb2rcOe&t=12" },
           ] },
           { name: "sumi otoshi", links: [] },
           { name: "aiki otoshi", links: [] },
           { name: "juji garami", links: [
             { text: "1", url: "https://youtu.be/Fg_gJL9A6Yg" },
+            { text: "2", url: "https://youtu.be/0RwHSpTLHKM?list=PLmLk6DMwHFRC0SpzYAug7rKexOxb2rcOe&t=12" },
           ] },
           { name: "hiji kime osae", links: [] },
         ]},
@@ -792,52 +927,6 @@
 
         
         // ===========================================================
-        { attack: "Ushiro Ryote Kubi Dori", techniques:[
-          { name: "Kokyu ho", links: [] },
-          { name: "ikkyo", links: []},
-          { name: "nikyo", links: [
-            { text: "omote", url: "https://youtu.be/g4qa0YQgHbk?list=PLmLk6DMwHFRAlE_Wur09Wqxr_KbUL0mw0&t=11" },
-            { text: "ura", url: "https://youtu.be/AYpurIi7YHk?list=PLmLk6DMwHFRAlE_Wur09Wqxr_KbUL0mw0&t=11" },
-          ] },
-          { name: "sankyo", links: [
-            { text: "omote 1", url: "https://www.youtube.com/watch?v=B-rPybNXlV8" },
-            { text: "omote 2", url: "https://youtu.be/6HhRSO826Ww?t=2101", tooltip: "Tissier" },
-            { text: "omote 3", url: "https://youtu.be/yveYeKZjTOA?list=PLmLk6DMwHFRC0SpzYAug7rKexOxb2rcOe&t=12", tooltip: "Hoffman" },
-            { text: "ura 1", url: "https://youtu.be/B-rPybNXlV8?t=27" },
-            { text: "ura 2", url: "https://youtu.be/t6hPV1bV_aM?t=11" },
-            { text: "ura 3", url: "https://youtu.be/6HhRSO826Ww?t=2137", tooltip: "Tissier" },
-            { text: "ura 4", url: "https://youtu.be/8bTEHXiFjDk?list=PLmLk6DMwHFRC0SpzYAug7rKexOxb2rcOe&t=12", tooltip: "Hoffman" },
-            
-          ] },
-          { name: "yonkyo", links: [] },
-          { name: "gokyo", links: [] },
-          { name: "kote gaeshi", links: [] },
-          { name: "shiho nage", links: [
-            { text: "omote", url: "https://youtu.be/hWS3Gc3guGs?list=PLmLk6DMwHFRAlE_Wur09Wqxr_KbUL0mw0&t=11" },
-            { text: "ura", url: "https://youtu.be/oHySMrQ7j0U?list=PLmLk6DMwHFRAlE_Wur09Wqxr_KbUL0mw0&t=11" },
-          ]},
-          { name: "irimi nage", links: [
-            { text: "1", url: "https://youtu.be/VQVVwnFsE2I?list=PLmLk6DMwHFRAlE_Wur09Wqxr_KbUL0mw0&t=11" },
-          ] },
-          { name: "sokumen irimi nage", links: [] },
-          { name: "tenchi nage", links: [] },
-          { name: "kokyu nage", links: [
-            { text: "1", url: "https://youtu.be/yj8Wgl0Se0E?t=12" },
-          ] },
-          { name: "soto kaiten nage", links: [] },
-          { name: "uchi kaiten nage", links: [] },
-          { name: "koshi nage", links: [
-            { text: "1", url: "https://youtu.be/KGPyHzC-2_0?list=PLmLk6DMwHFRC0SpzYAug7rKexOxb2rcOe&t=12" },
-          ] },
-          { name: "sumi otoshi", links: [] },
-          { name: "aiki otoshi", links: [] },
-          { name: "juji garami", links: [
-            { text: "1", url: "https://youtu.be/0RwHSpTLHKM?list=PLmLk6DMwHFRC0SpzYAug7rKexOxb2rcOe&t=12" },
-          ] },
-          { name: "hiji kime osae", links: [] },
-        ]},
-
-        // ===========================================================
         { attack: "Ushiro Katate Dori Kubi Shime", techniques:[
           { name: "Kokyu ho", links: [
             { text: "misc techniques", url: "https://www.youtube.com/watch?v=oDpqcVBPSEw", tooltip: "Bruno" },
@@ -890,207 +979,6 @@
         ]},
     ];
 
-    const table = document.querySelector("#aikidoTable");
-    table.addEventListener("mouseover", (event) => {
-        const cell = event.target.closest("td, th");
-        if (!cell) return;
-
-        const row = cell.parentElement;
-        const colIndex = cell.cellIndex;
-
-        // Highlight row
-        for (const row_cell of row.children) {
-          if (row_cell != cell) {
-            if (row_cell.classList.contains("empty-cell")) {
-              row_cell.classList.add("highlight-row-dark");
-            } else {
-              row_cell.classList.add("highlight-row");
-            }
-          }
-        }
-
-        // Highlight column
-        for (const r of table.rows) {
-            const targetCell = r.cells[colIndex];
-            if (targetCell != cell) {
-              if (targetCell.classList.contains("empty-cell")) {
-                  targetCell.classList.add("highlight-col-dark");
-              } else {
-                  targetCell.classList.add("highlight-col");
-              }            
-            }
-        }
-
-        // Highlight hovered cell
-        if (cell.classList.contains("empty-cell")) {
-            cell.classList.add("highlight-cell-dark");
-            // cell.innerHTML = "dark";
-        } else {
-            cell.classList.add("highlight-cell");
-            // cell.innerHTML = "normal";
-        }        
-    });
-
-    table.addEventListener("mouseout", (event) => {
-        const cell = event.target.closest("td, th");
-        if (!cell) return;
-        // cell.innerHTML = "";
-
-        const row = cell.parentElement;
-        const colIndex = cell.cellIndex;
-
-        // Remove row highlight
-        for (const row_cell of row.children) {
-          if (row_cell != cell) {
-            row_cell.classList.remove("highlight-row", "highlight-row-dark");
-          }
-}
-        // Remove column highlight
-        for (const r of table.rows) {
-            const targetCell = r.cells[colIndex];
-            if (targetCell != cell) {
-              if (targetCell.classList.contains("empty-cell")) {
-                  targetCell.classList.remove("highlight-col-dark");
-              } else {
-                  targetCell.classList.remove("highlight-col");
-              }            
-            }
-        }
-
-        // Remove cell highlight
-        if (cell.classList.contains("empty-cell")) {
-            cell.classList.remove("highlight-cell-dark");
-        } else {
-            cell.classList.remove("highlight-cell");
-        }    
-    });
-
-    // Add highlight CSS dynamically
-    const style = document.createElement('style');
-    style.textContent = `
-      td, th {
-        transition: background-color 0.3s ease;
-      }
-
-      .highlight-col {
-        background-color: rgba(255, 235, 59, 0.3);
-      }
-
-      .highlight-row {
-        background-color: rgba(173, 216, 230, 0.6) !important;
-      }
-
-      .highlight-cell {
-        background-color: rgba(144, 238, 144, 0.5) !important;
-      }
-
-      .empty-cell {
-        background-color: lightgray;
-      }
-
-      .highlight-cell-dark {
-        background-color: rgba(40, 80, 40, 0.6) !important;
-      }
-
-      .highlight-col-dark {
-        background-color: rgba(100, 100, 70, 0.4) !important;
-      }
-
-      .highlight-row-dark {
-        background-color: rgba(80, 100, 100, 0.5) !important;
-      }
-    `;
-
-    document.head.appendChild(style);    
-
-    // get lit of technique names for the techniques_table entry with technique.attack === "__test__"
-    const techniqueNames = techniques_table.find(tech => tech.attack === "__test__").techniques.map(tech => tech.name);
-
-    techniques_table.forEach(technique => {
-        if (technique.attack === "__test__") {
-            return; // Skip the test row
-        }
-        const tr = document.createElement("tr");
-        const th = document.createElement("th");
-        // th.textContent = technique.attack;
-        th.innerHTML = technique.attack;
-        tr.appendChild(th);
-
-        // check if the techniques' names follow the same order as the techniqueNames array
-        const currentNames = technique.techniques.map(tech => tech.name);
-        const namesMatch =
-          currentNames.length === techniqueNames.length &&
-          currentNames.every((name, i) => name === techniqueNames[i]);
-
-        if (!namesMatch) {
-            console.error(`Technique names do not match for ${technique.attack}`);
-            
-            // Display the error on the page
-            const errorMessage = document.createElement("div");
-            errorMessage.textContent = `Technique names do not match for ${technique.attack}`;
-            errorMessage.style.color = "red";
-            errorMessage.style.fontWeight = "bold";
-            errorMessage.style.fontSize = "1.2em";
-            errorMessage.style.margin = "10px 0";
-            document.body.appendChild(errorMessage);
-
-            return; // Skip this row
-        }
-        technique.techniques.forEach(tech => {
-            const td = document.createElement("td");
-            if (tech.links.length === 0) {
-              // td.style.backgroundColor = "lightgray";
-              td.classList.add("empty-cell");
-            } else {
-              tech.links.forEach((link, index) => {
-                  const a = document.createElement("a");
-                  // a.href = link.url;
-
-                  let isYouTubeLink = link.url.includes("youtube.com") || link.url.includes("youtu.be");
-                  // if (isYouTubeLink && /Android|iPhone|iPad/i.test(navigator.userAgent)) {
-                  //     // Try to convert to app-friendly URL
-                  //     const videoIdMatch = link.url.match(/(?:v=|youtu\.be\/)([a-zA-Z0-9_-]{11})/);
-                  //     if (videoIdMatch) {
-                  //         a.href = `youtube://www.youtube.com/watch?v=${videoIdMatch[1]}`;
-                  //     } else {
-                  //         a.href = link.url;
-                  //     }
-                  // } else {
-                  //     a.href = link.url;
-                  // }                  
-                  if (isYouTubeLink && /Android/i.test(navigator.userAgent)) {
-                      const videoIdMatch = link.url.match(/(?:v=|youtu\.be\/)([a-zA-Z0-9_-]{11})/);
-                      if (videoIdMatch) {
-                          a.href = `intent://www.youtube.com/watch?v=${videoIdMatch[1]}#Intent;package=com.google.android.youtube;scheme=https;end`;
-                      } else {
-                          a.href = link.url;
-                      }
-                  } else {
-                      a.href = link.url;
-                  }
-
-                  a.target = "_blank";
-                  a.rel = "noopener noreferrer";
-                  a.textContent = link.text;
-                  td.appendChild(a);
-                  if (index < tech.links.length - 1) {
-                      td.appendChild(document.createElement("br"));
-                  }
-
-                  if (link.tooltip) {
-                      a.className = "tooltip"; // add tooltip class if needed for styling
-
-                      const tooltipSpan = document.createElement("span");
-                      tooltipSpan.className = "tooltip-text";
-                      tooltipSpan.innerHTML = link.tooltip;
-                      a.appendChild(tooltipSpan);
-                  }
-              });
-            }  
-            tr.appendChild(td);
-        });
-
-        document.querySelector("#aikidoTable tbody").appendChild(tr);
-    });
 </script>
+<script src="./functions.js"></script>
 </html>
