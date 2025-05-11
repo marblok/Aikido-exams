@@ -213,6 +213,13 @@
 
       // use getListOfExamAttacks(selectedKyus) to form list_of_valid_attacks and if selectedKyus include -1 append list of attacks from non_examination_techniques_table
       const list_of_valid_attacks = getListOfExamAttacks(selectedKyus);
+      // Log attacks from list_of_valid_attacks that aren't in techniques_table
+      const tableAttacks = techniques_table.map(t => t.attack);
+      list_of_valid_attacks.forEach(validAttack => {
+          if (!tableAttacks.includes(validAttack)) {
+            console.error(`Kyu exam attack '${validAttack}' is not present in techniques_table`);
+          }
+      });      
       if (selectedKyus.includes(-1)) {
           non_examination_techniques_table.forEach(technique => {
               list_of_valid_attacks.push(technique.attack);
@@ -253,32 +260,39 @@
 
           // check if technique.attack is on the list of names in exam.techniques
           const isOnList = list_of_valid_attacks.includes(technique.attack)
-          const validNames = [];
+          const exam_validNames = [];
+          const all_validNames = [];
           if (!isOnList) {
-              console.info(`Technique ${technique.attack} is not on the list of names in exam.techniques`);
+            //   console.info(`Technique ${technique.attack} is not on the list of names in exam.techniques`);
               // there are no valid names for this technique
           }
           else {
               // get the valid names for this technique
               // update validNames with exam.techniques.find(t => t.attack === technique.attack)?.techniques || [];
-              validNames.push(...getExamRequirements(technique.attack, selectedKyus));
+              exam_validNames.push(...getExamRequirements(technique.attack, selectedKyus));
+              all_validNames.push(...getExamRequirements(technique.attack, selectedKyus));
               // if selectedKyus include -1 append list of techniques from non_examination_techniques_table
               if (selectedKyus.includes(-1)) {
                   const nonExamTech = non_examination_techniques_table.find(t => t.attack === technique.attack);
                   if (nonExamTech) {
-                      validNames.push(...nonExamTech.techniques);
+                      all_validNames.push(...nonExamTech.techniques);
                   }
               }
 
               
           }
-          console.log("validNames", validNames);
+        //   console.log("validNames", validNames);
 
           technique.techniques.forEach(tech => {
               // tech
               const td = document.createElement("td");
-              const allowed = !validNames || validNames.includes(tech.name);
+              const exam_allowed = !exam_validNames || exam_validNames.includes(tech.name);
+              if (exam_allowed && tech.links.length === 0) {
+                  console.warn(`Technique '${tech.name}' in '${technique.attack}' is expected (valid) but has no links`);
+              }
 
+
+              const allowed = !all_validNames || all_validNames.includes(tech.name);
               if (tech.links.length === 0 || !allowed) {
                   // td.style.backgroundColor = "lightgray";
                   td.classList.add("empty-cell");
