@@ -192,7 +192,7 @@
         getListOfExamAttacks(selectedKyus).forEach(attack => {
             const tr = document.createElement("tr");
             const th = document.createElement("th");
-            th.textContent = attack;
+            th.innerHTML = attack;
             tr.appendChild(th);
 
             const td = document.createElement("td");
