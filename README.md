@@ -1,0 +1,2 @@
+ - https://marblok.github.io/Aikido-exams/
+ - https://github.com/marblok/Aikido-exams/wiki
