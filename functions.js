@@ -1,4 +1,34 @@
     const table = document.querySelector("#aikidoTable");
+
+    
+    function getSelectedKyus() {
+    const checkboxes = document.querySelectorAll('input[name="kyuLevel"]:checked');
+    return Array.from(checkboxes).map(cb => Number(cb.value));
+    }
+
+    function renderExamRequirementsTable(examination_techniques_table) {
+        const selectedKyus = getSelectedKyus();
+        const tbody = document.querySelector('#examRequirementsTable tbody');
+        tbody.innerHTML = "";
+
+        // For each matching kyu, show all technique rows for its attacks
+        examination_techniques_table.forEach(entry => {
+            if (!selectedKyus.includes(entry.kyu)) return;
+            entry.techniques.forEach(techObj => {
+            // skip test/dummy rows if any
+            if((techObj.attack||"").toLowerCase().includes('__test__')) return;
+            const tr = document.createElement('tr');
+            const tdAttack = document.createElement('td');
+            tdAttack.textContent = techObj.attack;
+            const tdTechs = document.createElement('td');
+            tdTechs.textContent = (techObj.techniques||[]).join(', ');
+            tr.appendChild(tdAttack);
+            tr.appendChild(tdTechs);
+            tbody.appendChild(tr);
+            });
+        });
+    }    
+
     table.addEventListener("mouseover", (event) => {
         const cell = event.target.closest("td, th");
         if (!cell) return;

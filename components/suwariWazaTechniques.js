@@ -1,50 +1,50 @@
-    // const examination_techniques_table = [
-    //   {
-    //     kyu: 6,
-    //     techniques: [ 
-    //       { attack: "Ryote Dori", techniques:["kokyu ho"] },
-    //     ]
-    //   },
-    //   {
-    //     kyu: 5,
-    //     techniques: [ 
-    //       { attack: "Shomen Uchi", techniques:["ikkyo"] },
-    //     ]
-    //   },
-    //   {
-    //     kyu: 4,
-    //     techniques: [ 
-    //       { attack: "Shomen Uchi", techniques:["irimi nage"] },
-    //       { attack: "Kata Dori", techniques:["ikkyo"] },
-    //     ]
-    //   },
-    //   {
-    //     kyu: 3,
-    //     techniques: [ 
-    //       { attack: "Shomen Uchi", techniques:["nikyo", "kote gaeshi"] },
-    //       { attack: "Tsuki", techniques:["kote gaeshi"] },
-    //       { attack: "Kata Dori", techniques:["nikyo"] },
-    //     ]
-    //   },
-    //   {
-    //     kyu: 2,
-    //     techniques: [ 
-    //       { attack: "Shomen Uchi", techniques:["sankyo"] },
-    //       { attack: "Tsuki", techniques:["ikkyo"] },
-    //       { attack: "Kata Dori", techniques:["sankyo"] },
-    //       { attack: "Yokomen Uchi", techniques:["gokyo"] },
-    //     ]
-    //   },
-    //   {
-    //     kyu: 1,
-    //     techniques: [ 
-    //       { attack: "Shomen Uchi", techniques:["yonkyo"] },
-    //       { attack: "Tsuki", techniques:["irimi nage"] },
-    //       { attack: "Kata Dori", techniques:["yonkyo"] },
-    //       { attack: "Yokomen Uchi", techniques:["kokyu nage"] },
-    //     ]
-    //   },
-    // ]
+    const suwariWazaExaminationTechniquesTable = [
+      {
+        kyu: 6,
+        techniques: [ 
+          { attack: "Ryote Dori", techniques:["kokyu ho"] },
+        ]
+      },
+      {
+        kyu: 5,
+        techniques: [ 
+          { attack: "Shomen Uchi", techniques:["ikkyo"] },
+        ]
+      },
+      {
+        kyu: 4,
+        techniques: [ 
+          { attack: "Shomen Uchi", techniques:["irimi nage"] },
+          { attack: "Kata Dori", techniques:["ikkyo"] },
+        ]
+      },
+      {
+        kyu: 3,
+        techniques: [ 
+          { attack: "Shomen Uchi", techniques:["nikyo", "kote gaeshi"] },
+          { attack: "Tsuki", techniques:["kote gaeshi"] },
+          { attack: "Kata Dori", techniques:["nikyo"] },
+        ]
+      },
+      {
+        kyu: 2,
+        techniques: [ 
+          { attack: "Shomen Uchi", techniques:["sankyo"] },
+          { attack: "Tsuki", techniques:["ikkyo"] },
+          { attack: "Kata Dori", techniques:["sankyo"] },
+          { attack: "Yokomen Uchi", techniques:["gokyo"] },
+        ]
+      },
+      {
+        kyu: 1,
+        techniques: [ 
+          { attack: "Shomen Uchi", techniques:["yonkyo"] },
+          { attack: "Tsuki", techniques:["irimi nage"] },
+          { attack: "Kata Dori", techniques:["yonkyo"] },
+          { attack: "Yokomen Uchi", techniques:["kokyu nage"] },
+        ]
+      },
+    ]
 
     const suwariWazaTechniquesTable = [
         // ===========================================================
