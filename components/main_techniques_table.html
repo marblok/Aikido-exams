@@ -1,31 +1,96 @@
-<table class="main-table" id="aikidoTable">
-    <thead>
-        <tr>
-            <th>Attack</th>
-            <th class="technique-col">Kokyu ho</th>
-            <th class="technique-col">Ikkyo</th>
-            <th class="technique-col">Nikyo</th>
-            <th class="technique-col">Sankyo</th>
-            <th class="technique-col">Yonkyo</th>
-            <th class="technique-col">Gokyo</th>
-            <th class="technique-col">Kote Gaeshi</th>
-            <th class="technique-col">Shiho Nage</th>
-            <th class="technique-col">Irimi Nage</th>
-            <th class="technique-col">Sokumen Irimi</th>
-            <th class="technique-col">Tenchi Nage</th>
-            <th class="technique-col">Kokyu Nage</th>
-            <th class="technique-col">Soto Kaiten</th>
-            <th class="technique-col">Uchi Kaiten</th>
-            <th class="technique-col">Koshi Nage</th>
-            <th class="technique-col">Sumi Otoshi</th>
-            <th class="technique-col">Aiki Otoshi</th>
-            <th class="technique-col">Juji Garami</th>
-            <th class="technique-col">Hiji Kime</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr class="loading">
-            <td colspan="20">Loading techniques...</td>
-        </tr>
-    </tbody>
-</table>
+    <!-- Controls (identical for all waza types) -->
+    <div class="controls">
+        <div class="search-box">
+            <input type="text" id="searchInput" placeholder="Search attacks or techniques..." />
+        </div>
+        <br>
+        <div class="filter-section">
+            <div class="kyu-selector" id="kyuSelector">
+                <label>Select Kyu Ranks:</label>
+                <label><input type="checkbox" name="kyuLevel" value="6" checked> 6th</label>
+                <label><input type="checkbox" name="kyuLevel" value="5" checked> 5th</label>
+                <label><input type="checkbox" name="kyuLevel" value="4" checked> 4th</label>
+                <label><input type="checkbox" name="kyuLevel" value="3" checked> 3rd</label>
+                <label><input type="checkbox" name="kyuLevel" value="2" checked> 2nd</label>
+                <label><input type="checkbox" name="kyuLevel" value="1" checked> 1st</label>
+                <label><input type="checkbox" name="kyuLevel" value="-1" checked> Other</label>
+            </div>
+        </div>
+    </div>
+
+    <!-- View Controls -->
+    <div class="view-controls">
+        <label>
+            <input type="checkbox" id="compactView"> Compact View
+        </label>
+        <label>
+            <input type="checkbox" id="hideEmpty" checked> Hide Empty Columns
+        </label>
+    </div>
+
+    <!-- Statistics -->
+    <div class="stats">
+        <div class="stat-item">
+            <span>Visible Attacks:</span>
+            <span class="stat-value" id="attackCount">0</span>
+        </div>
+        <div class="stat-item">
+            <span>Available Videos:</span>
+            <span class="stat-value" id="videoCount">0</span>
+        </div>
+    </div>
+
+    <!-- Progress Bar -->
+    <div class="progress-bar">
+        <div class="progress-fill" id="progressFill"></div>
+    </div>
+
+    <!-- Exam Requirements Section -->
+    <div class="exam-section">
+        <h2>Exam Requirements</h2>
+        <table class="exam-table" id="examRequirementsTable">
+            <thead>
+            <tr>
+                <th>Attack</th>
+                <th>Required Techniques</th>
+            </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div>
+
+    <h2 id="attackListTitle">Technique Reference</h2>
+    <div class="table-container" id="mainTableContainer">
+        <table class="main-table" id="aikidoTable">
+            <thead>
+                <tr>
+                    <th>Attack</th>
+                    <th class="technique-col">Kokyu ho</th>
+                    <th class="technique-col">Ikkyo</th>
+                    <th class="technique-col">Nikyo</th>
+                    <th class="technique-col">Sankyo</th>
+                    <th class="technique-col">Yonkyo</th>
+                    <th class="technique-col">Gokyo</th>
+                    <th class="technique-col">Kote Gaeshi</th>
+                    <th class="technique-col">Shiho Nage</th>
+                    <th class="technique-col">Irimi Nage</th>
+                    <th class="technique-col">Sokumen Irimi</th>
+                    <th class="technique-col">Tenchi Nage</th>
+                    <th class="technique-col">Kokyu Nage</th>
+                    <th class="technique-col">Soto Kaiten</th>
+                    <th class="technique-col">Uchi Kaiten</th>
+                    <th class="technique-col">Koshi Nage</th>
+                    <th class="technique-col">Sumi Otoshi</th>
+                    <th class="technique-col">Aiki Otoshi</th>
+                    <th class="technique-col">Juji Garami</th>
+                    <th class="technique-col">Hiji Kime</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="loading">
+                    <td colspan="20">Loading techniques...</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div id="noteArea"></div>

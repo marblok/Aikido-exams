@@ -1,4 +1,4 @@
-    const suwariWazaExaminationTechniquesTable = [
+    export const suwariWazaExaminationTechniquesTable = [
       {
         kyu: 6,
         techniques: [ 
@@ -46,7 +46,7 @@
       },
     ]
 
-    const suwariWazaTechniquesTable = [
+    export const suwariWazaTechniquesTable = [
         // ===========================================================
         { attack: "Ryote Dori", techniques:[
           { name: "kokyu ho", links: [
