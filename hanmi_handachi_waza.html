@@ -3,313 +3,38 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aikido - Hanmi Handachi Waza</title>
+    <title>Suwari Waza - Aikido Table</title>
+    <link rel="stylesheet" href="components/style.css"><!-- optional, or use inline CSS -->
     <style>
-        .tooltip {
-          position: relative;
-          cursor: help;
-        }
-    
-        .tooltip .tooltip-text {
-          visibility: hidden;
-          width: max-content;
-          background-color: #333;
-          color: #fff;
-          text-align: left;
-          padding: 8px;
-          border-radius: 6px;
-          position: absolute;
-          z-index: 1;
-          bottom: 125%; /* Position above the text */
-          left: 50%;
-          transform: translateX(-50%);
-          opacity: 0;
-          transition: opacity 0.3s;
-          white-space: nowrap;
-        }
-    
-        .tooltip:hover .tooltip-text {
-          visibility: visible;
-          opacity: 1;
-        }
-    
-        .tooltip-text b {
-          font-weight: bold;
-          color: #ffcc00;
-        }
-      </style>
+      /* Move your (existing) CSS here, or link as external file. */
+      /* You can strip CSS in this file to only page-level stuff. */
+    </style>
 </head>
-
 <body>
-  <h1>Hanmi Handachi Waza (One Person Standing, One Seated)</h1>
-  <h2>Exam Requirements</h2>
-  <div id="kyuSelector" style="margin-bottom: 1em;">
-    <label>Select Kyu Rank:</label>
-    <form id="kyuForm">
-      <label><input type="checkbox" name="kyuLevel" value="6" checked> 6th Kyu</label>
-      <label><input type="checkbox" name="kyuLevel" value="5" checked> 5th Kyu</label>
-      <label><input type="checkbox" name="kyuLevel" value="4" checked> 4th Kyu</label>
-      <label><input type="checkbox" name="kyuLevel" value="3" checked> 3rd Kyu</label>
-      <label><input type="checkbox" name="kyuLevel" value="2" checked> 2nd Kyu</label>
-      <label><input type="checkbox" name="kyuLevel" value="1" checked> 1st Kyu</label>
-      <label><input type="checkbox" name="kyuLevel" value="-1" checked> Other</label>
-    </form>
-  </div>
+<div class="container">
+    <h1 id="pageTitle">Hanmi Handachi Waza (One Person Standing, One Seated)</h1>
+    <div id="mainContainer"></div>    
 
-  <table id="examRequirementsTable" border="1" cellpadding="5" cellspacing="0" style="border-collapse: collapse;">
-      <thead>
-        <tr>
-            <th>Attack</th>
-            <th>Techniques</th>
-        </tr>
-      </thead>
-      <tbody>
-          <!-- Row will be inserted here -->
-      </tbody>
-  </table>
-  <br>
-  <b>Note</b>: The list for examination techniques is based on the requiremenst of <a href="https://centrum-aikido.org.pl">Centrum Aikido Aikiai Polska</a> buy it is not guaranteed to be complete or up-to-date.
-  
-  <!-- <table id="aikidoTable" border="1" cellpadding="5" cellspacing="0" style="width: 100%; border-collapse: collapse;"> -->
-  <table id="aikidoTable" border="1" cellpadding="5" cellspacing="0" style="border-collapse: collapse;">
-      <h2>Links to Youtube Videos</h2>
-      <thead>
-        <tr>
-            <th></th>
-            <th> 
-                <span class="tooltip">
-                    Kokyu ho <br> (omote-ura)
-                    <span class="tooltip-text">
-                        sokumen-irimi nage (something like genkei <b>kokyu nage</b>)
-                    </span>
-                </span>
-            </th>
-            <th>Ikkyo</th>
-            <th>Nikyo</th>
-            <th>Sankyo</th>
-            <th>Yonkyo</th>
-            <th>Gokyo</th>
-            <th>Kote Gaeshi</th>
-            <th>Shiho Nage</th>
-            <th>Irimi Nage</th>
-            <th>Sokumen Irimi Nage</th>
-            <th>Tenchi Nage</th>
-            <th>Kokyu Nage</th>
-            <th>Soto Kaiten Nage</th>
-            <th>Uchi Kaiten Nage</th>
-            <th>Koshi Nage</th>
-            <th>Sumi Otoshi</th>
-            <th>Aiki Otoshi</th>
-            <th>Juji Garami</th>
-            <th>Hiji Kime Osae</th>
-        </tr>
-      </thead>
-      <tbody>
-          <!-- Row will be inserted here -->
-      </tbody>
-  </table>
-  <br>
+</div>
 
-  <!-- <h2>Misc</h2>
-  <ul>
-     <li><a href="https://www.youtube.com/watch?v=EWT5CalrnhA">Aiki Nage</a></li>
-  </ul> -->
+<script type="module">
+import {hanmiHandachiWazaTechniquesTable, hanmiHandachiWazaExaminationTechniquesTable} from './components/hanmiHandachiWazaTechniques.js';
+import {AikidoTableManager} from './components/aikidoTableApp.js';
 
-</body>
-<script>
-    const examination_techniques_table = [
-      {
-        kyu: 6,
-        techniques: [ 
-        ]
-      },
-      {
-        kyu: 5,
-        techniques: [ 
-        ]
-      },
-      {
-        kyu: 4,
-        techniques: [ 
-        ]
-      },
-      {
-        kyu: 3,
-        techniques: [ 
-          { attack: "Katate Dori", techniques:["ikkyo", "kote gaeshi", "soto kaiten nage", "uchi kaiten nage"] },
-        ]
-      },
-      {
-        kyu: 2,
-        techniques: [ 
-          { attack: "Katate Dori", techniques:["shiho nage"] },
-          { attack: "Shomen Uchi", techniques:["irimi nage"] },
-          { attack: "Ushiro Ryo Kata Dori", techniques:["kokyu nage"] },
-        ]
-      },
-      {
-        kyu: 1,
-        techniques: [ 
-          { attack: "Shomen Uchi", techniques:["ikkyo"] },
-          { attack: "Katate Dori", techniques:["irimi nage"] },
-          { attack: "Ryote Dori", techniques:["shiho nage"] },
-          { attack: "Ushiro Ryo Kata Dori", techniques:["kote gaeshi"] },
-        ]
-      },
-    ]
-
-    const techniques_table = [
-        // ===========================================================
-        { attack: "Katate Dori", techniques:[
-          { name: "Kokyu ho", links: [] },
-          { name: "ikkyo", links: [
-            { text: "omote", url: "https://www.youtube.com/watch?v=2EsRtHlPDpg" },
-            { text: "ura", url: "https://youtu.be/2EsRtHlPDpg?t=12" },
-          ]},
-          { name: "nikyo", links: [] },
-          { name: "sankyo", links: [] },
-          { name: "yonkyo", links: [] },
-          { name: "gokyo", links: [] },
-          { name: "kote gaeshi", links: [
-            { text: "omote", url: "https://youtu.be/TDeIlR6xhSA", tooltip: "Tissier" },
-            { text: "ura", url: "https://youtu.be/gCO1popi3kU?t=2" },
-          ] },
-          { name: "shiho nage", links: [
-            { text: "omote", url: "https://youtu.be/BefpUP2-AkQ?t=7" },
-            { text: "ura", url: "https://youtu.be/BefpUP2-AkQ?t=107" },
-          ]},
-          { name: "irimi nage", links: [
-            { text: "1", url: "https://youtu.be/Q0krR3Q96d8?t=11" },
-          ] },
-          { name: "sokumen irimi nage", links: [] },
-          { name: "tenchi nage", links: [] },
-          { name: "kokyu nage", links: [] },
-          { name: "soto kaiten nage", links: [
-            { text: "1", url: "https://www.youtube.com/watch?v=wkm2I-aditY" },
-          ] },
-          { name: "uchi kaiten nage", links: [
-            { text: "1", url: "https://youtu.be/DTQeBUGzk5Q?list=PLmLk6DMwHFRAlE_Wur09Wqxr_KbUL0mw0&t=11" },
-          ] },
-          { name: "koshi nage", links: [] },
-          { name: "sumi otoshi", links: [] },
-          { name: "aiki otoshi", links: [] },
-          { name: "juji garami", links: [] },
-          { name: "hiji kime osae", links: [] },
-        ]},
-
-        // ===========================================================
-        { attack: "Ryote Dori", techniques:[
-          { name: "Kokyu ho", links: [] },
-          { name: "ikkyo", links: []},
-          { name: "nikyo", links: [] },
-          { name: "sankyo", links: [] },
-          { name: "yonkyo", links: [] },
-          { name: "gokyo", links: [] },
-          { name: "kote gaeshi", links: [] },
-          { name: "shiho nage", links: [
-            { text: "omote 1", url: "https://youtu.be/jFEtuU6ID90" },
-            { text: "omote 2", url: "https://youtu.be/xtbiYA2TgmA", tooltip: "Tissier" },
-            { text: "ura 1", url: "https://youtu.be/jFEtuU6ID90?t=15" },
-            { text: "ura 2", url: "https://youtu.be/qgHYoSLRdxI?t=8", tooltip: "Hoffmann" },
-            { text: "ura 3", url: "https://youtu.be/JdH1sVz2IgI", tooltip: "Tissier" },
-          ]},
-          { name: "irimi nage", links: [] },
-          { name: "sokumen irimi nage", links: [] },
-          { name: "tenchi nage", links: [] },
-          { name: "kokyu nage", links: [] },
-          { name: "soto kaiten nage", links: [] },
-          { name: "uchi kaiten nage", links: [] },
-          { name: "koshi nage", links: [] },
-          { name: "sumi otoshi", links: [] },
-          { name: "aiki otoshi", links: [] },
-          { name: "juji garami", links: [] },
-          { name: "hiji kime osae", links: [] },
-        ]},
-
-        // ===========================================================
-        { attack: "Shomen Uchi", techniques:[
-          { name: "Kokyu ho", links: [] },
-          { name: "ikkyo", links: [
-            { text: "omote", url: "https://www.youtube.com/watch?v=R37nt6DYPxE" },
-            { text: "ura", url: "https://youtu.be/9Jn39xlD7lc?t=1" },
-          ]},
-          { name: "nikyo", links: [
-            { text: "omote", url: "https://www.youtube.com/watch?v=xGP5FbVlR6s" },
-            { text: "ura", url: "https://youtu.be/xGP5FbVlR6s?t=14" },
-          ] },
-          { name: "sankyo", links: [] },
-          { name: "yonkyo", links: [] },
-          { name: "gokyo", links: [] },
-          { name: "kote gaeshi", links: [] },
-          { name: "shiho nage", links: []},
-          { name: "irimi nage", links: [
-            { text: "1", url: "https://youtu.be/QQAb-7Rz2No?t=63" },
-            { text: "omote", url: "https://youtu.be/78oiUVFgMrs?t=9" },
-            { text: "ura", url: "https://youtu.be/78oiUVFgMrs?t=44" },
-          ] },
-          { name: "sokumen irimi nage", links: [] },
-          { name: "tenchi nage", links: [] },
-          { name: "kokyu nage", links: [] },
-          { name: "soto kaiten nage", links: [] },
-          { name: "uchi kaiten nage", links: [] },
-          { name: "koshi nage", links: [] },
-          { name: "sumi otoshi", links: [] },
-          { name: "aiki otoshi", links: [] },
-          { name: "juji garami", links: [] },
-          { name: "hiji kime osae", links: [] },
-        ]},
-
-
-        // ===========================================================
-        { attack: "Ushiro Ryo Kata Dori", techniques:[
-          { name: "Kokyu ho", links: [] },
-          { name: "ikkyo", links: []},
-          { name: "nikyo", links: [] },
-          { name: "sankyo", links: [] },
-          { name: "yonkyo", links: [] },
-          { name: "gokyo", links: [] },
-          { name: "kote gaeshi", links: [
-            { text: "1", url: "https://youtu.be/O2Gm1ECjPQA?t=11" },
-          ] },
-          { name: "shiho nage", links: []},
-          { name: "irimi nage", links: [] },
-          { name: "sokumen irimi nage", links: [] },
-          { name: "tenchi nage", links: [] },
-          { name: "kokyu nage", links: [
-            { text: "1", url: "https://youtu.be/mhO-ez9bdE4?t=40" },
-          ] },
-          { name: "soto kaiten nage", links: [] },
-          { name: "uchi kaiten nage", links: [] },
-          { name: "koshi nage", links: [] },
-          { name: "sumi otoshi", links: [] },
-          { name: "aiki otoshi", links: [] },
-          { name: "juji garami", links: [] },
-          { name: "hiji kime osae", links: [] },
-        ]},
-
-        // ===========================================================
-        { attack: "__test__", techniques:[
-          { name: "Kokyu ho", links: [] },
-          { name: "ikkyo", links: []},
-          { name: "nikyo", links: [] },
-          { name: "sankyo", links: [] },
-          { name: "yonkyo", links: [] },
-          { name: "gokyo", links: [] },
-          { name: "kote gaeshi", links: [] },
-          { name: "shiho nage", links: []},
-          { name: "irimi nage", links: [] },
-          { name: "sokumen irimi nage", links: [] },
-          { name: "tenchi nage", links: [] },
-          { name: "kokyu nage", links: [] },
-          { name: "soto kaiten nage", links: [] },
-          { name: "uchi kaiten nage", links: [] },
-          { name: "koshi nage", links: [] },
-          { name: "sumi otoshi", links: [] },
-          { name: "aiki otoshi", links: [] },
-          { name: "juji garami", links: [] },
-          { name: "hiji kime osae", links: [] },
-        ]},
-    ];
+document.addEventListener('DOMContentLoaded', () => {
+    new AikidoTableManager({
+        techniquesTable: hanmiHandachiWazaTechniquesTable,
+        examinationTechniquesTable: hanmiHandachiWazaExaminationTechniquesTable,
+        tableHtmlUrl: 'components/mainTechniquesTable.html',
+        pageTitle: "Hanmi Handachi Waza (One Person Standing, One Seated)",
+        attackListTitle: "Technique Reference",
+        noteHtml: `<p style="margin-top: 20px; font-size: 14px; color: #7f8c8d;">
+            <strong>Note:</strong> This reference is based on requirements from 
+            <a href="https://centrum-aikido.org.pl" target="_blank">Centrum Aikido Aikikai Polska</a> 
+            but may not be complete or up-to-date.
+        </p>`
+    });
+});
 </script>
-<script src="./functions.js"></script>
+</body>
 </html>

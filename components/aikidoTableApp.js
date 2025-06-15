@@ -72,16 +72,17 @@ export class AikidoTableManager {
         if (!tbody) return;
         tbody.innerHTML = "";
 
-        // Aggregate by attack name
+        // Map: attack → technique → Set of kyus
         const attackToTechniques = {};
         examination_techniques_table.forEach(entry => {
             if (!selectedKyus.includes(entry.kyu)) return;
-            entry.techniques.forEach(techObj => {
-                const name = (techObj.attack||"").trim();
-                if (!name || name.toLowerCase().includes('__test__')) return;
-                if (!(name in attackToTechniques)) attackToTechniques[name] = new Set();
-                for (const tech of (techObj.techniques||[])) {
-                    attackToTechniques[name].add(tech);
+            (entry.techniques || []).forEach(techObj => {
+                const attack = (techObj.attack || "").trim();
+                if (!attack || attack.toLowerCase().includes('__test__')) return;
+                if (!(attack in attackToTechniques)) attackToTechniques[attack] = {};
+                for (const tech of (techObj.techniques || [])) {
+                    if (!(tech in attackToTechniques[attack])) attackToTechniques[attack][tech] = new Set();
+                    attackToTechniques[attack][tech].add(entry.kyu);
                 }
             });
         });
@@ -91,7 +92,13 @@ export class AikidoTableManager {
             const tdAttack = document.createElement('td');
             tdAttack.textContent = attack;
             const tdTechs = document.createElement('td');
-            tdTechs.textContent = Array.from(attackToTechniques[attack]).join(', ');
+            // For each technique, show "technique (kyu, kyu, ...)"
+            const techsRendered = Object.entries(attackToTechniques[attack])
+                .map(([tech, kyus]) => {
+                    const kyuArr = Array.from(kyus).sort((a, b) => a - b);
+                    return `${tech} (${kyuArr.join(', ')})`;
+                });
+            tdTechs.textContent = techsRendered.join(', ');
             tr.appendChild(tdAttack);
             tr.appendChild(tdTechs);
             tbody.appendChild(tr);
@@ -251,13 +258,41 @@ export class AikidoTableManager {
                 } else {
                     tech.links.forEach((link, index) => {
                         const a = document.createElement('a');
-                        a.href = link.url;
-                        a.target = '_blank';
-                        a.rel = 'noopener noreferrer';
+
+                        // a.target = '_blank';
+                        // a.rel = 'noopener noreferrer';
+                        // a.textContent = link.text;
+                        // cell.appendChild(a);
+                        // if (index < tech.links.length - 1)
+                        //     cell.appendChild(document.createElement('br'));
+                        let isYouTubeLink = link.url.includes("youtube.com") || link.url.includes("youtu.be");
+                        if (isYouTubeLink && /Android/i.test(navigator.userAgent)) {
+                            const videoIdMatch = link.url.match(/(?:v=|youtu\.be\/)([a-zA-Z0-9_-]{11})/);
+                            if (videoIdMatch) {
+                                a.href = `intent://www.youtube.com/watch?v=${videoIdMatch[1]}#Intent;package=com.google.android.youtube;scheme=https;end`;
+                            } else {
+                                a.href = link.url;
+                            }
+                        } else {
+                            a.href = link.url;
+                        }
+
+                        a.target = "_blank";
+                        a.rel = "noopener noreferrer";
                         a.textContent = link.text;
                         cell.appendChild(a);
-                        if (index < tech.links.length - 1)
-                            cell.appendChild(document.createElement('br'));
+                        if (index < tech.links.length - 1) {
+                            cell.appendChild(document.createElement("br"));
+                        }
+
+                        if (link.tooltip) {
+                            a.className = "tooltip"; // add tooltip class if needed for styling
+
+                            const tooltipSpan = document.createElement("span");
+                            tooltipSpan.className = "tooltip-text";
+                            tooltipSpan.innerHTML = link.tooltip;
+                            a.appendChild(tooltipSpan);
+                        }                        
                     });
                 }
                 // Hide this cell if column is hidden (and not the attack column)
