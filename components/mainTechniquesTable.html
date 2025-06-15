@@ -1,9 +1,5 @@
     <!-- Controls (identical for all waza types) -->
     <div class="controls">
-        <div class="search-box">
-            <input type="text" id="searchInput" placeholder="Search attacks or techniques..." />
-        </div>
-        <br>
         <div class="filter-section">
             <div class="kyu-selector" id="kyuSelector">
                 <label>Select Kyu Ranks:</label>
@@ -60,6 +56,15 @@
     </div>
 
     <h2 id="attackListTitle">Technique Reference</h2>
+    <div class="controls" style="flex-direction: column;">
+        <div class="search-box">
+            <input id="attackInput" type="text" placeholder="Filter attacks (e.g. shomen)">
+        </div>
+        <div class="search-box">
+            <input id="techniqueInput" type="text" placeholder="Filter techniques (e.g. ikkyo)">
+        </div>
+    </div>
+
     <div class="table-container" id="mainTableContainer">
         <table class="main-table" id="aikidoTable">
             <thead>

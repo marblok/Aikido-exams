@@ -16,7 +16,8 @@ export class AikidoTableManager {
         this.currentData = techniquesTable;
         this.examinationTechniquesTable = examinationTechniquesTable;
         this.filteredData = [...this.currentData];
-        this.searchTerm = '';
+        this.attackSearchTerm = '';
+        this.techniqueSearchTerm = '';
         this.selectedKyus = [1, 2, 3, 4, 5, 6, -1];
         this.compactView = false;
         this.hideEmpty = true;
@@ -152,8 +153,12 @@ export class AikidoTableManager {
 
     initializeEventListeners() {
         // Search functionality
-        document.getElementById('searchInput').addEventListener('input', (e) => {
-            this.searchTerm = e.target.value.toLowerCase();
+        document.getElementById('attackInput').addEventListener('input', (e) => {
+            this.attackSearchTerm = e.target.value.toLowerCase();
+            this.applyFilters();
+        });
+        document.getElementById('techniqueInput').addEventListener('input', (e) => {
+            this.techniqueSearchTerm = e.target.value.toLowerCase();
             this.applyFilters();
         });
 
@@ -182,23 +187,33 @@ export class AikidoTableManager {
     }
 
     applyFilters() {
-        const allowed = this.getKyuFilteredCells(this.examinationTechniquesTable); // set of "attack::technique" strings
+        const allowed = this.getKyuFilteredCells(this.examinationTechniquesTable);
+        const allTechNames = this.currentData[0].techniques.map(t => t.name);
+
+        // Decide which columns to show (based on technique name filter)
+        let visibleTechniqueNames;
+        if (!this.techniqueSearchTerm) {
+            visibleTechniqueNames = allTechNames;
+        } else {
+            visibleTechniqueNames = allTechNames.filter(name =>
+                name.toLowerCase().includes(this.techniqueSearchTerm)
+            );
+        }
+        this.visibleTechniqueNames = visibleTechniqueNames;
+
+        // Now, filter attacks (rows)
         this.filteredData = this.currentData.filter(technique => {
-            // Ignore test/demo rows
             if (technique.attack.includes('__test__')) return false;
-            const isAnyAllowed = technique.techniques.some(t => allowed.has(`${technique.attack}::${t.name}`));
-            if (!isAnyAllowed) return false;
-            if (this.searchTerm) {
-                const searchMatch =
-                    technique.attack.toLowerCase().includes(this.searchTerm) ||
-                    technique.techniques.some(
-                        t =>
-                            t.name.toLowerCase().includes(this.searchTerm) &&
-                            allowed.has(`${technique.attack}::${t.name}`)
-                    );
-                if (!searchMatch) return false;
-            }
-            return true;
+
+            // Filter attacks (rows)
+            if (this.attackSearchTerm && !technique.attack.toLowerCase().includes(this.attackSearchTerm)) return false;
+            
+            // Keep row only if at least one technique cell is allowed AND matches visibleTechniqueNames
+            return technique.techniques.some(
+                t =>
+                    allowed.has(`${technique.attack}::${t.name}`) &&
+                    visibleTechniqueNames.includes(t.name)
+            );
         });
 
         this.refreshTable(allowed);
@@ -224,15 +239,25 @@ export class AikidoTableManager {
         });
 
         // Hide empty columns if needed (and hide columns in header too)
+        // for (let i = 0; i < columnCount; i++) {
+        //     const th = headerRow.children[i + 1]; // +1 because 0 is Attack name
+        //     if (this.hideEmpty && !columnsWithContent[i]) {
+        //         th.style.display = 'none';
+        //     } else {
+        //         th.style.display = '';
+        //     }
+        // }
         for (let i = 0; i < columnCount; i++) {
-            const th = headerRow.children[i + 1]; // +1 because 0 is Attack name
-            if (this.hideEmpty && !columnsWithContent[i]) {
+            const th = headerRow.children[i + 1]; // +1 for attack col
+            const techName = this.currentData[0].techniques[i].name;
+            if (!this.visibleTechniqueNames.includes(techName)) {
+                th.style.display = 'none';
+            } else if (this.hideEmpty && !columnsWithContent[i]) {
                 th.style.display = 'none';
             } else {
                 th.style.display = '';
             }
         }
-
 
         // Loop through filteredData rows:
         this.filteredData.forEach(technique => {
@@ -295,9 +320,18 @@ export class AikidoTableManager {
                         }                        
                     });
                 }
+
                 // Hide this cell if column is hidden (and not the attack column)
-                if (this.hideEmpty && !columnsWithContent[colIdx]) cell.style.display = 'none';
-                else cell.style.display = '';
+                // if (this.hideEmpty && !columnsWithContent[colIdx]) cell.style.display = 'none';
+                // else cell.style.display = '';
+                const techName = this.currentData[0].techniques[colIdx].name;
+                if (!this.visibleTechniqueNames.includes(techName)) {
+                    cell.style.display = 'none';
+                } else if (this.hideEmpty && !columnsWithContent[colIdx]) {
+                    cell.style.display = 'none';
+                } else {
+                    cell.style.display = '';
+                }
 
                 row.appendChild(cell);
             });
