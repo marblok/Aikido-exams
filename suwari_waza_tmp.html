@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aikido - Suwari Waza (Improved)</title>
+    <title>Aikido - Suwari Waza</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -324,6 +324,14 @@
             font-weight: bold;
             color: #2c3e50;
         }
+
+        /* Black letters when header is highlighted */
+        .main-table th.highlight-row,
+        .main-table th.highlight-col,
+        .main-table th.highlight-cell {
+            color: #111 !important;
+        }
+
     </style>
 </head>
 <body>
@@ -335,6 +343,7 @@
             <div class="search-box">
                 <input type="text" id="searchInput" placeholder="Search attacks or techniques..." />
             </div>
+            <br/>
             
             <div class="filter-section">
                 <div class="kyu-selector" id="kyuSelector">
@@ -356,7 +365,7 @@
                 <input type="checkbox" id="compactView"> Compact View
             </label>
             <label>
-                <input type="checkbox" id="hideEmpty"> Hide Empty Cells
+                <input type="checkbox" id="hideEmpty" checked> Hide Empty Columns
             </label>
         </div>
 
@@ -369,10 +378,6 @@
             <div class="stat-item">
                 <span>Available Videos:</span>
                 <span class="stat-value" id="videoCount">0</span>
-            </div>
-            <div class="stat-item">
-                <span>Completion:</span>
-                <span class="stat-value" id="completionRate">0%</span>
             </div>
         </div>
 
@@ -398,37 +403,7 @@
         <!-- Main Techniques Table -->
         <h2>Technique Reference</h2>
         <div class="table-container" id="tableContainer">
-            <table class="main-table" id="aikidoTable">
-                <thead>
-                    <tr>
-                        <th>Attack</th>
-                        <th class="technique-col">Kokyu ho</th>
-                        <th class="technique-col">Ikkyo</th>
-                        <th class="technique-col">Nikyo</th>
-                        <th class="technique-col">Sankyo</th>
-                        <th class="technique-col">Yonkyo</th>
-                        <th class="technique-col">Gokyo</th>
-                        <th class="technique-col">Kote Gaeshi</th>
-                        <th class="technique-col">Shiho Nage</th>
-                        <th class="technique-col">Irimi Nage</th>
-                        <th class="technique-col">Sokumen Irimi</th>
-                        <th class="technique-col">Tenchi Nage</th>
-                        <th class="technique-col">Kokyu Nage</th>
-                        <th class="technique-col">Soto Kaiten</th>
-                        <th class="technique-col">Uchi Kaiten</th>
-                        <th class="technique-col">Koshi Nage</th>
-                        <th class="technique-col">Sumi Otoshi</th>
-                        <th class="technique-col">Aiki Otoshi</th>
-                        <th class="technique-col">Juji Garami</th>
-                        <th class="technique-col">Hiji Kime</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr class="loading">
-                        <td colspan="20">Loading techniques...</td>
-                    </tr>
-                </tbody>
-            </table>
+            <div id="mainTechniquesTable"></div>
         </div>
 
         <p style="margin-top: 20px; font-size: 14px; color: #7f8c8d;">
@@ -438,85 +413,23 @@
         </p>
     </div>
 
+    <script src="components/suwariWazaTechniques.js"></script>
     <script>
-        // Sample data - in real implementation, this would come from the original data structures
-        const sampleTechniques = [
-            {
-                attack: "Ryote Dori",
-                techniques: [
-                    { name: "kokyu ho", links: [{ text: "1", url: "https://youtu.be/_ltvv4HBlcY?t=33" }] },
-                    { name: "ikkyo", links: [] },
-                    { name: "nikyo", links: [] },
-                    { name: "sankyo", links: [] },
-                    { name: "yonkyo", links: [] },
-                    { name: "gokyo", links: [] },
-                    { name: "kote gaeshi", links: [] },
-                    { name: "shiho nage", links: [] },
-                    { name: "irimi nage", links: [] },
-                    { name: "sokumen irimi", links: [] },
-                    { name: "tenchi nage", links: [] },
-                    { name: "kokyu nage", links: [] },
-                    { name: "soto kaiten", links: [] },
-                    { name: "uchi kaiten", links: [] },
-                    { name: "koshi nage", links: [] },
-                    { name: "sumi otoshi", links: [] },
-                    { name: "aiki otoshi", links: [] },
-                    { name: "juji garami", links: [] },
-                    { name: "hiji kime", links: [] }
-                ]
-            },
-            {
-                attack: "Shomen Uchi",
-                techniques: [
-                    { name: "kokyu ho", links: [] },
-                    { name: "ikkyo", links: [
-                        { text: "omote", url: "https://youtu.be/sQqUeFzZaNg" },
-                        { text: "ura", url: "https://youtu.be/sQqUeFzZaNg?t=17" }
-                    ]},
-                    { name: "nikyo", links: [
-                        { text: "omote", url: "https://youtu.be/ETVi6khmA_g" },
-                        { text: "ura", url: "https://youtu.be/ETVi6khmA_g?t=29" }
-                    ]},
-                    { name: "sankyo", links: [
-                        { text: "omote", url: "https://youtu.be/bRc-UjpA0Jk?t=3" },
-                        { text: "ura", url: "https://youtu.be/bRc-UjpA0Jk?t=24" }
-                    ]},
-                    { name: "yonkyo", links: [] },
-                    { name: "gokyo", links: [] },
-                    { name: "kote gaeshi", links: [
-                        { text: "omote", url: "https://youtu.be/oKwQpEJM8pc?t=3" }
-                    ]},
-                    { name: "shiho nage", links: [] },
-                    { name: "irimi nage", links: [
-                        { text: "omote", url: "https://youtu.be/zgQIIymWg_k?t=3" }
-                    ]},
-                    { name: "sokumen irimi", links: [] },
-                    { name: "tenchi nage", links: [] },
-                    { name: "kokyu nage", links: [] },
-                    { name: "soto kaiten", links: [] },
-                    { name: "uchi kaiten", links: [] },
-                    { name: "koshi nage", links: [] },
-                    { name: "sumi otoshi", links: [] },
-                    { name: "aiki otoshi", links: [] },
-                    { name: "juji garami", links: [] },
-                    { name: "hiji kime", links: [] }
-                ]
-            }
-        ];
-
         // Enhanced functionality
         class AikidoTableManager {
             constructor() {
-                this.currentData = sampleTechniques;
+                this.currentData = suwariWazaTechniquesTable;
                 this.filteredData = [...this.currentData];
                 this.searchTerm = '';
                 this.selectedKyus = [1, 2, 3, 4, 5, 6, -1];
                 this.compactView = false;
-                this.hideEmpty = false;
-                
+                this.hideEmpty = true;
+
+
                 this.initializeEventListeners();
-                this.refreshTable();
-                this.updateStats();
+                // this.refreshTable();
+                // this.updateStats();
+                this.applyFilters(); // calls refreshTable() and updateStats()
             }
 
             initializeEventListeners() {
@@ -551,6 +464,9 @@
 
             applyFilters() {
                 this.filteredData = this.currentData.filter(technique => {
+                    // Ignore test or demo rows
+                    if (technique.attack.includes('__test__')) return false;
+
                     // Search filter
                     if (this.searchTerm) {
                         const searchMatch = technique.attack.toLowerCase().includes(this.searchTerm) ||
@@ -567,25 +483,49 @@
 
             refreshTable() {
                 const tbody = document.querySelector('#aikidoTable tbody');
+                const headerRow = document.querySelector('#aikidoTable thead tr');
                 tbody.innerHTML = '';
 
+                // Collect visible data rows for filtering
+                const rows = this.filteredData.map(technique => technique.techniques);
+
+                // 19 technique columns
+                const columnCount = 19;
+                // Track col visibility
+                let columnsWithContent = Array(columnCount).fill(false);
+
+                // Check which columns actually have content
+                for (let row of rows) {
+                    row.forEach((tech, colIdx) => {
+                        if (tech.links.length > 0) columnsWithContent[colIdx] = true;
+                    });
+                }
+
+                // Hide empty columns only if hideEmpty is checked
+                // Also toggle display of header ths.
+                for (let i = 0; i < columnCount; i++) {
+                    const th = headerRow.children[i + 1];   // +1 because 0 is Attack name
+                    if (this.hideEmpty && !columnsWithContent[i]) {
+                        th.style.display = 'none';
+                    } else {
+                        th.style.display = '';
+                    }
+                }
+
+                // Now build rows
                 this.filteredData.forEach(technique => {
                     const row = document.createElement('tr');
-                    
-                    // Attack name cell
+                    // Attack column
                     const attackCell = document.createElement('td');
                     attackCell.textContent = technique.attack;
                     row.appendChild(attackCell);
 
-                    // Technique cells
-                    technique.techniques.forEach(tech => {
+                    // 19 technique columns
+                    technique.techniques.forEach((tech, colIdx) => {
                         const cell = document.createElement('td');
-                        
                         if (tech.links.length === 0) {
                             cell.classList.add('empty-cell');
-                            if (!this.hideEmpty) {
-                                cell.textContent = '—';
-                            }
+                            if (!this.hideEmpty) cell.textContent = '—';
                         } else {
                             tech.links.forEach((link, index) => {
                                 const a = document.createElement('a');
@@ -594,19 +534,13 @@
                                 a.rel = 'noopener noreferrer';
                                 a.textContent = link.text;
                                 cell.appendChild(a);
-                                
-                                if (index < tech.links.length - 1) {
+                                if (index < tech.links.length - 1)
                                     cell.appendChild(document.createElement('br'));
-                                }
                             });
                         }
-
-                        if (this.hideEmpty && tech.links.length === 0) {
-                            cell.style.display = 'none';
-                        } else {
-                            cell.style.display = '';
-                        }
-
+                        // Hide this cell if column is hidden (and not the attack column)
+                        if (this.hideEmpty && !columnsWithContent[colIdx]) cell.style.display = 'none';
+                        else cell.style.display = '';
                         row.appendChild(cell);
                     });
 
@@ -684,20 +618,21 @@
                     return sum + technique.techniques.filter(tech => tech.links.length > 0).length;
                 }, 0);
 
-                const completionRate = totalPossibleTechniques > 0 
-                    ? Math.round((availableTechniques / totalPossibleTechniques) * 100)
-                    : 0;
-
                 document.getElementById('attackCount').textContent = totalAttacks;
                 document.getElementById('videoCount').textContent = totalVideos;
-                document.getElementById('completionRate').textContent = completionRate + '%';
-                document.getElementById('progressFill').style.width = completionRate + '%';
             }
         }
 
         // Initialize the application
         document.addEventListener('DOMContentLoaded', () => {
-            new AikidoTableManager();
+            // Load main technique table HTML
+            fetch('components/main_techniques_table.html')
+                .then(res => res.text())
+                .then(html => {
+                document.getElementById('mainTechniquesTable').innerHTML = html;
+                // Delay init so the table is present!
+                new AikidoTableManager();
+                });
         });
     </script>
 </body>
