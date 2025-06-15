@@ -91,7 +91,8 @@ export class AikidoTableManager {
         Object.keys(attackToTechniques).sort().forEach(attack => {
             const tr = document.createElement('tr');
             const tdAttack = document.createElement('td');
-            tdAttack.textContent = attack;
+            // tdAttack.textContent = attack;
+            tdAttack.innerHTML = attack;
             const tdTechs = document.createElement('td');
             // For each technique, show "technique (kyu, kyu, ...)"
             const techsRendered = Object.entries(attackToTechniques[attack])
@@ -264,7 +265,8 @@ export class AikidoTableManager {
             const row = document.createElement('tr');
             // Attack column
             const attackCell = document.createElement('td');
-            attackCell.textContent = technique.attack;
+            // attackCell.textContent = technique.attack;
+            attackCell.innerHTML = technique.attack;
             row.appendChild(attackCell);
 
             technique.techniques.forEach((tech, colIdx) => {
