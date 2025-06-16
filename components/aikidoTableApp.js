@@ -404,21 +404,39 @@ export class AikidoTableManager {
 
             const row = cell.parentElement;
             const colIndex = cell.cellIndex;
+            const isHeaderCell = cell.tagName === 'TH';
+            const isFirstColumn = colIndex === 0;
 
-            // Highlight row
-            Array.from(row.children).forEach(c => {
-                if (c !== cell) c.classList.add('highlight-row');
-            });
-
-            // Highlight column
-            Array.from(table.rows).forEach(r => {
-                if (r.cells[colIndex] && r.cells[colIndex] !== cell) {
-                    r.cells[colIndex].classList.add('highlight-col');
-                }
-            });
-
-            // Highlight cell
+            // Always highlight the current cell
             cell.classList.add('highlight-cell');
+
+            if (isHeaderCell && isFirstColumn) {
+                // just ignore
+            }
+            else if (isHeaderCell) {
+                // Header cells: ONLY highlight column (no row highlighting)
+                Array.from(table.rows).forEach(r => {
+                    if (r.cells[colIndex] && r.cells[colIndex] !== cell) {
+                        r.cells[colIndex].classList.add('highlight-col');
+                    }
+                });
+            } else if (isFirstColumn) {
+                // First column cells: ONLY highlight row (no column highlighting)
+                Array.from(row.children).forEach(c => {
+                    if (c !== cell) c.classList.add('highlight-row');
+                });
+            } else {
+                // Regular data cells: highlight both row and column
+                Array.from(row.children).forEach(c => {
+                    if (c !== cell) c.classList.add('highlight-row');
+                });
+
+                Array.from(table.rows).forEach(r => {
+                    if (r.cells[colIndex] && r.cells[colIndex] !== cell) {
+                        r.cells[colIndex].classList.add('highlight-col');
+                    }
+                });
+            }
         });
 
         table.addEventListener('mouseout', (event) => {
@@ -428,7 +446,7 @@ export class AikidoTableManager {
             const row = cell.parentElement;
             const colIndex = cell.cellIndex;
 
-            // Remove highlights
+            // Remove all highlights
             Array.from(row.children).forEach(c => {
                 c.classList.remove('highlight-row');
             });
