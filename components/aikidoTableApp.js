@@ -218,7 +218,8 @@ export class AikidoTableManager {
             return technique.techniques.some(
                 t =>
                     allowed.has(`${technique.attack}::${t.name}`) &&
-                    visibleTechniqueNames.includes(t.name)
+                    visibleTechniqueNames.includes(t.name) &&
+                    t.links.length > 0
             );
         });
 
