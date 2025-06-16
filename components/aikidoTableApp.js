@@ -49,6 +49,25 @@ export class AikidoTableManager {
                 this.setupControls();
                 // Continue initialization
                 this.allRegularKyuPairs = this.getAllRegularKyuPairs(this.examinationTechniquesTable);
+                this.allExamPairs = this.getAllExamTechniquePairs(this.examinationTechniquesTable);
+                this.allOtherPairs = this.getAllOtherPairs(this.currentData, this.allRegularKyuPairs);
+
+                // const currentPairs = new Set();
+                // this.currentData.forEach(row => {
+                //     row.techniques.forEach(tech => {
+                //         currentPairs.add(`${row.attack}::${tech.name}`);
+                //     });
+                // });
+
+                // console.log("🔍 Regular Pairs count:", this.allRegularKyuPairs.size);
+                // console.log("🔍 Current Pairs count:", currentPairs.size);
+
+                // // Find which ones are being considered "Other"
+                // const otherPairs = [...currentPairs].filter(k => !this.allRegularKyuPairs.has(k));
+                // console.log("⚠️ Misclassified as Other:", this.allOtherPairs);
+                // console.log("🧮 Total misclassified (shown as 17?):", this.allOtherPairs.length);
+
+
                 this.renderExamRequirementsTable(this.examinationTechniquesTable);
                 this.initializeEventListeners();
                 this.applyFilters();
@@ -128,17 +147,11 @@ export class AikidoTableManager {
             }
         });
 
-        // Step 2: Add everything NOT in any regular (1–6) kyu if -1 ("Other") is checked
+        // Step 2: Explicitly add known "Other" techniques
         if (selectedKyus.includes(-1)) {
-            this.currentData.forEach(row => {
-                row.techniques.forEach(tech => {
-                    const key = `${row.attack}::${tech.name}`;
-                    if (!this.allRegularKyuPairs.has(key)) {
-                        allowed.add(key);
-                    }
-                });
-            });
+            this.allOtherPairs.forEach(key => allowed.add(key));
         }
+
         return allowed;
     }
 
@@ -156,6 +169,33 @@ export class AikidoTableManager {
         });
         return set;
     }
+
+    getAllExamTechniquePairs(examinationTechniquesTable) {
+        const all = new Set();
+        examinationTechniquesTable.forEach(row => {
+            row.techniques.forEach(attackTechs => {
+                const attack = attackTechs.attack;
+                (attackTechs.techniques || []).forEach(tech => {
+                    all.add(`${attack}::${tech}`);
+                });
+            });
+        });
+        return all;
+    }
+
+    getAllOtherPairs(currentData, regularPairs) {
+        const other = new Set();
+        currentData.forEach(row => {
+            row.techniques.forEach(tech => {
+                const key = `${row.attack}::${tech.name}`;
+                if (tech.links.length > 0 && !regularPairs.has(key)) {
+                    other.add(key);
+                }
+            });
+        });
+        return other;
+    } 
+
 
     initializeEventListeners() {
         // Search functionality
@@ -223,8 +263,16 @@ export class AikidoTableManager {
             );
         });
 
+
+        // Recalculate total techniques for filtered data
+        const totalTechniques = this.filteredData.reduce((count, technique) => {
+            return count + technique.techniques.filter(
+                t => allowed.has(`${technique.attack}::${t.name}`)
+            ).length;
+        }, 0);
+
         this.refreshTable(allowed);
-        this.updateStats();
+        this.updateStats(totalTechniques);
     }
 
     refreshTable(allowedSet = null) {
@@ -409,7 +457,7 @@ export class AikidoTableManager {
         this.renderExamRequirementsTable(this.examinationTechniquesTable);
     }
 
-    updateStats() {
+    updateStats(totalTechniques) {
         const totalAttacks = this.filteredData.length;
         const totalVideos = this.filteredData.reduce((sum, technique) => {
             return sum + technique.techniques.reduce((techSum, tech) => {
@@ -417,12 +465,65 @@ export class AikidoTableManager {
             }, 0);
         }, 0);
 
-        const totalPossibleTechniques = this.filteredData.length * 19; // 19 techniques per attack
+        // const totalPossibleTechniques = this.filteredData.length * 19; // 19 techniques per attack
         const availableTechniques = this.filteredData.reduce((sum, technique) => {
             return sum + technique.techniques.filter(tech => tech.links.length > 0).length;
         }, 0);
 
-        document.getElementById('attackCount').textContent = totalAttacks;
+
+        document.getElementById('attackCount').textContent = `${totalAttacks}/${availableTechniques} ${totalTechniques}`;
+        // document.getElementById('attackCount').textContent = `${totalAttacks}/${availableTechniques}`;
         document.getElementById('videoCount').textContent = totalVideos;
     }
+
+    updateStats(totalTechniques) {
+        const totalAttacks = this.filteredData.length;
+        // const totalVideos = this.filteredData.reduce((sum, technique) => {
+        //     return sum + technique.techniques.reduce((techSum, tech) => {
+        //         return techSum + tech.links.length;
+        //     }, 0);
+        // }, 0);
+
+        const selectedExamPairs = this.getKyuFilteredCells(this.examinationTechniquesTable);
+
+        // Count only videos from selected exam techniques
+        const selectedVideos = this.filteredData.reduce((sum, attackEntry) => {
+            const attack = attackEntry.attack;
+            return sum + attackEntry.techniques.reduce((techSum, tech) => {
+                const key = `${attack}::${tech.name}`;
+                return techSum + (selectedExamPairs.has(key) ? tech.links.length : 0);
+            }, 0);
+        }, 0);
+
+        // Count all available video references regardless of selection
+        const totalVideos = this.filteredData.reduce((sum, attackEntry) => {
+            return sum + attackEntry.techniques.reduce((techSum, tech) => {
+                return techSum + tech.links.length;
+            }, 0);
+        }, 0);
+
+        // ??? the same as totalTechniques
+        // const availableTechniques = this.filteredData.reduce((sum, technique) => {
+        //     return sum + technique.techniques.filter(tech => tech.links.length > 0).length;
+        // }, 0);
+
+        // // Count of selected examination techniques (the same as totalTechniques)
+        // const selectedExamPairs = this.getKyuFilteredCells(this.examinationTechniquesTable);
+        // const selectedExamTechniqueCount = selectedExamPairs.size;
+
+        // Count of all examination techniques
+        const totalExamTechniqueCount = this.allExamPairs.size;
+
+        // Update UI
+        document.getElementById('attackCount').textContent = `${totalAttacks}`;
+
+        document.getElementById('videoCount').textContent = `${selectedVideos}/${totalVideos}`;
+
+        const examCountElement = document.getElementById('examTechCount');
+        if (examCountElement) {
+            examCountElement.textContent =
+                `${totalTechniques}/${totalExamTechniqueCount}`;
+        }
+    }
+
 }
