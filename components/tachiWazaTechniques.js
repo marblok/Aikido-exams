@@ -484,7 +484,10 @@
           { name: "kote gaeshi", links: [
             { text: "1", url: "https://www.youtube.com/watch?v=TvkMWCS50i8" },
           ] },
-          { name: "shiho nage", links: []},
+          { name: "shiho nage", links: [
+            { text: "omote 1", url: "https://www.youtube.com/watch?v=1ekCrUW2SDs", tooltip: "Tissier"},
+            { text: "omote 2", url: "https://www.youtube.com/watch?v=mJZ7IFLm4N4", tooltip: "Tissier"}
+          ]},
           { name: "irimi nage", links: [
             { text: "1", url: "https://www.youtube.com/watch?v=IYuWQen5NjQ" },
           ] },
