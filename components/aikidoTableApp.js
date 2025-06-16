@@ -8,7 +8,7 @@ export class AikidoTableManager {
             examinationTechniquesTable,
             tableHtmlUrl,
             pageTitle = "Aikido Techniques Table",
-            attackListTitle = "Technique Reference",
+            attackListTitle = "Videos",
             noteHtml = "",
             examTableId = "examRequirementsTable",
             mainTableContainerId = "mainContainer",
