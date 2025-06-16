@@ -73,7 +73,6 @@ export class AikidoTableManager {
         if (!tbody) return;
         tbody.innerHTML = "";
 
-        // Map: attack → technique → Set of kyus
         const attackToTechniques = {};
         examination_techniques_table.forEach(entry => {
             if (!selectedKyus.includes(entry.kyu)) return;
@@ -91,16 +90,22 @@ export class AikidoTableManager {
         Object.keys(attackToTechniques).sort().forEach(attack => {
             const tr = document.createElement('tr');
             const tdAttack = document.createElement('td');
-            // tdAttack.textContent = attack;
             tdAttack.innerHTML = attack;
+
             const tdTechs = document.createElement('td');
-            // For each technique, show "technique (kyu, kyu, ...)"
             const techsRendered = Object.entries(attackToTechniques[attack])
                 .map(([tech, kyus]) => {
                     const kyuArr = Array.from(kyus).sort((a, b) => a - b);
-                    return `${tech} (${kyuArr.join(', ')})`;
+                    return this.compactView
+                        ? `${tech} (${kyuArr.join(',')})` // No spaces for compact view
+                        : `${tech} (${kyuArr.join(', ')})`;
                 });
-            tdTechs.textContent = techsRendered.join(', ');
+
+            // Use line breaks in non-compact mode, otherwise join with commas
+            tdTechs.innerHTML = this.compactView
+                ? techsRendered.join(',')
+                // : techsRendered.map(t => `<div>${t}</div>`).join('');
+                : techsRendered.join(', ')
             tr.appendChild(tdAttack);
             tr.appendChild(tdTechs);
             tbody.appendChild(tr);
@@ -390,12 +395,17 @@ export class AikidoTableManager {
     }
 
     toggleCompactView() {
-        const container = document.getElementById('mainTableContainer');
-        if (this.compactView) {
-            container.classList.add('compact-view');
-        } else {
-            container.classList.remove('compact-view');
-        }
+        const containers = [
+            document.getElementById('examRequirementsTable'),
+            // querySelector.getElementById('.exam-section'),
+            document.getElementById('mainTableContainer')
+        ];
+        containers.forEach(container => {
+        container.classList.toggle('compact-view', this.compactView);
+        });
+        
+        // Re-render exam table to reflect new compact state
+        this.renderExamRequirementsTable(this.examinationTechniquesTable);
     }
 
     updateStats() {

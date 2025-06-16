@@ -175,6 +175,7 @@
             border-collapse: collapse;
             margin-top: 10px;
             table-layout: auto;
+            font-size: 14px;
         }
 
         .exam-table th,
@@ -205,10 +206,19 @@
             align-items: center;
         }
 
+        /* .compact-view .exam-table th,
+        .compact-view .exam-table td, */
+        .exam-table.compact-view th,
+        .exam-table.compact-view td  {
+            /* background: pink; // test only */
+            padding: 4px 6px !important;
+            font-size: 12px !important;
+        }
+
         .compact-view .main-table th,
         .compact-view .main-table td {
             padding: 4px 6px;
-            font-size: 11px;
+            font-size: 10px;
         }
 
         .compact-view .technique-col {
@@ -295,9 +305,17 @@
 
             .main-table th,
             .main-table td {
-                font-size: 10px;
-                padding: 4px;
+                font-size: 18px;
+                padding: 5px;
             }
+
+            /* Adjust first column */
+            .main-table td:first-child,
+            .main-table th:first-child {
+                white-space: nowrap;
+                width: 1%;
+            }
+
         }
 
         /* Loading state */
