@@ -54,6 +54,12 @@ export class AikidoTableManager {
 
                 this.renderExamRequirementsTable(this.examinationTechniquesTable);
                 this.initializeEventListeners();
+
+                // After all DOM is ready and event listeners are set!
+                const stickyFirstColCheckbox = document.getElementById('stickyFirstCol');
+                this.stickyCheckbox = stickyFirstColCheckbox.checked;
+                this.toggleStickyFirstCol();
+
                 this.applyFilters();
                 this.tableReady = true;
             });
@@ -199,6 +205,12 @@ export class AikidoTableManager {
                 document.querySelectorAll('#kyuSelector input[type="checkbox"]:checked')
             ).map(cb => parseInt(cb.value));
             this.applyFilters();
+        });
+
+        // View controls
+        document.getElementById('stickyFirstCol').addEventListener('change', (e) => {
+            this.stickyCheckbox = e.target.checked;
+            this.toggleStickyFirstCol();
         });
 
         // View controls
@@ -434,6 +446,11 @@ export class AikidoTableManager {
         });
     }
 
+    toggleStickyFirstCol() {
+        const container = document.getElementById('mainTableContainer');
+        container.classList.toggle('sticky-first-col', this.stickyCheckbox);
+    }
+
     toggleCompactView() {
         const containers = [
             document.getElementById('examRequirementsTable'),
@@ -441,7 +458,7 @@ export class AikidoTableManager {
             document.getElementById('mainTableContainer')
         ];
         containers.forEach(container => {
-        container.classList.toggle('compact-view', this.compactView);
+            container.classList.toggle('compact-view', this.compactView);
         });
         
         // Re-render exam table to reflect new compact state

@@ -88,6 +88,15 @@ body {
 }
 
 .main-table th:first-child {
+    /* position: sticky; */
+    position: relative;
+    left: 0;
+    z-index: 20; /* !important; */
+    background: var(--bg-header-left) !important;
+    min-width: 120px;
+    text-align: left;
+}
+.sticky-first-col .main-table th:first-child {
     position: sticky;
     left: 0;
     z-index: 20; /* !important; */
@@ -115,6 +124,19 @@ body {
 }
 
 .main-table td:first-child {
+    /* position: sticky; */
+    position: relative;
+    left: 0;
+    background: var(--bg-table-left); 
+    font-weight: bold;
+    text-align: left;
+    z-index: 5 !important;
+    border-right: 2px solid var(--border-table-left);
+
+    background-clip: padding-box;
+    isolation: isolate;    
+}
+.sticky-first-col .main-table td:first-child {
     position: sticky;
     left: 0;
     background: var(--bg-table-left); 
