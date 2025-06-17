@@ -399,3 +399,6 @@ body {
     color: var(--text-black) !important;
 }
 
+#hideEmptyContainer {
+  display: none !important;
+}

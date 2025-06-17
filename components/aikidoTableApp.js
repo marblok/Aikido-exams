@@ -61,21 +61,38 @@ export class AikidoTableManager {
                         || window.matchMedia("(max-width: 768px)").matches;
                 }
 
-                const stickyFirstColCheckbox = document.getElementById('stickyFirstCol');
-                let stickySetting = localStorage.getItem('stickyFirstCol');
-                if (stickyFirstColCheckbox) {
-                    if (stickySetting !== null) {
-                        stickyFirstColCheckbox.checked = (stickySetting === '1');
-                    } else {
-                        stickyFirstColCheckbox.checked = !isMobileDevice();
-                    }
-                    this.stickyCheckbox = stickyFirstColCheckbox.checked;
-                    this.toggleStickyFirstCol();
-                }
+                this.initCheckbox('stickyFirstCol', !isMobileDevice())
+                this.initCheckbox('compactView', !isMobileDevice())
+                this.initCheckbox('hideEmpty', true)
 
                 this.applyFilters();
                 this.tableReady = true;
             });
+    }
+
+    initCheckbox(element_id, defaultSetting) {
+        const elementCheckbox = document.getElementById(element_id);
+        let elementSetting = localStorage.getItem(element_id);
+        if (elementCheckbox) {
+            if (elementSetting !== null) {
+                elementCheckbox.checked = (elementSetting === '1');
+            } else {
+                elementCheckbox.checked = defaultSetting;
+            }
+
+            if (element_id === 'stickyFirstCol') {
+                this.stickyCheckbox = elementCheckbox.checked;
+                this.toggleStickyFirstCol();
+            }
+            else if (element_id === 'compactView') {
+                this.compactView = elementCheckbox.checked;
+                this.toggleCompactView();
+            }
+            else if (element_id === 'hideEmpty') {
+                this.hideEmpty = elementCheckbox.checked;
+                // this.applyFilters();
+            } 
+        }
     }
 
     setupControls() {
@@ -232,11 +249,13 @@ export class AikidoTableManager {
         document.getElementById('compactView').addEventListener('change', (e) => {
             this.compactView = e.target.checked;
             this.toggleCompactView();
+            localStorage.setItem('compactView', e.target.checked ? '1' : '0');
         });
 
         document.getElementById('hideEmpty').addEventListener('change', (e) => {
             this.hideEmpty = e.target.checked;
             this.applyFilters();
+            localStorage.setItem('hideEmpty', e.target.checked ? '1' : '0');
         });
 
         // Table highlighting
@@ -303,6 +322,8 @@ export class AikidoTableManager {
                 if (allowed && tech.links.length > 0) columnsWithContent[colIdx] = true;
             });
         });
+
+        // console.log(this.hideEmpty)
 
         // Hide empty columns if needed (and hide columns in header too)
         // }
