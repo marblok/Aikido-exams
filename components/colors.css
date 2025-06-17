@@ -13,9 +13,9 @@
     --text-link: #3498db;
     --text-black: #111;
     --bg-link-hover: #3498db;
-    --highlight-row: rgba(52, 152, 219, 0.08);
-    --highlight-col: rgba(241, 196, 15, 0.15);
-    --highlight-cell: rgba(46, 204, 113, 0.2);
+    --highlight-row: #eff7fc; /* rgba(52, 152, 219, 0.08); */
+    --highlight-col: #fdf6db; /* rgba(241, 196, 15, 0.15); */
+    --highlight-cell: #d5f5e3; /* rgba(46, 204, 113, 0.2); */
     --highlight-row-empty: rgba(52, 152, 219, 0.1);
     --highlight-col-empty: rgba(241, 196, 15, 0.08);
     --highlight-cell-empty: rgba(46, 204, 113, 0.1);

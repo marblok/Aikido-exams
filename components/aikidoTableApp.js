@@ -407,13 +407,15 @@ export class AikidoTableManager {
             const isHeaderCell = cell.tagName === 'TH';
             const isFirstColumn = colIndex === 0;
 
+            if (isHeaderCell && isFirstColumn) {
+                // just ignore
+                return;
+            }
+            
             // Always highlight the current cell
             cell.classList.add('highlight-cell');
 
-            if (isHeaderCell && isFirstColumn) {
-                // just ignore
-            }
-            else if (isHeaderCell) {
+            if (isHeaderCell) {
                 // Header cells: ONLY highlight column (no row highlighting)
                 Array.from(table.rows).forEach(r => {
                     if (r.cells[colIndex] && r.cells[colIndex] !== cell) {

@@ -71,7 +71,7 @@ body {
     min-width: 100px;
 
     position: relative;
-    z-index: 0;
+    z-index: 1;
 }
 
 .main-table th {
@@ -84,16 +84,24 @@ body {
     border-right: 1px solid #34495e;
     position: sticky;
     top: 0;
-    z-index: 5;
+    /* z-index: 10; */
 }
 
 .main-table th:first-child {
     position: sticky;
     left: 0;
-    z-index: 100 !important;
-    background: var(--bg-header-left);
+    z-index: 20; /* !important; */
+    background: var(--bg-header-left) !important;
     min-width: 120px;
     text-align: left;
+}
+
+/* main-table header */
+.main-table thead { /* #aikidoTable thead { */
+    position: sticky;
+    top: 0;
+    z-index: 30;
+    background: white; /* or your header background color */
 }
 
 .main-table td {
@@ -103,15 +111,16 @@ body {
     text-align: center;
     font-size: 12px;
     min-width: 80px;
+    z-index: 4;
 }
 
 .main-table td:first-child {
     position: sticky;
     left: 0;
-    background: var(--bg-table-left);
+    background: var(--bg-table-left); /* important prevents from highlights to make it transparent */
     font-weight: bold;
     text-align: left;
-    z-index: 80 !important;
+    z-index: 5 !important;
     border-right: 2px solid var(--border-table-left);
 
     /* Creates stacking context */
@@ -121,29 +130,53 @@ body {
     isolation: isolate;    
 }
 
+/* Highlighting system */
+.main-table td, .main-table th {
+    transition: background-color 0.2s ease;
+}
+
+/* Link styling */
+.main-table a {
+    color: var(--text-link);
+    text-decoration: none;
+    padding: 2px 4px;
+    border-radius: 3px;
+    display: inline-block;
+    margin: 1px;
+}
+
+.main-table a:hover {
+    background-color: var(--bg-link-hover);
+    color: var(--text-header);
+}
+
+.compact-view .main-table th,
+.compact-view .main-table td {
+    padding: 4px 6px;
+    font-size: 10px;
+}
+
 /* Responsive column widths */
 .technique-col {
     min-width: 90px;
     max-width: 120px;
 }
 
-/* Highlighting system */
-.main-table td, .main-table th {
-    transition: background-color 0.2s ease;
-}
-
 .highlight-row {
     background-color: var(--highlight-row) !important;
+    position: relative;
     z-index: 2;
 }
 
 .highlight-col {
     background-color: var(--highlight-col) !important;
+    position: relative;
     z-index: 2;
 }
 
 .highlight-cell {
     background-color: var(--highlight-cell) !important;
+    position: relative;
     z-index: 3;
 }
 
@@ -164,20 +197,6 @@ body {
     background-color: var(--highlight-cell-empty) !important;
 }
 
-/* Link styling */
-.main-table a {
-    color: var(--text-link);
-    text-decoration: none;
-    padding: 2px 4px;
-    border-radius: 3px;
-    display: inline-block;
-    margin: 1px;
-}
-
-.main-table a:hover {
-    background-color: var(--bg-link-hover);
-    color: var(--text-header);
-}
 
 /* Exam requirements section */
 .exam-section {
@@ -227,12 +246,6 @@ body {
     /* background: pink; // test only */
     padding: 4px 6px !important;
     font-size: 12px !important;
-}
-
-.compact-view .main-table th,
-.compact-view .main-table td {
-    padding: 4px 6px;
-    font-size: 10px;
 }
 
 .compact-view .technique-col {
@@ -288,16 +301,9 @@ body {
 }
 
 /* Ensure proper stacking order */
-#aikidoTable {
+/* #aikidoTable {
     position: relative;
-}
-
-#aikidoTable thead {
-    position: sticky;
-    top: 0;
-    z-index: 100;
-    background: white; /* or your header background color */
-}
+} */
 
 /* Fix for first column (attack names) */
 /* #aikidoTable tbody td:first-child {
@@ -308,17 +314,18 @@ body {
 } */
 
 /* Make sure header corner cell has highest priority */
-#aikidoTable thead th:first-child {
-    z-index: 101 !important; /* Higher than regular headers */
-}
+/* Higher than regular headers */
+/* #aikidoTable thead th:first-child {
+    z-index: 101 !important; 
+} */
 
 /* Ensure highlights stay below sticky elements */
 /* Keep highlights below headers */
-.highlight-row,
+/* .highlight-row,
 .highlight-col,
 .highlight-cell {
     z-index: 1;
-}
+} */
 
 /* Responsive design */
 @media (max-width: 768px) {
@@ -361,7 +368,7 @@ body {
     .main-table th:first-child {
         white-space: nowrap;
         width: 1%;
-        z-index: 40;
+        /* z-index: 40; */
     }
 
 }
@@ -399,3 +406,4 @@ body {
 .main-table th.highlight-cell {
     color: var(--text-black) !important;
 }
+
