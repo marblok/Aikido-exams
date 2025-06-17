@@ -56,9 +56,22 @@ export class AikidoTableManager {
                 this.initializeEventListeners();
 
                 // After all DOM is ready and event listeners are set!
+                function isMobileDevice() {
+                    return /Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent)
+                        || window.matchMedia("(max-width: 768px)").matches;
+                }
+
                 const stickyFirstColCheckbox = document.getElementById('stickyFirstCol');
-                this.stickyCheckbox = stickyFirstColCheckbox.checked;
-                this.toggleStickyFirstCol();
+                let stickySetting = localStorage.getItem('stickyFirstCol');
+                if (stickyFirstColCheckbox) {
+                    if (stickySetting !== null) {
+                        stickyFirstColCheckbox.checked = (stickySetting === '1');
+                    } else {
+                        stickyFirstColCheckbox.checked = !isMobileDevice();
+                    }
+                    this.stickyCheckbox = stickyFirstColCheckbox.checked;
+                    this.toggleStickyFirstCol();
+                }
 
                 this.applyFilters();
                 this.tableReady = true;
@@ -211,6 +224,8 @@ export class AikidoTableManager {
         document.getElementById('stickyFirstCol').addEventListener('change', (e) => {
             this.stickyCheckbox = e.target.checked;
             this.toggleStickyFirstCol();
+            // Save setting
+            localStorage.setItem('stickyFirstCol', e.target.checked ? '1' : '0');
         });
 
         // View controls
