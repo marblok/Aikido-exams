@@ -1,0 +1,374 @@
+@import url('./colors.css');
+
+/* ========== Base Styles ========== */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 20px;
+    background-color: var(--bg-body);
+}
+
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+    background: var(--bg-container);
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+/* ========== Controls Section ========== */
+.controls {
+    background: var(--bg-controls);
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    align-items: center;
+}
+
+.search-box {
+    flex: 1;
+    min-width: 250px;
+}
+
+.search-box input {
+    width: 100%;
+    padding: 8px 12px;
+    border: 1px solid var(--border-input);
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+.filter-section {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    align-items: center;
+}
+
+.kyu-selector label {
+    margin-right: 15px;
+    font-size: 14px;
+    white-space: nowrap;
+}
+
+.view-controls {
+    margin-bottom: 15px;
+    display: flex;
+    gap: 15px;
+    align-items: center;
+}
+
+/* ========== Table Styling ========== */
+.table-container {
+    position: relative;
+    overflow: auto;
+    max-height: 70vh;
+    border: 1px solid var(--border-default);
+    border-radius: 8px;
+    background: var(--bg-container);
+}
+
+.main-table {
+    width: auto;
+    border-collapse: separate;
+    border-spacing: 0;
+    min-width: 100px;
+    position: relative;
+    z-index: 1;
+}
+
+/* Table Headers */
+.main-table th {
+    background: var(--bg-header);
+    color: var(--text-header);
+    padding: 12px 8px;
+    text-align: center;
+    font-weight: bold;
+    font-size: 12px;
+    border-right: 1px solid #34495e;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    transition: background-color 0.2s ease;
+}
+
+.main-table th:first-child {
+    position: sticky;
+    left: 0;
+    z-index: 110;
+    background: var(--bg-header-left);
+    min-width: 120px;
+    text-align: left;
+}
+
+/* Table Cells */
+.main-table td {
+    padding: 8px;
+    border-right: 1px solid var(--border-cell);
+    border-bottom: 1px solid var(--border-cell);
+    text-align: center;
+    font-size: 12px;
+    min-width: 80px;
+    transition: background-color 0.2s ease;
+}
+
+.main-table td:first-child {
+    position: sticky;
+    left: 0;
+    background: var(--bg-table-left);
+    font-weight: bold;
+    text-align: left;
+    z-index: 90;
+    border-right: 2px solid var(--border-table-left);
+    background-clip: padding-box;
+    isolation: isolate;
+}
+
+.technique-col {
+    min-width: 90px;
+    max-width: 120px;
+}
+
+/* ========== Highlighting System ========== */
+.highlight-row {
+    background-color: var(--highlight-row) !important;
+    z-index: 2;
+}
+
+.highlight-col {
+    background-color: var(--highlight-col) !important;
+    z-index: 2;
+}
+
+.highlight-cell {
+    background-color: var(--highlight-cell) !important;
+    z-index: 3;
+}
+
+.empty-cell {
+    background-color: var(--bg-controls) !important;
+    color: var(--text-muted);
+}
+
+.empty-cell.highlight-row {
+    background-color: var(--highlight-row-empty) !important;
+}
+
+.empty-cell.highlight-col {
+    background-color: var(--highlight-col-empty) !important;
+}
+
+.empty-cell.highlight-cell {
+    background-color: var(--highlight-cell-empty) !important;
+}
+
+.main-table th.highlight-row,
+.main-table th.highlight-col,
+.main-table th.highlight-cell {
+    color: var(--text-black) !important;
+    z-index: 2;
+}
+
+/* ========== Links ========== */
+.main-table a {
+    color: var(--text-link);
+    text-decoration: none;
+    padding: 2px 4px;
+    border-radius: 3px;
+    display: inline-block;
+    margin: 1px;
+    z-index: 10;
+}
+
+.main-table a:hover {
+    background-color: var(--bg-link-hover);
+    color: var(--text-header);
+    z-index: 11;
+}
+
+/* ========== Exam Requirements ========== */
+.exam-section {
+    margin-bottom: 30px;
+}
+
+.exam-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+    table-layout: auto;
+    font-size: 14px;
+}
+
+.exam-table th,
+.exam-table td {
+    padding: 10px;
+    border: 1px solid #ddd;
+    text-align: left;
+}
+
+.exam-table th {
+    background-color: var(--text-link);
+    color: var(--text-header);
+}
+
+.exam-table td:first-child,
+.exam-table th:first-child {
+    white-space: nowrap;
+    width: 1%;
+}
+
+/* ========== Compact View ========== */
+.exam-table.compact-view th,
+.exam-table.compact-view td {
+    padding: 4px 6px !important;
+    font-size: 12px !important;
+}
+
+.compact-view .main-table th,
+.compact-view .main-table td {
+    padding: 4px 6px;
+    font-size: 10px;
+}
+
+.compact-view .technique-col {
+    min-width: 70px;
+    max-width: 90px;
+}
+
+/* ========== Progress Bar ========== */
+.progress-bar {
+    width: 100%;
+    height: 4px;
+    background-color: var(--bg-progress-bar);
+    border-radius: 2px;
+    margin-bottom: 10px;
+    overflow: hidden;
+}
+
+.progress-fill {
+    height: 100%;
+    background-color: var(--bg-progress-fill);
+    transition: width 0.3s ease;
+}
+
+/* ========== Tooltips ========== */
+.tooltip {
+    position: relative;
+    cursor: help;
+}
+
+.tooltip .tooltip-text {
+    visibility: hidden;
+    width: max-content;
+    max-width: 300px;
+    background-color: var(--tooltip-bg);
+    color: var(--tooltip-text);
+    text-align: left;
+    padding: 8px 12px;
+    border-radius: 6px;
+    position: absolute;
+    z-index: 1000;
+    bottom: 125%;
+    left: 50%;
+    transform: translateX(-50%);
+    opacity: 0;
+    transition: opacity 0.3s;
+    font-size: 12px;
+    line-height: 1.4;
+}
+
+.tooltip:hover .tooltip-text {
+    visibility: visible;
+    opacity: 1;
+}
+
+/* ========== Stacking Context ========== */
+/* #aikidoTable {
+    position: relative;
+} */
+
+/* #aikidoTable thead {
+    position: sticky;
+    top: 0;
+    z-index: 250;
+}
+
+#aikidoTable thead th:first-child {
+    z-index: 101;
+} */
+
+/* ========== Statistics ========== */
+.stats {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 15px;
+    font-size: 14px;
+    color: #7f8c8d;
+}
+
+.stat-item {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.stat-value {
+    font-weight: bold;
+    color: var(--text-dark);
+}
+
+/* ========== Loading State ========== */
+.loading {
+    text-align: center;
+    padding: 20px;
+    color: var(--text-loading);
+}
+
+/* ========== Responsive Design ========== */
+@media (max-width: 768px) {
+    .controls {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .search-box {
+        min-width: auto;
+    }
+
+    .filter-section {
+        justify-content: center;
+    }
+
+    .kyu-selector {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+
+    .kyu-selector label {
+        margin-right: 0;
+        font-size: 12px;
+    }
+
+    .table-container {
+        max-height: 50vh;
+    }
+
+    /* .main-table th,
+    .main-table td {
+        font-size: 18px;
+        padding: 5px;
+        z-index: 0;
+    } */
+
+    /* .main-table td:first-child,
+    .main-table th:first-child {
+        white-space: nowrap;
+        width: 1%;
+        z-index: 140;
+    } */
+}
