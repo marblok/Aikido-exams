@@ -52,22 +52,6 @@ export class AikidoTableManager {
                 this.allExamPairs = this.getAllExamTechniquePairs(this.examinationTechniquesTable);
                 this.allOtherPairs = this.getAllOtherPairs(this.currentData, this.allRegularKyuPairs);
 
-                // const currentPairs = new Set();
-                // this.currentData.forEach(row => {
-                //     row.techniques.forEach(tech => {
-                //         currentPairs.add(`${row.attack}::${tech.name}`);
-                //     });
-                // });
-
-                // console.log("🔍 Regular Pairs count:", this.allRegularKyuPairs.size);
-                // console.log("🔍 Current Pairs count:", currentPairs.size);
-
-                // // Find which ones are being considered "Other"
-                // const otherPairs = [...currentPairs].filter(k => !this.allRegularKyuPairs.has(k));
-                // console.log("⚠️ Misclassified as Other:", this.allOtherPairs);
-                // console.log("🧮 Total misclassified (shown as 17?):", this.allOtherPairs.length);
-
-
                 this.renderExamRequirementsTable(this.examinationTechniquesTable);
                 this.initializeEventListeners();
                 this.applyFilters();
@@ -294,13 +278,6 @@ export class AikidoTableManager {
         });
 
         // Hide empty columns if needed (and hide columns in header too)
-        // for (let i = 0; i < columnCount; i++) {
-        //     const th = headerRow.children[i + 1]; // +1 because 0 is Attack name
-        //     if (this.hideEmpty && !columnsWithContent[i]) {
-        //         th.style.display = 'none';
-        //     } else {
-        //         th.style.display = '';
-        //     }
         // }
         for (let i = 0; i < columnCount; i++) {
             const th = headerRow.children[i + 1]; // +1 for attack col
@@ -340,12 +317,6 @@ export class AikidoTableManager {
                     tech.links.forEach((link, index) => {
                         const a = document.createElement('a');
 
-                        // a.target = '_blank';
-                        // a.rel = 'noopener noreferrer';
-                        // a.textContent = link.text;
-                        // cell.appendChild(a);
-                        // if (index < tech.links.length - 1)
-                        //     cell.appendChild(document.createElement('br'));
                         let isYouTubeLink = link.url.includes("youtube.com") || link.url.includes("youtu.be");
                         if (isYouTubeLink && /Android/i.test(navigator.userAgent)) {
                             const videoIdMatch = link.url.match(/(?:v=|youtu\.be\/)([a-zA-Z0-9_-]{11})/);
@@ -411,7 +382,7 @@ export class AikidoTableManager {
                 // just ignore
                 return;
             }
-            
+
             // Always highlight the current cell
             cell.classList.add('highlight-cell');
 
@@ -498,12 +469,6 @@ export class AikidoTableManager {
 
     updateStats(totalTechniques) {
         const totalAttacks = this.filteredData.length;
-        // const totalVideos = this.filteredData.reduce((sum, technique) => {
-        //     return sum + technique.techniques.reduce((techSum, tech) => {
-        //         return techSum + tech.links.length;
-        //     }, 0);
-        // }, 0);
-
         const selectedExamPairs = this.getKyuFilteredCells(this.examinationTechniquesTable);
 
         // Count only videos from selected exam techniques
@@ -521,15 +486,6 @@ export class AikidoTableManager {
                 return techSum + tech.links.length;
             }, 0);
         }, 0);
-
-        // ??? the same as totalTechniques
-        // const availableTechniques = this.filteredData.reduce((sum, technique) => {
-        //     return sum + technique.techniques.filter(tech => tech.links.length > 0).length;
-        // }, 0);
-
-        // // Count of selected examination techniques (the same as totalTechniques)
-        // const selectedExamPairs = this.getKyuFilteredCells(this.examinationTechniquesTable);
-        // const selectedExamTechniqueCount = selectedExamPairs.size;
 
         // Count of all examination techniques
         const totalExamTechniqueCount = this.allExamPairs.size;

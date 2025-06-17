@@ -117,15 +117,12 @@ body {
 .main-table td:first-child {
     position: sticky;
     left: 0;
-    background: var(--bg-table-left); /* important prevents from highlights to make it transparent */
+    background: var(--bg-table-left); 
     font-weight: bold;
     text-align: left;
     z-index: 5 !important;
     border-right: 2px solid var(--border-table-left);
 
-    /* Creates stacking context */
-    /* transform: translateZ(0);  */
-    /* Force stacking context and containment */
     background-clip: padding-box;
     isolation: isolate;    
 }
@@ -299,33 +296,6 @@ body {
     visibility: visible;
     opacity: 1;
 }
-
-/* Ensure proper stacking order */
-/* #aikidoTable {
-    position: relative;
-} */
-
-/* Fix for first column (attack names) */
-/* #aikidoTable tbody td:first-child {
-    position: sticky;
-    left: 0;
-    z-index: 50;
-    background: white; 
-} */
-
-/* Make sure header corner cell has highest priority */
-/* Higher than regular headers */
-/* #aikidoTable thead th:first-child {
-    z-index: 101 !important; 
-} */
-
-/* Ensure highlights stay below sticky elements */
-/* Keep highlights below headers */
-/* .highlight-row,
-.highlight-col,
-.highlight-cell {
-    z-index: 1;
-} */
 
 /* Responsive design */
 @media (max-width: 768px) {
