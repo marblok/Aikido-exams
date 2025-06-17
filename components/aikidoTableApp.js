@@ -448,24 +448,31 @@ export class AikidoTableManager {
         this.renderExamRequirementsTable(this.examinationTechniquesTable);
     }
 
-    updateStats(totalTechniques) {
-        const totalAttacks = this.filteredData.length;
-        const totalVideos = this.filteredData.reduce((sum, technique) => {
-            return sum + technique.techniques.reduce((techSum, tech) => {
-                return techSum + tech.links.length;
-            }, 0);
-        }, 0);
+    // updateStats(totalTechniques) {
+    //     const totalAttacks = this.filteredData.length;
+    //     // const totalVideos = this.filteredData.reduce((sum, technique) => {
+    //     //     return sum + technique.techniques.reduce((techSum, tech) => {
+    //     //         return techSum + tech.links.length;
+    //     //     }, 0);
+    //     // }, 0);
+    //     // Always use suwariWazaTechniquesTable, never a filtered list.
+    //     const totalVideos = this.currentData.reduce(
+    //     (acc, attack) =>
+    //         acc +
+    //         attack.techniques.reduce((sum, t) => sum + t.links.length, 0),
+    //     0
+    //     );        
 
-        // const totalPossibleTechniques = this.filteredData.length * 19; // 19 techniques per attack
-        const availableTechniques = this.filteredData.reduce((sum, technique) => {
-            return sum + technique.techniques.filter(tech => tech.links.length > 0).length;
-        }, 0);
+    //     // const totalPossibleTechniques = this.filteredData.length * 19; // 19 techniques per attack
+    //     const availableTechniques = this.filteredData.reduce((sum, technique) => {
+    //         return sum + technique.techniques.filter(tech => tech.links.length > 0).length;
+    //     }, 0);
 
 
-        document.getElementById('attackCount').textContent = `${totalAttacks}/${availableTechniques} ${totalTechniques}`;
-        // document.getElementById('attackCount').textContent = `${totalAttacks}/${availableTechniques}`;
-        document.getElementById('videoCount').textContent = totalVideos;
-    }
+    //     document.getElementById('attackCount').textContent = `${totalAttacks}/${availableTechniques} ${totalTechniques}`;
+    //     // document.getElementById('attackCount').textContent = `${totalAttacks}/${availableTechniques}`;
+    //     document.getElementById('videoCount').textContent = totalVideos;
+    // }
 
     updateStats(totalTechniques) {
         const totalAttacks = this.filteredData.length;
@@ -481,11 +488,17 @@ export class AikidoTableManager {
         }, 0);
 
         // Count all available video references regardless of selection
-        const totalVideos = this.filteredData.reduce((sum, attackEntry) => {
-            return sum + attackEntry.techniques.reduce((techSum, tech) => {
-                return techSum + tech.links.length;
-            }, 0);
-        }, 0);
+        // const totalVideos = this.filteredData.reduce((sum, attackEntry) => {
+        //     return sum + attackEntry.techniques.reduce((techSum, tech) => {
+        //         return techSum + tech.links.length;
+        //     }, 0);
+        // }, 0);
+        const totalVideos = this.currentData.reduce(
+        (acc, attack) =>
+            acc +
+            attack.techniques.reduce((sum, t) => sum + t.links.length, 0),
+        0
+        );     
 
         // Count of all examination techniques
         const totalExamTechniqueCount = this.allExamPairs.size;
