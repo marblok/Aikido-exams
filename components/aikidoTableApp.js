@@ -366,14 +366,13 @@ export class AikidoTableManager {
                         const a = document.createElement('a');
 
                         let isYouTubeLink = link.url.includes("youtube.com") || link.url.includes("youtu.be");
+
                         if (isYouTubeLink && /Android/i.test(navigator.userAgent)) {
-                            const videoIdMatch = link.url.match(/(?:v=|youtu\.be\/)([a-zA-Z0-9_-]{11})/);
-                            if (videoIdMatch) {
-                                a.href = `intent://www.youtube.com/watch?v=${videoIdMatch[1]}#Intent;package=com.google.android.youtube;scheme=https;end`;
-                            } else {
-                                a.href = link.url;
-                            }
+                            // Just replace the https:// part with the intent:// form
+                            a.href = link.url.replace(/^https?:\/\//, 'intent://') +
+                                    '#Intent;package=com.google.android.youtube;scheme=https;end';
                         } else {
+                            // iOS + desktop: regular link (opens in browser or YouTube app if installed)
                             a.href = link.url;
                         }
 
