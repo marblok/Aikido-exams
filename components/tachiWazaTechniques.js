@@ -432,13 +432,13 @@
           ] },
           { name: "gokyo", links: [] },
           { name: "kote gaeshi", links: [
-            { text: "1", url: "https://youtu.be/rTqaW1ZkAb8?t=139" },
+            { text: "1", url: "https://youtu.be/rTqaW1ZkAb8&t=139s" },
           ] },
           { name: "shiho nage", links: [
             { text: "1", url: "https://youtu.be/GngZmO8DhLg" },
           ]},
           { name: "irimi nage", links: [
-            { text: "1", url: "https://youtu.be/gQXoQOCuuVA?t=734", tooltip: "Tissier" },
+            { text: "1", url: "https://youtu.be/gQXoQOCuuVA&t=734s", tooltip: "Tissier" },
             { text: "2", url: "https://youtu.be/-8lwJIb28AI?list=PLmLk6DMwHFRC0SpzYAug7rKexOxb2rcOe&t=12", tooltip: "Hoffmann" },
           ] },
           { name: "sokumen irimi nage", links: [] },
