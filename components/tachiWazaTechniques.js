@@ -289,7 +289,9 @@
           { name: "aiki otoshi", links: [] },
           { name: "juji garami", links: [
             { text: "irimi", url: "https://youtu.be/FXghidn0lFg?list=PLmLk6DMwHFRAlE_Wur09Wqxr_KbUL0mw0&t=12" },
-            { text: "tenkan", url: "https://youtu.be/inM1FA266xA?list=PLmLk6DMwHFRAlE_Wur09Wqxr_KbUL0mw0&t=12" }
+            { text: "tenkan", url: "https://youtu.be/inM1FA266xA?list=PLmLk6DMwHFRAlE_Wur09Wqxr_KbUL0mw0&t=12" },
+            { text: "irimi 2", url: "https://youtu.be/_DvCrVa-lhw?t=23" },
+            { text: "tenkan 2", url: "https://youtu.be/_DvCrVa-lhw?t=67" },
           ] },
           { name: "hiji kime osae", links: [] },
         ]},
@@ -368,7 +370,9 @@
           ] },
           { name: "sumi otoshi", links: [] },
           { name: "aiki otoshi", links: [] },
-          { name: "juji garami", links: [] },
+          { name: "juji garami", links: [
+            { text: "tenkan", url: "https://youtu.be/_DvCrVa-lhw?t=114" },
+          ] },
           { name: "hiji kime osae", links: [] },
         ]},
 
@@ -687,6 +691,7 @@
           { name: "juji garami", links: [
             { text: "1", url: "https://youtu.be/Fg_gJL9A6Yg", tooltip: "Tissier" },
             { text: "2", url: "https://youtu.be/0RwHSpTLHKM?list=PLmLk6DMwHFRC0SpzYAug7rKexOxb2rcOe&t=12", tooltip: "Hoffmann" },
+            { text: "3", url: "https://youtu.be/_DvCrVa-lhw?t=145" },
           ] },
           { name: "hiji kime osae", links: [] },
         ]},
@@ -767,9 +772,7 @@
           { name: "uchi kaiten nage", links: [] },
           { name: "koshi nage", links: [] },
           { name: "sumi otoshi", links: [] },
-          { name: "aiki otoshi", links: [
-            { text: "1", url: "https://youtu.be/zX5o42BR0Zc" },
-          ] },
+          { name: "aiki otoshi", links: [] },
           { name: "juji garami", links: [] },
           { name: "hiji kime osae", links: [
             { text: "1", url: "https://youtu.be/rcO5JUFDQ4Q?t=20" },
