@@ -436,13 +436,13 @@
           ] },
           { name: "gokyo", links: [] },
           { name: "kote gaeshi", links: [
-            { text: "1", url: "https://youtu.be/rTqaW1ZkAb8?t=139" },
+            { text: "1", url: "https://youtu.be/rTqaW1ZkAb8&t=139s" },
           ] },
           { name: "shiho nage", links: [
             { text: "1", url: "https://youtu.be/GngZmO8DhLg" },
           ]},
           { name: "irimi nage", links: [
-            { text: "1", url: "https://youtu.be/gQXoQOCuuVA?t=734", tooltip: "Tissier" },
+            { text: "1", url: "https://youtu.be/gQXoQOCuuVA&t=734s", tooltip: "Tissier" },
             { text: "2", url: "https://youtu.be/-8lwJIb28AI?list=PLmLk6DMwHFRC0SpzYAug7rKexOxb2rcOe&t=12", tooltip: "Hoffmann" },
           ] },
           { name: "sokumen irimi nage", links: [] },
@@ -819,31 +819,54 @@
           ] },
           { name: "ikkyo", links: [
             { text: "ikkyo, nikkyo, ...", url: "https://www.youtube.com/watch?v=fqvlkOFZwgo" },
+            { text: "omote", url: "https://youtu.be/33EkKdUbw8A?list=PLzNdnnps0uJ43lf6-dYsbrk5Hjip5Po-K&t=7", tooltip: "Erb"},
+            { text: "ura", url: "https://youtu.be/-L3-H11v0PE?list=PLzNdnnps0uJ43lf6-dYsbrk5Hjip5Po-K&t=7", tooltip: "Erb"},
           ]},
           { name: "nikyo", links: [
-            { text: "omote", url: "https://www.youtube.com/watch?v=nC95NB0L1Zs" },
+            { text: "omote 1", url: "https://www.youtube.com/watch?v=nC95NB0L1Zs" },
+            { text: "omote 2", url: "https://youtu.be/FCs1ypg4zAI?list=PLzNdnnps0uJ43lf6-dYsbrk5Hjip5Po-K&t=7", tooltip: "Erb"},
+            { text: "ura", url: "https://youtu.be/HaJX3F5y83k?list=PLzNdnnps0uJ43lf6-dYsbrk5Hjip5Po-K&t=7", tooltip: "Erb"},
           ] },
           { name: "sankyo", links: [
-            { text: "omote", url: "https://www.youtube.com/watch?v=B-rPybNXlV8" },
+            { text: "omote 1", url: "https://www.youtube.com/watch?v=B-rPybNXlV8" },
+            { text: "omote 2", url: "https://youtu.be/WIfsuHu_yHs?list=PLzNdnnps0uJ43lf6-dYsbrk5Hjip5Po-K&t=6", tooltip: "Erb"},
             { text: "ura 1", url: "https://youtu.be/B-rPybNXlV8?t=27" },
             { text: "ura 2", url: "https://youtu.be/t6hPV1bV_aM?t=11", tooltip: "Hoffmann" },
+            { text: "ura 3", url: "https://youtu.be/yflaWHKti9E?list=PLzNdnnps0uJ43lf6-dYsbrk5Hjip5Po-K&t=7", tooltip: "Erb"},
           ] },
-          { name: "yonkyo", links: [] },
+          { name: "yonkyo", links: [
+            { text: "omote", url: "https://youtu.be/gKs1FXKbESo?list=PLzNdnnps0uJ43lf6-dYsbrk5Hjip5Po-K&t=7", tooltip: "Erb"},
+            { text: "ura", url: "https://youtu.be/g7LM6ERwnzw?list=PLzNdnnps0uJ43lf6-dYsbrk5Hjip5Po-K&t=7", tooltip: "Erb"},
+          ] },
           { name: "gokyo", links: [] },
-          { name: "kote gaeshi", links: [] },
-          { name: "shiho nage", links: []},
-          { name: "irimi nage", links: [] },
+          { name: "kote gaeshi", links: [
+            { text: "1", url: "https://youtu.be/WBZbd18vdGg?list=PLzNdnnps0uJ43lf6-dYsbrk5Hjip5Po-K&t=7", tooltip: "Erb"},
+          ] },
+          { name: "shiho nage", links: [
+            { text: "1", url: "https://youtu.be/ySu3QrR7ReY?list=PLzNdnnps0uJ43lf6-dYsbrk5Hjip5Po-K&t=6", tooltip: "Erb"},
+          ]},
+          { name: "irimi nage", links: [
+            { text: "1", url: "https://youtu.be/8nrC_gnugkg?list=PLzNdnnps0uJ43lf6-dYsbrk5Hjip5Po-K&t=6", tooltip: "Erb"},
+          ] },
           { name: "sokumen irimi nage", links: [] },
           { name: "tenchi nage", links: [] },
           { name: "kokyu nage", links: [
             { text: "1", url: "https://youtu.be/yj8Wgl0Se0E?t=11", tooltip: "Hoffmann" },
+            { text: "2", url: "https://youtu.be/3nvZOdAApPU?list=PLzNdnnps0uJ43lf6-dYsbrk5Hjip5Po-K&t=7", tooltip: "Erb"},
+            { text: "3", url: "https://youtu.be/K-MRWHR9l-M?list=PLzNdnnps0uJ43lf6-dYsbrk5Hjip5Po-K&t=6", tooltip: "Erb"},
+            { text: "4", url: "https://youtu.be/SdhhKg86Bqw?list=PLzNdnnps0uJ43lf6-dYsbrk5Hjip5Po-K&t=7", tooltip: "Erb"},
+            { text: "ude kime nage", url: "https://youtu.be/yPWDWVbrI7I?list=PLzNdnnps0uJ43lf6-dYsbrk5Hjip5Po-K&t=7", tooltip: "Erb"},
           ] },
-          { name: "soto kaiten nage", links: [] },
+          { name: "soto kaiten nage", links: [
+            { text: "1", url: "https://youtu.be/n58ACUBT4DM?list=PLzNdnnps0uJ43lf6-dYsbrk5Hjip5Po-K&t=6", tooltip: "Erb"},
+          ] },
           { name: "uchi kaiten nage", links: [] },
           { name: "koshi nage", links: [] },
           { name: "sumi otoshi", links: [] },
           { name: "aiki otoshi", links: [] },
-          { name: "juji garami", links: [] },
+          { name: "juji garami", links: [
+            { text: "1", url: "https://youtu.be/ktC2yAyjgOE?list=PLzNdnnps0uJ43lf6-dYsbrk5Hjip5Po-K&t=6", tooltip: "Erb"},
+          ] },
           { name: "hiji kime osae", links: [] },
         ]},
 
