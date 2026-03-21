@@ -222,6 +222,10 @@ body {
     margin-bottom: 30px;
 }
 
+.exam-section.is-collapsed .exam-table {
+    display: none;
+}
+
 .exam-table {
     width: 100%;
     border-collapse: collapse;

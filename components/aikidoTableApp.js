@@ -68,6 +68,7 @@ export class AikidoTableManager {
                 this.initCheckbox('stickyFirstCol', !isMobileDevice())
                 this.initCheckbox('compactView', !isMobileDevice())
                 this.initCheckbox('hideEmpty', true)
+                this.initCheckbox('showExamRequirements', true)
 
                 this.applyFilters();
                 this.tableReady = true;
@@ -96,6 +97,10 @@ export class AikidoTableManager {
                 this.hideEmpty = elementCheckbox.checked;
                 // this.applyFilters();
             } 
+            else if (element_id === 'showExamRequirements') {
+                this.showExamRequirements = elementCheckbox.checked;
+                this.toggleExamRequirements();
+            }
         }
     }
 
@@ -330,6 +335,15 @@ export class AikidoTableManager {
             this.applyFilters();
             localStorage.setItem('hideEmpty', e.target.checked ? '1' : '0');
         });
+
+        const showExamRequirements = document.getElementById('showExamRequirements');
+        if (showExamRequirements) {
+            showExamRequirements.addEventListener('change', (e) => {
+                this.showExamRequirements = e.target.checked;
+                this.toggleExamRequirements();
+                localStorage.setItem('showExamRequirements', e.target.checked ? '1' : '0');
+            });
+        }
 
         const tooltipFilter = document.getElementById('tooltipFilter');
         if (tooltipFilter) {
@@ -592,6 +606,12 @@ export class AikidoTableManager {
         
         // Re-render exam table to reflect new compact state
         this.renderExamRequirementsTable(this.examinationTechniquesTable);
+    }
+
+    toggleExamRequirements() {
+        const examSection = document.querySelector('.exam-section');
+        if (!examSection) return;
+        examSection.classList.toggle('is-collapsed', !this.showExamRequirements);
     }
 
     // updateStats(totalTechniques) {
