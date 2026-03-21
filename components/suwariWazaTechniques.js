@@ -92,7 +92,9 @@
             { text: "ura", url: "https://youtu.be/fkNW2VQ1-oY?t=21" },
           ] },
           { name: "gokyo", links: [] },
-          { name: "kote gaeshi", links: [] },
+          { name: "kote gaeshi", links: [
+            { text: "1", url: "https://youtu.be/3bielRxRpOw?t=45", tooltip: "Sead Azirovic 3. Dan Aikido Examination" }, 
+          ] },
           { name: "shiho nage", links: []},
           { name: "irimi nage", links: [] },
           { name: "sokumen irimi nage", links: [] },
@@ -111,26 +113,33 @@
         { attack: "Shomen Uchi", techniques:[
           { name: "kokyu ho", links: [] },
           { name: "ikkyo", links: [
-            { text: "omote", url: "https://youtu.be/sQqUeFzZaNg" },
+            { text: "omote", url: "https://youtu.be/sQqUeFzZaNg" }, 
+            { text: "omote 2", url: "https://youtu.be/3bielRxRpOw?t=13", tooltip: "Sead Azirovic 3. Dan Aikido Examination" }, 
+            { text: "omote 3", url: "https://youtu.be/3bielRxRpOw?t=40", tooltip: "Sead Azirovic 3. Dan Aikido Examination" }, 
             { text: "ura", url: "https://youtu.be/sQqUeFzZaNg?t=17" },
           ]},
           { name: "nikyo", links: [
             { text: "omote", url: "https://youtu.be/ETVi6khmA_g" },
             { text: "ura", url: "https://youtu.be/ETVi6khmA_g?t=29" },
+            { text: "ura 2", url: "https://youtu.be/3bielRxRpOw?t=17", tooltip: "Sead Azirovic 3. Dan Aikido Examination" }, 
           ] },
           { name: "sankyo", links: [
             { text: "omote 1", url: "https://youtu.be/bRc-UjpA0Jk?t=3" },
             { text: "omote 2", url: "https://youtu.be/8OXd8gYKqd8" },
+            { text: "omote 3", url: "https://youtu.be/3bielRxRpOw?t=22", tooltip: "Sead Azirovic 3. Dan Aikido Examination" }, 
             { text: "ura 1", url: "https://youtu.be/bRc-UjpA0Jk?t=24" },
             { text: "ura 2", url: "https://youtu.be/8OXd8gYKqd8?t=14" },
+            { text: "ura 3", url: "https://youtu.be/3bielRxRpOw?t=26", tooltip: "Sead Azirovic 3. Dan Aikido Examination" }, 
           ] },
           { name: "yonkyo", links: [
             { text: "omote", url: "https://youtu.be/LRtp2w2-pOY?t=3" },
+            { text: "omote 2", url: "https://youtu.be/3bielRxRpOw?t=31", tooltip: "Sead Azirovic 3. Dan Aikido Examination" }, 
             { text: "ura", url: "https://youtu.be/LRtp2w2-pOY?t=14" },
           ] },
           { name: "gokyo", links: [] },
           { name: "kote gaeshi", links: [
             { text: "omote", url: "https://youtu.be/oKwQpEJM8pc?t=3" },
+            { text: "omote 2", url: "https://youtu.be/3bielRxRpOw?t=36", tooltip: "Sead Azirovic 3. Dan Aikido Examination" }, 
             { text: "ura", url: "https://www.youtube.com/watch?v=ih4sVqR4t3Q" },
           ] },
           { name: "shiho nage", links: []},
