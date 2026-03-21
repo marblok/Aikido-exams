@@ -70,6 +70,7 @@ export class AikidoTableManager {
                 this.initCheckbox('compactView', !isMobileDevice())
                 this.initCheckbox('hideEmpty', true)
                 this.initCheckbox('showExamRequirements', true)
+                this.initCheckbox('limitTableHeight', false)
 
                 this.applyFilters();
                 this.tableReady = true;
@@ -101,6 +102,10 @@ export class AikidoTableManager {
             else if (element_id === 'showExamRequirements') {
                 this.showExamRequirements = elementCheckbox.checked;
                 this.toggleExamRequirements();
+            }
+            else if (element_id === 'limitTableHeight') {
+                this.limitTableHeight = elementCheckbox.checked;
+                this.toggleTableHeight();
             }
         }
     }
@@ -362,6 +367,15 @@ export class AikidoTableManager {
                 this.showExamRequirements = e.target.checked;
                 this.toggleExamRequirements();
                 localStorage.setItem('showExamRequirements', e.target.checked ? '1' : '0');
+            });
+        }
+
+        const limitTableHeight = document.getElementById('limitTableHeight');
+        if (limitTableHeight) {
+            limitTableHeight.addEventListener('change', (e) => {
+                this.limitTableHeight = e.target.checked;
+                this.toggleTableHeight();
+                localStorage.setItem('limitTableHeight', e.target.checked ? '1' : '0');
             });
         }
 
@@ -632,6 +646,12 @@ export class AikidoTableManager {
         const examSection = document.querySelector('.exam-section');
         if (!examSection) return;
         examSection.classList.toggle('is-collapsed', !this.showExamRequirements);
+    }
+
+    toggleTableHeight() {
+        const container = document.getElementById('mainTableContainer');
+        if (!container) return;
+        container.classList.toggle('is-limited-height', this.limitTableHeight);
     }
 
     // updateStats(totalTechniques) {
