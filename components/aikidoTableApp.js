@@ -56,6 +56,7 @@ export class AikidoTableManager {
                 this.allExamPairs = this.getAllExamTechniquePairs(this.examinationTechniquesTable);
                 this.allOtherPairs = this.getAllOtherPairs(this.currentData, this.allRegularKyuPairs);
 
+                this.initKyuSelections();
                 this.renderExamRequirementsTable(this.examinationTechniquesTable);
                 this.initializeEventListeners();
 
@@ -108,6 +109,24 @@ export class AikidoTableManager {
         // Insert controls if not present already. 
         // Assume static HTML for now, can refactor to dynamic if desired.
         // Not doing anything here, but if you want to move controls to JS, you can.
+    }
+
+    initKyuSelections() {
+        const storedSelections = localStorage.getItem('selectedKyus');
+        const checkboxes = document.querySelectorAll('#kyuSelector input[type="checkbox"]');
+        if (!checkboxes.length) return;
+
+        if (storedSelections) {
+            const selectedKyus = JSON.parse(storedSelections).map(value => parseInt(value));
+            checkboxes.forEach(cb => {
+                cb.checked = selectedKyus.includes(parseInt(cb.value));
+            });
+            this.selectedKyus = selectedKyus;
+        } else {
+            this.selectedKyus = Array.from(checkboxes)
+                .filter(cb => cb.checked)
+                .map(cb => parseInt(cb.value));
+        }
     }
 
     getAllTooltipValues(currentData) {
@@ -312,6 +331,7 @@ export class AikidoTableManager {
             this.selectedKyus = Array.from(
                 document.querySelectorAll('#kyuSelector input[type="checkbox"]:checked')
             ).map(cb => parseInt(cb.value));
+            localStorage.setItem('selectedKyus', JSON.stringify(this.selectedKyus));
             this.applyFilters();
         });
 
