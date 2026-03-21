@@ -93,7 +93,7 @@
           { name: "Kokyu ho", links: [
             { text: "1", url: "https://www.youtube.com/watch?v=7pZ1BMUF_as" },
             { text: "2", url: "https://www.youtube.com/watch?v=sk1aLsxZ6uM" },
-            { text: "3", url: "https://www.youtube.com/watch?v=g3frwLQlJ5U&t=58s", tooltip: "Sokumen <b>irimi nage</b>" }
+            { text: "Sokumen Irimi Nage", url: "https://www.youtube.com/watch?v=g3frwLQlJ5U&t=58s" }
           ] },
           { name: "ikkyo", links: [
             { text: "omote", url: "https://www.youtube.com/watch?v=twFAdMxyto8"},
@@ -200,8 +200,8 @@
             { text: "1", url: "https://youtu.be/6swlJP17qPA?t=11" }
           ] },
           { name: "kokyu nage", links: [
-            { text: "omote", url: "https://youtu.be/kgbQudGx97Q?list=PLmLk6DMwHFRC0SpzYAug7rKexOxb2rcOe&t=7", tooltip: "ude kime nage" },
-            { text: "ura", url: "https://youtu.be/p2hrbkuYIQc?list=PLmLk6DMwHFRC0SpzYAug7rKexOxb2rcOe&t=11", tooltip: "ude kime nage" }
+            { text: "omote (ude kime nage)", url: "https://youtu.be/kgbQudGx97Q?list=PLmLk6DMwHFRC0SpzYAug7rKexOxb2rcOe&t=7" },
+            { text: "ura (ude kime nage)", url: "https://youtu.be/p2hrbkuYIQc?list=PLmLk6DMwHFRC0SpzYAug7rKexOxb2rcOe&t=11" }
           ] },
           { name: "soto kaiten nage", links: [] },
           { name: "uchi kaiten nage", links: [] },
@@ -410,9 +410,9 @@
           { name: "Kokyu ho", links: [] },
           { name: "ikkyo", links: [
             { text: "omote 1", url: "https://youtu.be/gwjFg3XU-pg?list=PLmLk6DMwHFRAlE_Wur09Wqxr_KbUL0mw0&t=11" },
-            { text: "omote 2", url: "https://youtu.be/9hrPY-2rLQ0?list=PLmLk6DMwHFRAlE_Wur09Wqxr_KbUL0mw0&t=10", tooltip: "tenshin" },
+            { text: "omote (tenshin)", url: "https://youtu.be/9hrPY-2rLQ0?list=PLmLk6DMwHFRAlE_Wur09Wqxr_KbUL0mw0&t=10" },
             { text: "ura 1", url: "https://youtu.be/sREUnxYBxDI?list=PLmLk6DMwHFRAlE_Wur09Wqxr_KbUL0mw0&t=10" },
-            { text: "ura 2", url: "https://youtu.be/WNtSPI5FSjM?list=PLmLk6DMwHFRAlE_Wur09Wqxr_KbUL0mw0&t=11", tooltip: "tenshin" }
+            { text: "ura (tenshin)", url: "https://youtu.be/WNtSPI5FSjM?list=PLmLk6DMwHFRAlE_Wur09Wqxr_KbUL0mw0&t=11" }
           ]},
           { name: "nikyo", links: [
             { text: "omote 1", url: "https://youtu.be/8HCJAQchBSo?t=12" },
@@ -452,7 +452,7 @@
           { name: "uchi kaiten nage", links: [] },
           { name: "koshi nage", links: [
             { text: "1", url: "https://youtu.be/vpeXKfKIyb4?t=11" },
-            { text: "2", url: "https://youtu.be/ayGnDqqvcFw", tooltip: "without tenkan" },
+            { text: "without tenkan", url: "https://youtu.be/ayGnDqqvcFw" },
           ] },
           { name: "sumi otoshi", links: [] },
           { name: "aiki otoshi", links: [] },
@@ -506,7 +506,7 @@
           ] },
           { name: "koshi nage", links: [
             { text: "1", url: "https://youtu.be/87rvMjXUYMs?list=PLmLk6DMwHFRC0SpzYAug7rKexOxb2rcOe&t=12" },
-            { text: "2", url: "https://www.youtube.com/watch?v=CG24MlIBYzk", tooltip: "several variants"},
+            { text: "several variants", url: "https://www.youtube.com/watch?v=CG24MlIBYzk"},
           ] },
           { name: "sumi otoshi", links: [] },
           { name: "aiki otoshi", links: [] },
@@ -558,8 +558,8 @@
             { text: "1", url: "https://youtu.be/9iVgaQk6Hp8?t=1" },
           ] },
           { name: "kokyu nage", links: [
-            { text: "1", url: "https://youtu.be/bvC-kahNRQc?t=2", tooltip: "ude kime nage" },
-            { text: "2", url: "https://youtu.be/bvC-kahNRQc?t=176", tooltip: "ude kime nage"  }
+            { text: "1 (ude kime nage)", url: "https://youtu.be/bvC-kahNRQc?t=2" },
+            { text: "2 (ude kime nage)", url: "https://youtu.be/bvC-kahNRQc?t=176" }
           ] },
           { name: "soto kaiten nage", links: [
             { text: "1", url: "https://www.youtube.com/watch?v=0QZRboa9Ww4" },
@@ -581,7 +581,7 @@
           { name: "Kokyu ho", links: [] },
           { name: "ikkyo", links: [
             { text: "omote 1", url: "https://www.youtube.com/watch?v=x5v9LU7iCec" },
-            { text: "omote 2", url: "https://www.youtube.com/watch?v=VUh06k0aQ7o", tooltip: "jodan tsuki" },
+            { text: "omote - jodan tsuki", url: "https://www.youtube.com/watch?v=VUh06k0aQ7o" },
             { text: "ura", url: "https://www.youtube.com/watch?v=u81MkfKdLZI" },
           ]},
           { name: "nikyo", links: [] },
@@ -603,12 +603,12 @@
           { name: "kokyu nage", links: [
             { text: "jodan 1", url: "https://youtu.be/98pu3ZqPOmg?t=3" },
             { text: "jodan 2", url: "https://youtu.be/98pu3ZqPOmg" },
-            { text: "jodan 3", url: "https://youtu.be/99WpfDBm3A0", tooltip: "several versions" },
+            { text: "jodan (several versions)", url: "https://youtu.be/99WpfDBm3A0" },
             { text: "chudan", url: "https://youtu.be/bXPDSZwU3dk?t=12" },
           ] },
           { name: "soto kaiten nage", links: [
-            { text: "omote", url: "https://youtu.be/C2zFDezyfvw", tooltip: "chudan" },
-            { text: "ura", url: "https://www.youtube.com/watch?v=OaCxG7F6JQI", tooltip: "jodan" },
+            { text: "omote (chudan)", url: "https://youtu.be/C2zFDezyfvw"},
+            { text: "ura (jodan)", url: "https://www.youtube.com/watch?v=OaCxG7F6JQI"},
           ] },
           { name: "uchi kaiten nage", links: [] },
           { name: "koshi nage", links: [] },

@@ -129,9 +129,9 @@ export class AikidoTableManager {
         }));
 
         if (hasNoTooltip) {
-            tooltipItems.unshift({
+            tooltipItems.push({
                 value: this.noTooltipValue,
-                label: 'No tooltip'
+                label: 'no tooltip'
             });
         }
 

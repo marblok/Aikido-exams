@@ -46,7 +46,7 @@
           { name: "ikkyo", links: [
             { text: "omote", url: "https://www.youtube.com/watch?v=2EsRtHlPDpg" },
             { text: "ura", url: "https://youtu.be/2EsRtHlPDpg?t=12" },
-            { text: "ura 2", url: "https://youtu.be/3bielRxRpOw?t=50", tooltip: "Sead Azirovic 3. Dan Aikido Examination" }, 
+            { text: "ura 2", url: "https://youtu.be/3bielRxRpOw?t=50", tooltip: "Sead Azirovic" }, 
           ]},
           { name: "nikyo", links: [] },
           { name: "sankyo", links: [] },
@@ -62,7 +62,7 @@
           ]},
           { name: "irimi nage", links: [
             { text: "1", url: "https://youtu.be/Q0krR3Q96d8?t=11" },
-            { text: "2", url: "https://youtu.be/3bielRxRpOw?t=61", tooltip: "Sead Azirovic 3. Dan Aikido Examination" }, 
+            { text: "2", url: "https://youtu.be/3bielRxRpOw?t=61", tooltip: "Sead Azirovic" }, 
           ] },
           { name: "sokumen irimi nage", links: [] },
           { name: "tenchi nage", links: [
@@ -73,7 +73,7 @@
           ] },
           { name: "uchi kaiten nage", links: [
             { text: "1", url: "https://youtu.be/DTQeBUGzk5Q?list=PLmLk6DMwHFRAlE_Wur09Wqxr_KbUL0mw0&t=11" },
-            { text: "2", url: "https://youtu.be/3bielRxRpOw?t=53", tooltip: "Sead Azirovic 3. Dan Aikido Examination" }, 
+            { text: "2", url: "https://youtu.be/3bielRxRpOw?t=53", tooltip: "Sead Azirovic" }, 
           ] },
           { name: "koshi nage", links: [] },
           { name: "sumi otoshi", links: [] },
@@ -101,7 +101,7 @@
           { name: "irimi nage", links: [] },
           { name: "sokumen irimi nage", links: [] },
           { name: "tenchi nage", links: [
-            { text: "1", url: "https://youtu.be/3bielRxRpOw?t=53", tooltip: "Sead Azirovic 3. Dan Aikido Examination" }, 
+            { text: "1", url: "https://youtu.be/3bielRxRpOw?t=53", tooltip: "Sead Azirovic" }, 
           ] },
           { name: "kokyu nage", links: [] },
           { name: "soto kaiten nage", links: [] },
