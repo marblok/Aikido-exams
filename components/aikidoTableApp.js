@@ -29,6 +29,14 @@ export class AikidoTableManager {
         this.mainTableContainerId = mainTableContainerId;
         this.tableReady = false;
         this.noTooltipValue = '__no_tooltip__';
+        this.tagStorageKey = 'videoTags';
+        this.tagOptions = [
+            { value: 'all', label: 'All' },
+            { value: 'ok', label: '✔️ ok' },
+            { value: 'not-ok', label: '❌ not ok' },
+            { value: 'favorite', label: '⭐ favorite' }
+        ];
+        this.videoTags = this.loadTagsFromStorage();
 
         // Load and insert table HTML, then continue
         fetch(this.tableHtmlUrl)
@@ -49,8 +57,20 @@ export class AikidoTableManager {
                 // Setup controls (reuse your markup)
                 this.setupControls();
                 this.allTooltipValues = this.getAllTooltipValues(this.currentData);
-                this.selectedTooltips = new Set(this.allTooltipValues.map(item => item.value));
+                const storedTooltips = localStorage.getItem('selectedTooltips');
+                if (storedTooltips) {
+                    const parsedTooltips = JSON.parse(storedTooltips);
+                    this.selectedTooltips = new Set(
+                        parsedTooltips.filter(value =>
+                            this.allTooltipValues.some(item => item.value === value)
+                        )
+                    );
+                } else {
+                    this.selectedTooltips = new Set(this.allTooltipValues.map(item => item.value));
+                }
                 this.renderTooltipFilters();
+                this.selectedTag = localStorage.getItem('selectedTag') || 'all';
+                this.renderTagFilters();
                 // Continue initialization
                 this.allRegularKyuPairs = this.getAllRegularKyuPairs(this.examinationTechniquesTable);
                 this.allExamPairs = this.getAllExamTechniquePairs(this.examinationTechniquesTable);
@@ -71,6 +91,7 @@ export class AikidoTableManager {
                 this.initCheckbox('hideEmpty', true)
                 this.initCheckbox('showExamRequirements', true)
                 this.initCheckbox('limitTableHeight', false)
+                this.initCheckbox('showTags', true)
 
                 this.applyFilters();
                 this.tableReady = true;
@@ -81,7 +102,10 @@ export class AikidoTableManager {
         const elementCheckbox = document.getElementById(element_id);
         let elementSetting = localStorage.getItem(element_id);
         if (elementCheckbox) {
-            if (elementSetting !== null) {
+            if (element_id === 'hideEmpty') {
+                elementCheckbox.checked = true;
+                localStorage.setItem('hideEmpty', '1');
+            } else if (elementSetting !== null) {
                 elementCheckbox.checked = (elementSetting === '1');
             } else {
                 elementCheckbox.checked = defaultSetting;
@@ -106,6 +130,10 @@ export class AikidoTableManager {
             else if (element_id === 'limitTableHeight') {
                 this.limitTableHeight = elementCheckbox.checked;
                 this.toggleTableHeight();
+            }
+            else if (element_id === 'showTags') {
+                this.showTags = elementCheckbox.checked;
+                this.toggleShowTags();
             }
         }
     }
@@ -183,7 +211,7 @@ export class AikidoTableManager {
             checkbox.type = 'checkbox';
             checkbox.name = 'tooltipValue';
             checkbox.value = item.value;
-            checkbox.checked = true;
+            checkbox.checked = this.selectedTooltips.has(item.value);
 
             tooltipLabel.appendChild(checkbox);
             tooltipLabel.appendChild(document.createTextNode(` ${item.label}`));
@@ -191,7 +219,31 @@ export class AikidoTableManager {
         });
     }
 
-    getFilteredLinksByTooltip(links) {
+    renderTagFilters() {
+        const container = document.getElementById('tagFilter');
+        if (!container) return;
+
+        container.innerHTML = '';
+
+        const label = document.createElement('label');
+        label.textContent = 'Filter by tag:';
+        container.appendChild(label);
+
+        this.tagOptions.forEach(item => {
+            const tagLabel = document.createElement('label');
+            const checkbox = document.createElement('input');
+            checkbox.type = 'radio';
+            checkbox.name = 'tagValue';
+            checkbox.value = item.value;
+            checkbox.checked = item.value === this.selectedTag;
+
+            tagLabel.appendChild(checkbox);
+            tagLabel.appendChild(document.createTextNode(` ${item.label}`));
+            container.appendChild(tagLabel);
+        });
+    }
+
+    getFilteredLinks(links) {
         if (!this.selectedTooltips || this.selectedTooltips.size === 0) {
             return [];
         }
@@ -199,8 +251,98 @@ export class AikidoTableManager {
         return (links || []).filter(link => {
             const tooltipValue = (link.tooltip || "").trim();
             const normalizedValue = tooltipValue ? tooltipValue : this.noTooltipValue;
-            return this.selectedTooltips.has(normalizedValue);
+            if (!this.selectedTooltips.has(normalizedValue)) {
+                return false;
+            }
+
+            if (this.selectedTag === 'all') {
+                return true;
+            }
+
+            const tagEntry = this.getLinkTagEntry(link);
+            if (this.selectedTag === 'favorite') {
+                return tagEntry.favorite;
+            }
+
+            return tagEntry.status === this.selectedTag;
         });
+    }
+
+    getLinkId(link) {
+        const text = link.text || '';
+        return `${link.url}::${text}`;
+    }
+
+    normalizeTagEntry(value) {
+        if (!value) {
+            return { status: null, favorite: false };
+        }
+
+        if (typeof value === 'string') {
+            if (value === 'favorite') {
+                return { status: null, favorite: true };
+            }
+            if (value === 'ok' || value === 'not-ok') {
+                return { status: value, favorite: false };
+            }
+        }
+
+        if (typeof value === 'object') {
+            return {
+                status: value.status || null,
+                favorite: Boolean(value.favorite)
+            };
+        }
+
+        return { status: null, favorite: false };
+    }
+
+    getLinkTagEntry(link) {
+        const linkId = this.getLinkId(link);
+        const entry = this.videoTags[linkId];
+        return this.normalizeTagEntry(entry);
+    }
+
+    setLinkTagEntry(link, entry) {
+        const linkId = this.getLinkId(link);
+        if (!entry.status && !entry.favorite) {
+            delete this.videoTags[linkId];
+        } else {
+            this.videoTags[linkId] = entry;
+        }
+        this.saveTagsToStorage();
+    }
+
+    toggleLinkStatus(link, status) {
+        const entry = this.getLinkTagEntry(link);
+        entry.status = entry.status === status ? null : status;
+        this.setLinkTagEntry(link, entry);
+        return entry;
+    }
+
+    toggleLinkFavorite(link) {
+        const entry = this.getLinkTagEntry(link);
+        entry.favorite = !entry.favorite;
+        this.setLinkTagEntry(link, entry);
+        return entry;
+    }
+
+    loadTagsFromStorage() {
+        try {
+            const stored = localStorage.getItem(this.tagStorageKey);
+            const parsed = stored ? JSON.parse(stored) : {};
+            const normalized = {};
+            Object.entries(parsed).forEach(([key, value]) => {
+                normalized[key] = this.normalizeTagEntry(value);
+            });
+            return normalized;
+        } catch (error) {
+            return {};
+        }
+    }
+
+    saveTagsToStorage() {
+        localStorage.setItem(this.tagStorageKey, JSON.stringify(this.videoTags));
     }
 
     getSelectedKyus() {
@@ -379,6 +521,15 @@ export class AikidoTableManager {
             });
         }
 
+        const showTags = document.getElementById('showTags');
+        if (showTags) {
+            showTags.addEventListener('change', (e) => {
+                this.showTags = e.target.checked;
+                this.toggleShowTags();
+                localStorage.setItem('showTags', e.target.checked ? '1' : '0');
+            });
+        }
+
         const tooltipFilter = document.getElementById('tooltipFilter');
         if (tooltipFilter) {
             tooltipFilter.addEventListener('change', () => {
@@ -387,6 +538,17 @@ export class AikidoTableManager {
                         document.querySelectorAll('#tooltipFilter input[type="checkbox"]:checked')
                     ).map(cb => cb.value)
                 );
+                localStorage.setItem('selectedTooltips', JSON.stringify(Array.from(this.selectedTooltips)));
+                this.applyFilters();
+            });
+        }
+
+        const tagFilter = document.getElementById('tagFilter');
+        if (tagFilter) {
+            tagFilter.addEventListener('change', () => {
+                const selected = document.querySelector('#tagFilter input[type="radio"]:checked');
+                this.selectedTag = selected ? selected.value : 'all';
+                localStorage.setItem('selectedTag', this.selectedTag);
                 this.applyFilters();
             });
         }
@@ -420,7 +582,7 @@ export class AikidoTableManager {
             // Keep row only if at least one technique cell is allowed AND matches visibleTechniqueNames
             return technique.techniques.some(
                 t => {
-                    const filteredLinks = this.getFilteredLinksByTooltip(t.links);
+                    const filteredLinks = this.getFilteredLinks(t.links);
                     return (
                         allowed.has(`${technique.attack}::${t.name}`) &&
                         visibleTechniqueNames.includes(t.name) &&
@@ -435,7 +597,7 @@ export class AikidoTableManager {
         const totalTechniques = this.filteredData.reduce((count, technique) => {
             return count + technique.techniques.filter(
                 t => {
-                    const filteredLinks = this.getFilteredLinksByTooltip(t.links);
+                    const filteredLinks = this.getFilteredLinks(t.links);
                     return allowed.has(`${technique.attack}::${t.name}`) && filteredLinks.length > 0;
                 }
             ).length;
@@ -459,7 +621,7 @@ export class AikidoTableManager {
         this.filteredData.forEach(technique => {
             technique.techniques.forEach((tech, colIdx) => {
                 const allowed = allowedSet ? allowedSet.has(`${technique.attack}::${tech.name}`) : true;
-                const filteredLinks = this.getFilteredLinksByTooltip(tech.links);
+                const filteredLinks = this.getFilteredLinks(tech.links);
                 if (allowed && filteredLinks.length > 0) columnsWithContent[colIdx] = true;
             });
         });
@@ -494,7 +656,7 @@ export class AikidoTableManager {
 
                 // Check if cell is allowed
                 const allowed = allowedSet ? allowedSet.has(`${technique.attack}::${tech.name}`) : true;
-                const filteredLinks = this.getFilteredLinksByTooltip(tech.links);
+                const filteredLinks = this.getFilteredLinks(tech.links);
 
                 if (!allowed) {
                     cell.classList.add('empty-cell');
@@ -505,6 +667,9 @@ export class AikidoTableManager {
                     if (!this.hideEmpty) cell.textContent = '—';
                 } else {
                     filteredLinks.forEach((link, index) => {
+                        const linkWrapper = document.createElement('div');
+                        linkWrapper.className = 'video-link';
+
                         const a = document.createElement('a');
 
                         let isYouTubeLink = link.url.includes("youtube.com") || link.url.includes("youtu.be");
@@ -521,10 +686,7 @@ export class AikidoTableManager {
                         a.target = "_blank";
                         a.rel = "noopener noreferrer";
                         a.textContent = link.text;
-                        cell.appendChild(a);
-                        if (index < filteredLinks.length - 1) {
-                            cell.appendChild(document.createElement("br"));
-                        }
+                        linkWrapper.appendChild(a);
 
                         if (link.tooltip) {
                             a.className = "tooltip"; // add tooltip class if needed for styling
@@ -534,6 +696,52 @@ export class AikidoTableManager {
                             tooltipSpan.innerHTML = link.tooltip;
                             a.appendChild(tooltipSpan);
                         }                        
+
+                        const tagControls = document.createElement('div');
+                        tagControls.className = 'video-tag-controls';
+                        const tagEntry = this.getLinkTagEntry(link);
+                        const statusButtons = [
+                            { value: 'ok', label: '✔️', title: 'ok' },
+                            { value: 'not-ok', label: '❌', title: 'not ok' }
+                        ];
+                        statusButtons.forEach(buttonConfig => {
+                            const button = document.createElement('button');
+                            button.type = 'button';
+                            button.className = 'video-tag-button';
+                            button.dataset.tag = buttonConfig.value;
+                            button.textContent = buttonConfig.label;
+                            button.title = buttonConfig.title;
+                            if (tagEntry.status === buttonConfig.value) {
+                                button.classList.add('is-active');
+                            }
+                            button.addEventListener('click', (event) => {
+                                event.preventDefault();
+                                event.stopPropagation();
+                                this.toggleLinkStatus(link, buttonConfig.value);
+                                this.applyFilters();
+                            });
+                            tagControls.appendChild(button);
+                        });
+
+                        const favoriteButton = document.createElement('button');
+                        favoriteButton.type = 'button';
+                        favoriteButton.className = 'video-tag-button';
+                        favoriteButton.dataset.tag = 'favorite';
+                        favoriteButton.textContent = '⭐';
+                        favoriteButton.title = 'favorite';
+                        if (tagEntry.favorite) {
+                            favoriteButton.classList.add('is-active');
+                        }
+                        favoriteButton.addEventListener('click', (event) => {
+                            event.preventDefault();
+                            event.stopPropagation();
+                            this.toggleLinkFavorite(link);
+                            this.applyFilters();
+                        });
+                        tagControls.appendChild(favoriteButton);
+
+                        linkWrapper.appendChild(tagControls);
+                        cell.appendChild(linkWrapper);
                     });
                 }
 
@@ -654,6 +862,12 @@ export class AikidoTableManager {
         container.classList.toggle('is-limited-height', this.limitTableHeight);
     }
 
+    toggleShowTags() {
+        const container = document.getElementById('mainTableContainer');
+        if (!container) return;
+        container.classList.toggle('hide-tags', !this.showTags);
+    }
+
     // updateStats(totalTechniques) {
     //     const totalAttacks = this.filteredData.length;
     //     // const totalVideos = this.filteredData.reduce((sum, technique) => {
@@ -689,7 +903,7 @@ export class AikidoTableManager {
             const attack = attackEntry.attack;
             return sum + attackEntry.techniques.reduce((techSum, tech) => {
                 const key = `${attack}::${tech.name}`;
-                const filteredLinks = this.getFilteredLinksByTooltip(tech.links);
+                const filteredLinks = this.getFilteredLinks(tech.links);
                 return techSum + (selectedExamPairs.has(key) ? filteredLinks.length : 0);
             }, 0);
         }, 0);
@@ -704,7 +918,7 @@ export class AikidoTableManager {
         (acc, attack) =>
             acc +
             attack.techniques.reduce((sum, t) => {
-                return sum + this.getFilteredLinksByTooltip(t.links).length;
+                return sum + this.getFilteredLinks(t.links).length;
             }, 0),
         0
         );     

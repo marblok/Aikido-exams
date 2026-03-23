@@ -170,6 +170,53 @@ body {
     margin: 1px;
 }
 
+.video-link {
+    display: flex;
+    flex-direction: row;
+    gap: 6px;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 6px;
+}
+
+.video-tag-controls {
+    display: flex;
+    gap: 4px;
+}
+
+.hide-tags .video-tag-controls {
+    display: none;
+}
+
+.video-tag-button {
+    border: 1px solid var(--border-cell);
+    background: var(--bg-controls);
+    color: var(--text-dark);
+    border-radius: 4px;
+    padding: 1px 4px;
+    font-size: 11px;
+    cursor: pointer;
+    line-height: 1;
+}
+
+.video-tag-button.is-active {
+    background: var(--text-link);
+    color: var(--text-header);
+    border-color: var(--text-link);
+}
+
+.video-tag-button[data-tag="not-ok"].is-active {
+    background: #c0392b;
+    border-color: #c0392b;
+}
+
+.video-tag-button[data-tag="favorite"].is-active {
+    background: #f1c40f;
+    border-color: #f1c40f;
+    color: #2c3e50;
+}
+
 .main-table a:hover {
     background-color: var(--bg-link-hover);
     color: var(--text-header);
