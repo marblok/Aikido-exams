@@ -51,6 +51,7 @@
         { attack: "Ryote Dori", techniques:[
           { name: "kokyu ho", links: [
             { text: "1", url: "https://youtu.be/_ltvv4HBlcY?t=33" },
+            { text: "2", url: "https://youtu.be/EFsppiJVYTg?t=11", tooltip: "Hoffmann" },
           ] },
           { name: "ikkyo", links: []},
           { name: "nikyo", links: [] },
@@ -84,8 +85,8 @@
             { text: "ura", url: "https://youtu.be/KmFEFZQZsHc?t=155" },
           ] },
           { name: "sankyo", links: [
-            { text: "omote", url: "https://youtu.be/oQ2uAMExmLg?list=PLmLk6DMwHFRC0SpzYAug7rKexOxb2rcOe&t=12" },
-            { text: "ura", url: "https://youtu.be/G6L-m7wAmnI?list=PLmLk6DMwHFRC0SpzYAug7rKexOxb2rcOe&t=12" },
+            { text: "omote", url: "https://youtu.be/oQ2uAMExmLg?list=PLmLk6DMwHFRC0SpzYAug7rKexOxb2rcOe&t=12", tooltip: "Hoffmann" },
+            { text: "ura", url: "https://youtu.be/G6L-m7wAmnI?list=PLmLk6DMwHFRC0SpzYAug7rKexOxb2rcOe&t=12", tooltip: "Hoffmann" },
           ] },
           { name: "yonkyo", links: [
             { text: "omote", url: "https://youtu.be/fkNW2VQ1-oY?t=3" },
@@ -113,15 +114,18 @@
         { attack: "Shomen Uchi", techniques:[
           { name: "kokyu ho", links: [] },
           { name: "ikkyo", links: [
-            { text: "omote", url: "https://youtu.be/sQqUeFzZaNg" }, 
+            { text: "omote", url: "https://youtu.be/sQqUeFzZaNg", tooltip: "Tissier" }, 
             { text: "omote 2", url: "https://youtu.be/3bielRxRpOw?t=13", tooltip: "Sead Azirovic" }, 
-            { text: "omote 3", url: "https://youtu.be/3bielRxRpOw?t=40", tooltip: "Sead Azirovic" }, 
-            { text: "ura", url: "https://youtu.be/sQqUeFzZaNg?t=17" },
+            { text: "omote 3", url: "https://youtu.be/3bielRxRpOw?t=40", tooltip: "Sead Azirovic" },
+            { text: 'omote 4', url: "https://youtu.be/S3N7RrUSL48?t=14", tooltip: "Hoffmann" }, 
+            { text: "ura", url: "https://youtu.be/sQqUeFzZaNg?t=17", tooltip: "Tissier" },
           ]},
           { name: "nikyo", links: [
-            { text: "omote", url: "https://youtu.be/ETVi6khmA_g" },
-            { text: "ura", url: "https://youtu.be/ETVi6khmA_g?t=29" },
+            { text: "omote", url: "https://youtu.be/ETVi6khmA_g", tooltip: "Tissier" },
+            { text: "omote 2", url: "https://youtu.be/yoLmfZumTDE?t=11", tooltip: "Hoffmann" },
+            { text: "ura", url: "https://youtu.be/ETVi6khmA_g?t=29", tooltip: "Tissier" },
             { text: "ura 2", url: "https://youtu.be/3bielRxRpOw?t=17", tooltip: "Sead Azirovic" }, 
+            { text: "ura 3", url: "https://youtu.be/3zEspy9h0ak?t=11", tooltip: "Hoffmann" },
           ] },
           { name: "sankyo", links: [
             { text: "omote 1", url: "https://youtu.be/bRc-UjpA0Jk?t=3" },
@@ -129,7 +133,8 @@
             { text: "omote 3", url: "https://youtu.be/3bielRxRpOw?t=22", tooltip: "Sead Azirovic" }, 
             { text: "ura 1", url: "https://youtu.be/bRc-UjpA0Jk?t=24" },
             { text: "ura 2", url: "https://youtu.be/8OXd8gYKqd8?t=14" },
-            { text: "ura 3", url: "https://youtu.be/3bielRxRpOw?t=26", tooltip: "Sead Azirovic" }, 
+            { text: "ura 3", url: "https://youtu.be/3bielRxRpOw?t=26", tooltip: "Sead Azirovic" },
+            { text: "ura 4", url: "https://youtu.be/iTZl37CIJI8?t=11", tooltip: "Hoffmann" }, 
           ] },
           { name: "yonkyo", links: [
             { text: "omote", url: "https://youtu.be/LRtp2w2-pOY?t=3" },
@@ -169,8 +174,10 @@
           { name: "gokyo", links: [
             { text: "omote 1", url: "https://youtu.be/oFus9mb_1tM?t=2" },
             { text: "omote 2", url: "https://youtu.be/lGhyu64re0I?t=28" },
+            { text: "omote 3", url: "https://youtu.be/kMUJ8Cj4qcY?t=11", tooltip: "Hoffmann" },
             { text: "ura 1", url: "https://youtu.be/oFus9mb_1tM?t=10" },
             { text: "ura 2", url: "https://youtu.be/lGhyu64re0I?t=67" },
+            { text: "ura 3", url: "https://youtu.be/d586HX3F42Y?t=11", tooltip: "Hoffmann" },
           ] },
           { name: "kote gaeshi", links: [
             { text: "1", url: "https://youtu.be/dcLYSj8E1q0?t=2" },
@@ -196,7 +203,7 @@
           { name: "kokyu ho", links: [] },
           { name: "ikkyo", links: [
             { text: "omote", url: "https://www.youtube.com/watch?v=SEniaveGdYE" },
-            { text: "ura", url: "https://youtu.be/AA3gyCtkxsY?t=8" },
+            { text: "ura (jodan)", url: "https://youtu.be/AA3gyCtkxsY?t=11", tooltip: "Hoffmann" },
           ]},
           { name: "nikyo", links: [] },
           { name: "sankyo", links: [] },
@@ -204,7 +211,7 @@
           { name: "gokyo", links: [] },
           { name: "kote gaeshi", links: [
             { text: "1", url: "https://www.youtube.com/watch?v=xlTkd9q6V9E" },
-            { text: "2", url: "https://youtu.be/wOriRW7g20w?t=11" },
+            { text: "2 (chuudan)", url: "https://youtu.be/wOriRW7g20w?t=11", tooltip: "Hoffmann" },
           ] },
           { name: "shiho nage", links: []},
           { name: "irimi nage", links: [

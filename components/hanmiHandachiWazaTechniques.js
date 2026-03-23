@@ -46,7 +46,8 @@
           { name: "ikkyo", links: [
             { text: "omote", url: "https://www.youtube.com/watch?v=2EsRtHlPDpg" },
             { text: "ura", url: "https://youtu.be/2EsRtHlPDpg?t=12" },
-            { text: "ura 2", url: "https://youtu.be/3bielRxRpOw?t=50", tooltip: "Sead Azirovic" }, 
+            { text: "ura 2", url: "https://youtu.be/3bielRxRpOw?t=50", tooltip: "Sead Azirovic" },
+            { text: "ura 3", url: "https://youtu.be/q36bI9Fz9jg?t=11", tooltip: "Hoffmann" }, 
           ]},
           { name: "nikyo", links: [] },
           { name: "sankyo", links: [] },
@@ -58,7 +59,10 @@
           ] },
           { name: "shiho nage", links: [
             { text: "omote", url: "https://youtu.be/BefpUP2-AkQ?t=7" },
+            { text: "omote 2", url: "https://youtu.be/Aodfo2nrUS8?t=9" },
+            { text: "omote 3", url: "https://youtu.be/5f5BjxOHci0?t=11", tooltip: "Hoffmann" },
             { text: "ura", url: "https://youtu.be/BefpUP2-AkQ?t=107" },
+            { text: "ura 2", url: "https://youtu.be/TsvpgdKCE98?t=12", tooltip: "Hoffmann" },
           ]},
           { name: "irimi nage", links: [
             { text: "1", url: "https://youtu.be/Q0krR3Q96d8?t=11" },
@@ -94,6 +98,7 @@
           { name: "shiho nage", links: [
             { text: "omote 1", url: "https://youtu.be/jFEtuU6ID90" },
             { text: "omote 2", url: "https://youtu.be/xtbiYA2TgmA", tooltip: "Tissier" },
+            { text: "omote 3", url: "https://www.youtube.com/watch?v=A55lvxRhMrU?t=7", tooltip: "Mitsuteru Ueshiba" },
             { text: "ura 1", url: "https://youtu.be/jFEtuU6ID90?t=15" },
             { text: "ura 2", url: "https://youtu.be/qgHYoSLRdxI?t=8", tooltip: "Hoffmann" },
             { text: "ura 3", url: "https://youtu.be/JdH1sVz2IgI", tooltip: "Tissier" },
@@ -118,6 +123,7 @@
           { name: "Kokyu ho", links: [] },
           { name: "ikkyo", links: [
             { text: "omote", url: "https://www.youtube.com/watch?v=R37nt6DYPxE" },
+            { text: "omote 2", url: "https://youtu.be/0G_SOJunxa4?t=11", tooltip: "Hoffmann" },
             { text: "ura", url: "https://youtu.be/9Jn39xlD7lc?t=1" },
           ]},
           { name: "nikyo", links: [
@@ -156,7 +162,7 @@
           { name: "yonkyo", links: [] },
           { name: "gokyo", links: [] },
           { name: "kote gaeshi", links: [
-            { text: "1", url: "https://youtu.be/O2Gm1ECjPQA?t=11" },
+            { text: "1", url: "https://youtu.be/O2Gm1ECjPQA?t=11", tooltip: "Hoffmann" },
           ] },
           { name: "shiho nage", links: []},
           { name: "irimi nage", links: [] },

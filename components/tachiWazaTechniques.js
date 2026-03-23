@@ -429,7 +429,7 @@
             { text: "ura 3", url: "https://youtu.be/5pOUD_W3aKI?list=PLmLk6DMwHFRC0SpzYAug7rKexOxb2rcOe&t=11" },
           ] },
           { name: "yonkyo", links: [
-            { text: "omote 1", url: "https://youtu.be/N-VAmy1e3Vw?t=10" },
+            { text: "omote 1", url: "https://youtu.be/N-VAmy1e3Vw?t=10", tooltip: "Hoffmann" },
             { text: "omote 2", url: "https://youtu.be/xLPf7Am0xH0?t=9" },
             { text: "ura 1", url: "https://youtu.be/UWOvnycdvAg?t=8" },
             { text: "ura 2", url: "https://youtu.be/i0T_RQLXXg8?t=11" }
