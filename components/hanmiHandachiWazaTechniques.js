@@ -65,7 +65,7 @@
             { text: "ura 2", url: "https://youtu.be/TsvpgdKCE98?t=12", tooltip: "Hoffmann" },
           ]},
           { name: "irimi nage", links: [
-            { text: "1", url: "https://youtu.be/Q0krR3Q96d8?t=11" },
+            { text: "1", url: "https://youtu.be/Q0krR3Q96d8?t=11", tooltip: "Hoffmann" },
             { text: "2", url: "https://youtu.be/3bielRxRpOw?t=61", tooltip: "Sead Azirovic" }, 
           ] },
           { name: "sokumen irimi nage", links: [] },
@@ -125,6 +125,7 @@
             { text: "omote", url: "https://www.youtube.com/watch?v=R37nt6DYPxE" },
             { text: "omote 2", url: "https://youtu.be/0G_SOJunxa4?t=11", tooltip: "Hoffmann" },
             { text: "ura", url: "https://youtu.be/9Jn39xlD7lc?t=1" },
+            { text: "ura 2", url: "https://youtu.be/GRWHi-rFxJ4?t=11", tooltip: "Hoffmann" },
           ]},
           { name: "nikyo", links: [
             { text: "omote", url: "https://www.youtube.com/watch?v=xGP5FbVlR6s" },
@@ -170,6 +171,7 @@
           { name: "tenchi nage", links: [] },
           { name: "kokyu nage", links: [
             { text: "1", url: "https://youtu.be/mhO-ez9bdE4?t=40" },
+            { text: "2", url: "https://youtu.be/V646HUDBZIo?t=10", tooltip: "Hoffmann" },
           ] },
           { name: "soto kaiten nage", links: [] },
           { name: "uchi kaiten nage", links: [] },

@@ -78,11 +78,15 @@
           { name: "kokyu ho", links: [] },
           { name: "ikkyo", links: [
             { text: "omote", url: "https://youtu.be/ppimQdRfu9Y?t=11" },
+            { text: "omote 2", url: "https://youtu.be/uTtI7O6QqiE?t=11", tooltip: "Hoffmann" },
             { text: "ura", url: "https://youtu.be/ppimQdRfu9Y?t=35" },
+            { text: "ura 2", url: "https://youtu.be/04CijJ4-fc4?t=11", tooltip: "Hoffmann" },
           ]},
           { name: "nikyo", links: [
             { text: "omote", url: "https://youtu.be/KmFEFZQZsHc?t=114" },
+            { text: "omote 2", url: "https://youtu.be/2KQo90HWbtY?t=11", tooltip: "Hoffmann" },
             { text: "ura", url: "https://youtu.be/KmFEFZQZsHc?t=155" },
+            { text: "ura 2", url: "https://youtu.be/Te_a3zqXr_Y?t=11", tooltip: "Hoffmann" }
           ] },
           { name: "sankyo", links: [
             { text: "omote", url: "https://youtu.be/oQ2uAMExmLg?list=PLmLk6DMwHFRC0SpzYAug7rKexOxb2rcOe&t=12", tooltip: "Hoffmann" },
@@ -143,9 +147,10 @@
           ] },
           { name: "gokyo", links: [] },
           { name: "kote gaeshi", links: [
-            { text: "omote", url: "https://youtu.be/oKwQpEJM8pc?t=3" },
-            { text: "omote 2", url: "https://youtu.be/3bielRxRpOw?t=36", tooltip: "Sead Azirovic" }, 
-            { text: "ura", url: "https://www.youtube.com/watch?v=ih4sVqR4t3Q" },
+            { text: "1", url: "https://youtu.be/oKwQpEJM8pc?t=3" },
+            { text: "2", url: "https://youtu.be/3bielRxRpOw?t=36", tooltip: "Sead Azirovic" }, 
+            { text: "3", url: "https://youtu.be/5fR1LNPwWjM?t=11", tooltip: "Hoffmann" },
+            { text: "uchi", url: "https://www.youtube.com/watch?v=ih4sVqR4t3Q" },
           ] },
           { name: "shiho nage", links: []},
           { name: "irimi nage", links: [
@@ -215,7 +220,7 @@
           ] },
           { name: "shiho nage", links: []},
           { name: "irimi nage", links: [
-            { text: "omote", url: "https://youtu.be/nt9KNqidPcI?t=12" },
+            { text: "omote", url: "https://youtu.be/nt9KNqidPcI?t=12", tooltip: "Hoffmann" },
           ] },
           { name: "sokumen irimi nage", links: [] },
           { name: "tenchi nage", links: [] },
