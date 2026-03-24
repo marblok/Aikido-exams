@@ -438,6 +438,12 @@ body {
     color: #7f8c8d;
 }
 
+.image-credit {
+    margin-top: 12px;
+    font-size: 12px;
+    color: #7f8c8d;
+}
+
 .stat-item {
     display: flex;
     align-items: center;
