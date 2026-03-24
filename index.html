@@ -5,6 +5,35 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Aikido Exam Techniques</title>
     <style>
+        body {
+          margin: 0;
+          font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+          background: url("images/Aikido backgroud.png") no-repeat center center fixed;
+          background-size: cover;
+          color: #1f1f1f;
+        }
+
+        .main-content {
+          max-width: 900px;
+          margin: 32px auto;
+          padding: 24px 32px;
+          background: rgba(255, 255, 255, 0.3);
+          border-radius: 16px;
+          box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .page-title {
+          margin-top: 0;
+          font-size: 2.2rem;
+          letter-spacing: 0.5px;
+        }
+
+        .video-count {
+          margin-left: 8px;
+          font-weight: 600;
+          color: #3b4b6a;
+        }
+
         .tooltip {
           position: relative;
           cursor: help;
@@ -40,28 +69,76 @@
       </style>
 </head>
 <body>
-    <h2>Techniques Tables </h2>
-    <ul>
-      
-      <li><a href="./suwari_waza.html">Suwari Waza techniques table</a></li>
-      <li><a href="./hanmi_handachi_waza.html">Hanmi Handachi Waza techniques table</a></li>
-      <li><a href="./tachi_waza.html">Tachi Waza techniques table</a></li>
-    </ul>
-    <br><br>
-    <h2>Misc Links </h2>
-    <ul>
-      <li><a href="https://www.youtube.com/watch?v=ilRhgi1aeQs?t=11">Ushiro Ukemi (Hoffmann)</a></li>
-      <li><a href="https://github.com/mbachem/aikimatrix/tree/main?tab=readme-ov-file">Aikimatrix - interesting project with links in very nice matrix</a></li>
+    <div class="main-content">
+      <h1 class="page-title">Aikido Exam Techniques Explorer</h1>
+      <p>Welcome to the Aikido Exam Techniques Explorer. <br>Do not hesitate to explore the different tables.</p>
+      <h2>Techniques Tables</h2>
       <ul>
-        <li><a href="https://mbachem.github.io/aikimatrix/">Desktop version</a></li>
-        <li><a href="https://mbachem.github.io/aikimatrix/mobile/">Mobile version</a></li>
+        <li>
+          <a href="./suwari_waza.html">Suwari Waza techniques table</a>
+          <span class="video-count" id="suwariVideoCount">(loading...)</span>
+        </li>
+        <li>
+          <a href="./hanmi_handachi_waza.html">Hanmi Handachi Waza techniques table</a>
+          <span class="video-count" id="hanmiVideoCount">(loading...)</span>
+        </li>
+        <li>
+          <a href="./tachi_waza.html">Tachi Waza techniques table</a>
+          <span class="video-count" id="tachiVideoCount">(loading...)</span>
+        </li>
       </ul>
-      <li><a href="https://www.youtube.com/watch?v=3bielRxRpOw&t">Sead Azirovic 3. Dan Aikido Examination - many techniques</a></li>
-      <li><a href="https://marblok.github.io/Aikido-exams/">This page</a></li>
+      <br><br>
+      <h2>Misc Links</h2>
       <ul>
-        <li><a href="https://github.com/marblok/Aikido-exams/wiki">Simple Wiki with links used in the table</a></li>
+        <li><a href="https://www.youtube.com/watch?v=ilRhgi1aeQs?t=11">Ushiro Ukemi (Hoffmann)</a></li>
+        <li><a href="https://github.com/mbachem/aikimatrix/tree/main?tab=readme-ov-file">Aikimatrix - interesting project with links in very nice matrix</a></li>
+        <ul>
+          <li><a href="https://mbachem.github.io/aikimatrix/">Desktop version</a></li>
+          <li><a href="https://mbachem.github.io/aikimatrix/mobile/">Mobile version</a></li>
+        </ul>
+        <li><a href="https://www.youtube.com/watch?v=3bielRxRpOw&t">Sead Azirovic 3. Dan Aikido Examination - many techniques</a></li>
+        <li><a href="https://marblok.github.io/Aikido-exams/">This page</a></li>
+        <ul>
+          <li><a href="https://github.com/marblok/Aikido-exams/wiki">Simple Wiki with links used in the table</a></li>
+        </ul>
       </ul>
-    </ul>
+    </div>
+
+    <script type="module">
+      const countLinks = (table) =>
+        table
+          .filter(entry => entry.attack !== '__test__')
+          .reduce((sum, entry) => sum + entry.techniques.reduce(
+            (techSum, tech) => techSum + (tech.links ? tech.links.length : 0),
+            0
+          ), 0);
+
+      const setCountsText = (counts) => {
+        document.getElementById('suwariVideoCount').textContent = `(${counts.suwari} videos)`;
+        document.getElementById('hanmiVideoCount').textContent = `(${counts.hanmi} videos)`;
+        document.getElementById('tachiVideoCount').textContent = `(${counts.tachi} videos)`;
+      };
+
+      (async () => {
+        try {
+          const { suwariWazaTechniquesTable } = await import('./components/suwariWazaTechniques.js');
+          const { hanmiHandachiWazaTechniquesTable } = await import('./components/hanmiHandachiWazaTechniques.js');
+          const { tachiWazaTechniquesTable } = await import('./components/tachiWazaTechniques.js');
+
+          setCountsText({
+            suwari: countLinks(suwariWazaTechniquesTable),
+            hanmi: countLinks(hanmiHandachiWazaTechniquesTable),
+            tachi: countLinks(tachiWazaTechniquesTable)
+          });
+        } catch (error) {
+          setCountsText({
+            suwari: 'run via LiveServer',
+            hanmi: 'run via LiveServer',
+            tachi: 'run via LiveServer'
+          });
+        }
+      })();
+    </script>
     
 </body>
 </html>

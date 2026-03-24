@@ -192,7 +192,7 @@
           { name: "sokumen irimi nage", links: [] },
           { name: "tenchi nage", links: [] },
           { name: "kokyu nage", links: [
-            { text: "1", url: "https://youtu.be/V8TwpYShIMA?t=12" },
+            { text: "1", url: "https://youtu.be/V8TwpYShIMA?t=12", tooltip: "Hoffmann" },
           ] },
           { name: "soto kaiten nage", links: [] },
           { name: "uchi kaiten nage", links: [] },

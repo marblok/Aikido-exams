@@ -1,10 +1,10 @@
 :root {
-    --bg-body: #f5f5f5;
-    --bg-container: white;
-    --bg-controls: #f8f9fa;
-    --bg-header: #2c3e50;
-    --bg-header-left: #1a252f;
-    --bg-table-left: #ecf0f1;
+    --bg-body: transparent;
+    --bg-container: rgba(255, 255, 255, 0.35);
+    --bg-controls: rgba(255, 255, 255, 0.25);
+    --bg-header: rgba(44, 62, 80, 0.85);
+    --bg-header-left: rgba(26, 37, 47, 0.85);
+    --bg-table-left: rgba(236, 240, 241, 0.45);
     --border-table-left: #bdc3c7;
     --border-input: #ddd;
     --text-muted: #6c757d;

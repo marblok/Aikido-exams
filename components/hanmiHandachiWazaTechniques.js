@@ -76,7 +76,7 @@
             { text: "1", url: "https://www.youtube.com/watch?v=wkm2I-aditY" },
           ] },
           { name: "uchi kaiten nage", links: [
-            { text: "1", url: "https://youtu.be/DTQeBUGzk5Q?list=PLmLk6DMwHFRAlE_Wur09Wqxr_KbUL0mw0&t=11" },
+            { text: "1", url: "https://youtu.be/DTQeBUGzk5Q?list=PLmLk6DMwHFRAlE_Wur09Wqxr_KbUL0mw0&t=11", tooltip: "Hoffmann" },
             { text: "2", url: "https://youtu.be/3bielRxRpOw?t=53", tooltip: "Sead Azirovic" }, 
           ] },
           { name: "koshi nage", links: [] },

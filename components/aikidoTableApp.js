@@ -685,10 +685,15 @@ export class AikidoTableManager {
 
                         a.target = "_blank";
                         a.rel = "noopener noreferrer";
-                        a.textContent = link.text;
+                        const tooltipText = (link.tooltip || "").trim();
+                        if (tooltipText) {
+                            a.textContent = `${link.text} (${tooltipText.charAt(0)})`;
+                        } else {
+                            a.textContent = link.text;
+                        }
                         linkWrapper.appendChild(a);
 
-                        if (link.tooltip) {
+                        if (tooltipText) {
                             a.className = "tooltip"; // add tooltip class if needed for styling
 
                             const tooltipSpan = document.createElement("span");
