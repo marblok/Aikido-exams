@@ -464,7 +464,7 @@ export class AikidoTableManager {
     initializeEventListeners() {
         // Search functionality
         document.getElementById('attackInput').addEventListener('input', (e) => {
-            this.attackSearchTerm = e.target.value.toLowerCase();
+            this.attackSearchTerm = this.normalizeAttackText(e.target.value);
             this.applyFilters();
         });
         document.getElementById('techniqueInput').addEventListener('input', (e) => {
@@ -557,6 +557,14 @@ export class AikidoTableManager {
         this.setupTableHighlighting();
     }
 
+    normalizeAttackText(value) {
+        return (value || '')
+            .replace(/<br\s*\/?\s*>/gi, ' ')
+            .replace(/\s+/g, ' ')
+            .trim()
+            .toLowerCase();
+    }
+
     applyFilters() {
         const allowed = this.getKyuFilteredCells(this.examinationTechniquesTable);
         const allTechNames = this.currentData[0].techniques.map(t => t.name);
@@ -577,7 +585,10 @@ export class AikidoTableManager {
             if (technique.attack.includes('__test__')) return false;
 
             // Filter attacks (rows)
-            if (this.attackSearchTerm && !technique.attack.toLowerCase().includes(this.attackSearchTerm)) return false;
+            if (this.attackSearchTerm) {
+                const normalizedAttack = this.normalizeAttackText(technique.attack);
+                if (!normalizedAttack.includes(this.attackSearchTerm)) return false;
+            }
             
             // Keep row only if at least one technique cell is allowed AND matches visibleTechniqueNames
             return technique.techniques.some(

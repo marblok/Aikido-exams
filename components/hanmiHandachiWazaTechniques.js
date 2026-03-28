@@ -25,7 +25,7 @@
         techniques: [ 
           { attack: "Katate Dori", techniques:["shiho nage"] },
           { attack: "Shomen Uchi", techniques:["irimi nage"] },
-          { attack: "Ushiro Ryo Kata Dori", techniques:["kokyu nage"] },
+          { attack: "Ushiro <br> Ryo <br> Kata Dori", techniques:["kokyu nage"] },
         ]
       },
       {
@@ -34,7 +34,7 @@
           { attack: "Shomen Uchi", techniques:["ikkyo"] },
           { attack: "Katate Dori", techniques:["irimi nage"] },
           { attack: "Ryote Dori", techniques:["shiho nage"] },
-          { attack: "Ushiro Ryo Kata Dori", techniques:["kote gaeshi"] },
+          { attack: "Ushiro <br> Ryo <br> Kata Dori", techniques:["kote gaeshi"] },
         ]
       },
     ]
@@ -155,7 +155,7 @@
 
 
         // ===========================================================
-        { attack: "Ushiro Ryo Kata Dori", techniques:[
+        { attack: "Ushiro <br> Ryo <br> Kata Dori", techniques:[
           { name: "Kokyu ho", links: [] },
           { name: "ikkyo", links: []},
           { name: "nikyo", links: [] },

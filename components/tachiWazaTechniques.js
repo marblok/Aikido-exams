@@ -24,7 +24,7 @@
           { attack: "Shomen Uchi", techniques:["sankyo"] },
           { attack: "Yokomen Uchi", techniques:["ikkyo", "nikyo", "shiho nage"] },
           { attack: "Tsuki", techniques:["kote gaeshi"] },
-          { attack: "Ushiro Ryote Dori", techniques:["ikkyo", "kote gaeshi"] },
+          { attack: "Ushiro <br> Ryote Dori", techniques:["ikkyo", "kote gaeshi"] },
         ]
       },
       {
@@ -35,12 +35,12 @@
           { attack: "Morote Dori", techniques:["ikkyo", "juji garami"] },
           { attack: "Ryote Dori", techniques:["irimi nage", "shiho nage"] },
           { attack: "Kata Dori", techniques:["ikkyo", "nikyo"] },
-          { attack: "Kata Dori Men Uchi", techniques:["ikkyo", "kote gaeshi"] },
+          { attack: "Kata Dori <br> Men Uchi", techniques:["ikkyo", "kote gaeshi"] },
           { attack: "Shomen Uchi", techniques:["yonkyo"] },
           { attack: "Yokomen Uchi", techniques:["sankyo", "irimi nage", "kokyu nage"] },
           { attack: "Tsuki", techniques:["irimi nage", "hiji kime osae"] },
-          { attack: "Ushiro Ryote Dori", techniques:["nikyo", "irimi nage", "shiho nage"] },
-          { attack: "Ushiro Ryo Kata Dori", techniques:["ikkyo", "nikyo", "sokumen irimi nage"] },
+          { attack: "Ushiro <br> Ryote Dori", techniques:["nikyo", "irimi nage", "shiho nage"] },
+          { attack: "Ushiro <br> Ryo <br> Kata Dori", techniques:["ikkyo", "nikyo", "sokumen irimi nage"] },
           { attack: "Ushiro Eri Dori", techniques:["ikkyo"] },
         ]
       },
@@ -54,13 +54,13 @@
           { attack: "Kata Dori", techniques:["sankyo", "yonkyo"] },
           { attack: "Ryo Kata Dori", techniques:["kokyu nage"] },
           { attack: "Mune Dori", techniques:["ikkyo"] },
-          { attack: "Kata Dori Men Uchi", techniques:["nikyo", "sankyo", "irimi nage"] },
+          { attack: "Kata Dori <br> Men Uchi", techniques:["nikyo", "sankyo", "irimi nage"] },
           { attack: "Shomen Uchi", techniques:["gokyo", "koshi nage"] },
           { attack: "Yokomen Uchi", techniques:["yonkyo", "kote gaeshi"] },
           { attack: "Tsuki", techniques:["soto kaiten nage"] },
-          { attack: "Ushiro Ryote Dori", techniques:["sankyo", "juji garami", "koshi nage"] },
+          { attack: "Ushiro <br> Ryote Dori", techniques:["sankyo", "juji garami", "koshi nage"] },
           { attack: "Ushiro Eri Dori", techniques:["hiji kime osae"] },
-          { attack: "Ushiro Ryo Kata Dori", techniques:["sankyo", "kote gaeshi"] },
+          { attack: "Ushiro <br> Ryo <br> Kata Dori", techniques:["sankyo", "kote gaeshi"] },
           { attack: "Ushiro Dori", techniques:["kote gaeshi", "kokyu nage"] },
         ]
       },
@@ -74,15 +74,15 @@
           { attack: "Mune Dori", techniques:["shiho nage"] },
           { attack: "Kata Dori", techniques:["sokumen irimi nage"] },
           { attack: "Ryo Kata Dori", techniques:["ikkyo"] },
-          { attack: "Kata Dori Men Uchi", techniques:["yonkyo", "juji garami", "koshi nage"] },
+          { attack: "Kata Dori <br> Men Uchi", techniques:["yonkyo", "juji garami", "koshi nage"] },
           { attack: "Shomen Uchi", techniques:["soto kaiten nage", "uchi kaiten nage"] },
           { attack: "Yokomen Uchi", techniques:["gokyo", "tenchi nage", "koshi nage"] },
           { attack: "Tsuki", techniques:["kokyu nage"] },
-          { attack: "Ushiro Ryote Dori", techniques:["yonkyo", "soto kaiten nage", "uchi kaiten nage"] },
-          { attack: "Ushiro Ryo Kata Dori", techniques:["yonkyo"] },
+          { attack: "Ushiro <br> Ryote Dori", techniques:["yonkyo", "soto kaiten nage", "uchi kaiten nage"] },
+          { attack: "Ushiro <br> Ryo <br> Kata Dori", techniques:["yonkyo"] },
           { attack: "Ushiro Eri Dori", techniques:["kote gaeshi"] },
           { attack: "Ushiro Dori", techniques:["shiho nage"] },
-          { attack: "Ushiro Katate Dori Kubi Shime", techniques:["sankyo", "kokyu nage"] },
+          { attack: "Ushiro <br> Katate Dori <br> Kubi Shime", techniques:["sankyo", "kokyu nage"] },
         ]
       },
     ]
@@ -410,7 +410,7 @@
         ]},
 
         // ===========================================================
-        { attack: "Kata Dori Men Uchi", techniques:[
+        { attack: "Kata Dori <br> Men Uchi", techniques:[
           { name: "Kokyu ho", links: [] },
           { name: "ikkyo", links: [
             { text: "omote 1", url: "https://youtu.be/gwjFg3XU-pg?list=PLmLk6DMwHFRAlE_Wur09Wqxr_KbUL0mw0&t=11", tooltip: "Hoffmann" },
@@ -631,7 +631,7 @@
 
         // ===========================================================
         // Ushiro Ryote (Kubi) Dori
-        { attack: "Ushiro Ryote Dori", techniques:[
+        { attack: "Ushiro <br> Ryote Dori", techniques:[
           { name: "Kokyu ho", links: [] },
           { name: "ikkyo", links: [
             { text: "omote", url: "https://www.youtube.com/watch?v=pzqU42XmUr4", tooltip: "Tissier" },
@@ -702,7 +702,7 @@
         ]},
 
         // ===========================================================
-        { attack: "Ushiro Ryo Kata Dori", techniques:[
+        { attack: "Ushiro <br> Ryo <br> Kata Dori", techniques:[
           { name: "Kokyu ho", links: [] },
           { name: "ikkyo", links: [
             { text: "omote", url: "https://youtu.be/Ae_pfqsXorM?t=11", tooltip: "Hoffmann" },
@@ -817,7 +817,7 @@
 
         
         // ===========================================================
-        { attack: "Ushiro Katate Dori Kubi Shime", techniques:[
+        { attack: "Ushiro <br> Katate Dori <br> Kubi Shime", techniques:[
           { name: "Kokyu ho", links: [
             { text: "misc techniques", url: "https://www.youtube.com/watch?v=oDpqcVBPSEw", tooltip: "Bruno" },
           ] },
