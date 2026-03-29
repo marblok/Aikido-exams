@@ -257,10 +257,12 @@
 
         // ===========================================================
         { attack: "Morote Dori", techniques:[
-          { name: "Kokyu ho", links: [
+          { name: "Kokyu ho", links: [ 
             { text: "omote", url: "https://youtu.be/YsVnQUJ7Ar0?t=11", tooltip: "Hoffmann" },
-            { text: "omote 2", url: "https://www.youtube.com/watch?v=7pZ1BMUF_as" },
+            { text: "omote 2", url: "https://www.youtube.com/watch?v=7pZ1BMUF_as", tooltip: "Pichereau" },
+            { text: "omote 3", url: "https://youtu.be/DyihdKXOMnQ?t=12", tooltip: "Hoffmann" },
             { text: "ura", url: "https://youtu.be/SQcTVpbv8Ak?t=12", tooltip: "Hoffmann" },
+            { text: "ura 2", url: "https://youtu.be/DyihdKXOMnQ?t=21", tooltip: "Hoffmann" },
           ] },
           { name: "ikkyo", links: [
             { text: "omote 1", url: "https://youtu.be/CWMeqSOGd64?list=PLmLk6DMwHFRAlE_Wur09Wqxr_KbUL0mw0&t=10", tooltip: "Hoffmann" },
@@ -303,9 +305,7 @@
 
         // ===========================================================
         { attack: "Mune Dori", techniques:[
-          { name: "Kokyu ho", links: [
-            { text: "1", url: "https://www.youtube.com/watch?v=DyihdKXOMnQ", tooltip: "Hoffmann" },
-          ] },
+          { name: "Kokyu ho", links: [] },
           { name: "ikkyo", links: [
               { text: "omote", url: "https://youtu.be/8h6RLjPvyNU?list=PLmLk6DMwHFRC0SpzYAug7rKexOxb2rcOe&t=11", tooltip: "Hoffmann" },
               { text: "ura", url: "https://youtu.be/BSIzvXZJ1dQ?list=PLmLk6DMwHFRC0SpzYAug7rKexOxb2rcOe&t=12", tooltip: "Hoffmann" }
@@ -611,6 +611,7 @@
             { text: "jodan 2", url: "https://youtu.be/98pu3ZqPOmg" },
             { text: "jodan (several versions)", url: "https://youtu.be/99WpfDBm3A0" },
             { text: "chudan", url: "https://youtu.be/bXPDSZwU3dk?t=12", tooltip: "Hoffmann" },
+            { text: "chudan 2", url: "https://www.facebook.com/reel/2020647055550031" },
           ] },
           { name: "soto kaiten nage", links: [
             { text: "omote (chudan)", url: "https://youtu.be/C2zFDezyfvw", tooltip: "Tissier" },
@@ -705,12 +706,15 @@
         { attack: "Ushiro <br> Ryo <br> Kata Dori", techniques:[
           { name: "Kokyu ho", links: [] },
           { name: "ikkyo", links: [
-            { text: "omote", url: "https://youtu.be/Ae_pfqsXorM?t=11", tooltip: "Hoffmann" },
-            { text: "ura", url: "https://youtu.be/DvuVNw74AIQ?t=11", tooltip: "Hoffmann" },
+            { text: "omote 1", url: "https://youtu.be/Ae_pfqsXorM?t=11", tooltip: "Hoffmann" },
+            { text: "omote 2", url: "https://youtu.be/I1Iz78HGbfk?list=PLzNdnnps0uJ4XPm0UfFVup9K-6raBErMi&t=6", tooltip: "Erb" },
+            { text: "ura 1", url: "https://youtu.be/DvuVNw74AIQ?t=11", tooltip: "Hoffmann" },
+            { text: "ura 2", url: "https://youtu.be/V1MCtKygEbg?list=PLzNdnnps0uJ4XPm0UfFVup9K-6raBErMi&t=6", tooltip: "Erb" },
           ]},
           { name: "nikyo", links: [
-            { text: "omote", url: "https://youtu.be/xo6JJVXZfMw" },
-            { text: "ura 1", url: "https://youtu.be/YkAsDz1jz-c" },
+            { text: "omote 1", url: "https://youtu.be/Dmu3ERsBTfo?list=PLzNdnnps0uJ4XPm0UfFVup9K-6raBErMi&t=6", tooltip: "Erb" },
+            { text: "omote 2", url: "https://youtu.be/DzcKU9fHXSE?t=5" },
+            { text: "ura 1", url: "https://youtu.be/YkAsDz1jz-c", tooltip: "Tissier" },
             { text: "ura 2", url: "https://youtu.be/UxCNF_sifjc?list=PLmLk6DMwHFRAlE_Wur09Wqxr_KbUL0mw0&t=11", tooltip: "Hoffmann" },
           ] },
           { name: "sankyo", links: [
@@ -729,8 +733,11 @@
           { name: "gokyo", links: [] },
           { name: "kote gaeshi", links: [
             { text: "1", url: "https://youtu.be/fNMF_2kJDKg?list=PLmLk6DMwHFRC0SpzYAug7rKexOxb2rcOe&t=12", tooltip: "Hoffmann" },
+            { text: "2", url: "https://youtu.be/yTUZdnDoR2o?list=PLzNdnnps0uJ4XPm0UfFVup9K-6raBErMi&t=6", tooltip: "Erb" },
           ] },
-          { name: "shiho nage", links: []},
+          { name: "shiho nage", links: [
+            { text: "1", url: "https://youtu.be/IWavAQASxgU?list=PLzNdnnps0uJ4XPm0UfFVup9K-6raBErMi&t=6", tooltip: "Erb" },
+          ]},
           { name: "irimi nage", links: [
             { text: "1", url: "https://youtu.be/tmdEwUDjiKM?t=28" },
           ] },
@@ -740,7 +747,11 @@
           ] },
           { name: "tenchi nage", links: [] },
           { name: "kokyu nage", links: [
-            { text: "1", url: "https://youtu.be/A4gz1qIfuC8?t=143" },
+            { text: "ude kime nage", url: "https://youtu.be/FYmPBkPy3Y8?list=PLzNdnnps0uJ4XPm0UfFVup9K-6raBErMi&t=6", tooltip: "Erb" },
+            { text: "1", url: "https://youtu.be/AnTVROQDwws?list=PLzNdnnps0uJ4XPm0UfFVup9K-6raBErMi&t=6", tooltip: "Erb" },
+            { text: "2", url: "https://youtu.be/CMj-qYq8XJk?list=PLzNdnnps0uJ4XPm0UfFVup9K-6raBErMi&t=6", tooltip: "Erb" },
+            { text: "3", url: "https://youtu.be/3uAByzclFak?list=PLzNdnnps0uJ4XPm0UfFVup9K-6raBErMi&t=6", tooltip: "Erb" },
+            { text: "4", url: "https://youtu.be/A4gz1qIfuC8?t=143" },
           ] },
           { name: "soto kaiten nage", links: [] },
           { name: "uchi kaiten nage", links: [] },
@@ -766,7 +777,7 @@
           { name: "yonkyo", links: [] },
           { name: "gokyo", links: [] },
           { name: "kote gaeshi", links: [
-            { text: "1", url: "https://youtu.be/4TQKkqTH-Jo?t=12" },
+            { text: "1", url: "https://youtu.be/4TQKkqTH-Jo?t=12", tooltip: "Hoffmann" },
           ] },
           { name: "shiho nage", links: []},
           { name: "irimi nage", links: [] },
@@ -827,14 +838,14 @@
             { text: "ura", url: "https://youtu.be/-L3-H11v0PE?list=PLzNdnnps0uJ43lf6-dYsbrk5Hjip5Po-K&t=7", tooltip: "Erb"},
           ]},
           { name: "nikyo", links: [
-            { text: "omote 1", url: "https://www.youtube.com/watch?v=nC95NB0L1Zs" },
+            { text: "omote 1", url: "https://www.youtube.com/watch?v=nC95NB0L1Zs", tooltip: "Pichereau" },
             { text: "omote 2", url: "https://youtu.be/FCs1ypg4zAI?list=PLzNdnnps0uJ43lf6-dYsbrk5Hjip5Po-K&t=7", tooltip: "Erb"},
             { text: "ura", url: "https://youtu.be/HaJX3F5y83k?list=PLzNdnnps0uJ43lf6-dYsbrk5Hjip5Po-K&t=7", tooltip: "Erb"},
           ] },
           { name: "sankyo", links: [
-            { text: "omote 1", url: "https://www.youtube.com/watch?v=B-rPybNXlV8" },
+            { text: "omote 1", url: "https://www.youtube.com/watch?v=B-rPybNXlV8", tooltip: "Pichereau" },
             { text: "omote 2", url: "https://youtu.be/WIfsuHu_yHs?list=PLzNdnnps0uJ43lf6-dYsbrk5Hjip5Po-K&t=6", tooltip: "Erb"},
-            { text: "ura 1", url: "https://youtu.be/B-rPybNXlV8?t=27" },
+            { text: "ura 1", url: "https://youtu.be/B-rPybNXlV8?t=27", tooltip: "Pichereau" },
             { text: "ura 2", url: "https://youtu.be/t6hPV1bV_aM?t=11", tooltip: "Hoffmann" },
             { text: "ura 3", url: "https://youtu.be/yflaWHKti9E?list=PLzNdnnps0uJ43lf6-dYsbrk5Hjip5Po-K&t=7", tooltip: "Erb"},
           ] },

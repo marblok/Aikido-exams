@@ -29,7 +29,19 @@ export class AikidoTableManager {
         this.mainTableContainerId = mainTableContainerId;
         this.tableReady = false;
         this.noTooltipValue = '__no_tooltip__';
-        this.tagStorageKey = 'videoTags';
+        this.storageKeys = {
+            selectedTooltips: 'selectedTooltips',
+            tooltipValues: 'tooltipValues',
+            selectedTag: 'selectedTag',
+            selectedKyus: 'selectedKyus',
+            stickyFirstCol: 'stickyFirstCol',
+            compactView: 'compactView',
+            hideEmpty: 'hideEmpty',
+            showExamRequirements: 'showExamRequirements',
+            limitTableHeight: 'limitTableHeight',
+            videoTags: 'videoTags',
+            showTags: 'showTags'
+        };
         this.tagOptions = [
             { value: 'all', label: 'All' },
             { value: 'ok', label: '✔️ ok' },
@@ -57,19 +69,32 @@ export class AikidoTableManager {
                 // Setup controls (reuse your markup)
                 this.setupControls();
                 this.allTooltipValues = this.getAllTooltipValues(this.currentData);
-                const storedTooltips = localStorage.getItem('selectedTooltips');
-                if (storedTooltips) {
-                    const parsedTooltips = JSON.parse(storedTooltips);
-                    this.selectedTooltips = new Set(
-                        parsedTooltips.filter(value =>
-                            this.allTooltipValues.some(item => item.value === value)
-                        )
-                    );
-                } else {
-                    this.selectedTooltips = new Set(this.allTooltipValues.map(item => item.value));
-                }
+                const storedTooltips = localStorage.getItem(this.storageKeys.selectedTooltips);
+                const storedTooltipValues = localStorage.getItem(this.storageKeys.tooltipValues);
+                const currentTooltipValues = this.allTooltipValues.map(item => item.value);
+                const previousTooltipValues = storedTooltipValues ? JSON.parse(storedTooltipValues) : [];
+
+                const baseSelections = storedTooltips
+                    ? JSON.parse(storedTooltips).filter(value => currentTooltipValues.includes(value))
+                    : currentTooltipValues;
+
+                const newTooltipValues = currentTooltipValues.filter(
+                    value => !previousTooltipValues.includes(value)
+                );
+
+                this.selectedTooltips = new Set(baseSelections);
+                newTooltipValues.forEach(value => this.selectedTooltips.add(value));
+
+                localStorage.setItem(
+                    this.storageKeys.selectedTooltips,
+                    JSON.stringify(Array.from(this.selectedTooltips))
+                );
+                localStorage.setItem(
+                    this.storageKeys.tooltipValues,
+                    JSON.stringify(currentTooltipValues)
+                );
                 this.renderTooltipFilters();
-                this.selectedTag = localStorage.getItem('selectedTag') || 'all';
+                this.selectedTag = localStorage.getItem(this.storageKeys.selectedTag) || 'all';
                 this.renderTagFilters();
                 // Continue initialization
                 this.allRegularKyuPairs = this.getAllRegularKyuPairs(this.examinationTechniquesTable);
@@ -100,11 +125,12 @@ export class AikidoTableManager {
 
     initCheckbox(element_id, defaultSetting) {
         const elementCheckbox = document.getElementById(element_id);
-        let elementSetting = localStorage.getItem(element_id);
+        const storageKey = this.storageKeys[element_id] || element_id;
+        let elementSetting = localStorage.getItem(storageKey);
         if (elementCheckbox) {
             if (element_id === 'hideEmpty') {
                 elementCheckbox.checked = true;
-                localStorage.setItem('hideEmpty', '1');
+                localStorage.setItem(storageKey, '1');
             } else if (elementSetting !== null) {
                 elementCheckbox.checked = (elementSetting === '1');
             } else {
@@ -145,7 +171,7 @@ export class AikidoTableManager {
     }
 
     initKyuSelections() {
-        const storedSelections = localStorage.getItem('selectedKyus');
+        const storedSelections = localStorage.getItem(this.storageKeys.selectedKyus);
         const checkboxes = document.querySelectorAll('#kyuSelector input[type="checkbox"]');
         if (!checkboxes.length) return;
 
@@ -329,7 +355,7 @@ export class AikidoTableManager {
 
     loadTagsFromStorage() {
         try {
-            const stored = localStorage.getItem(this.tagStorageKey);
+            const stored = localStorage.getItem(this.storageKeys.videoTags);
             const parsed = stored ? JSON.parse(stored) : {};
             const normalized = {};
             Object.entries(parsed).forEach(([key, value]) => {
@@ -342,7 +368,7 @@ export class AikidoTableManager {
     }
 
     saveTagsToStorage() {
-        localStorage.setItem(this.tagStorageKey, JSON.stringify(this.videoTags));
+        localStorage.setItem(this.storageKeys.videoTags, JSON.stringify(this.videoTags));
     }
 
     getSelectedKyus() {
@@ -478,7 +504,7 @@ export class AikidoTableManager {
             this.selectedKyus = Array.from(
                 document.querySelectorAll('#kyuSelector input[type="checkbox"]:checked')
             ).map(cb => parseInt(cb.value));
-            localStorage.setItem('selectedKyus', JSON.stringify(this.selectedKyus));
+            localStorage.setItem(this.storageKeys.selectedKyus, JSON.stringify(this.selectedKyus));
             this.applyFilters();
         });
 
@@ -487,20 +513,20 @@ export class AikidoTableManager {
             this.stickyCheckbox = e.target.checked;
             this.toggleStickyFirstCol();
             // Save setting
-            localStorage.setItem('stickyFirstCol', e.target.checked ? '1' : '0');
+            localStorage.setItem(this.storageKeys.stickyFirstCol, e.target.checked ? '1' : '0');
         });
 
         // View controls
         document.getElementById('compactView').addEventListener('change', (e) => {
             this.compactView = e.target.checked;
             this.toggleCompactView();
-            localStorage.setItem('compactView', e.target.checked ? '1' : '0');
+            localStorage.setItem(this.storageKeys.compactView, e.target.checked ? '1' : '0');
         });
 
         document.getElementById('hideEmpty').addEventListener('change', (e) => {
             this.hideEmpty = e.target.checked;
             this.applyFilters();
-            localStorage.setItem('hideEmpty', e.target.checked ? '1' : '0');
+            localStorage.setItem(this.storageKeys.hideEmpty, e.target.checked ? '1' : '0');
         });
 
         const showExamRequirements = document.getElementById('showExamRequirements');
@@ -508,7 +534,7 @@ export class AikidoTableManager {
             showExamRequirements.addEventListener('change', (e) => {
                 this.showExamRequirements = e.target.checked;
                 this.toggleExamRequirements();
-                localStorage.setItem('showExamRequirements', e.target.checked ? '1' : '0');
+                localStorage.setItem(this.storageKeys.showExamRequirements, e.target.checked ? '1' : '0');
             });
         }
 
@@ -517,7 +543,7 @@ export class AikidoTableManager {
             limitTableHeight.addEventListener('change', (e) => {
                 this.limitTableHeight = e.target.checked;
                 this.toggleTableHeight();
-                localStorage.setItem('limitTableHeight', e.target.checked ? '1' : '0');
+                localStorage.setItem(this.storageKeys.limitTableHeight, e.target.checked ? '1' : '0');
             });
         }
 
@@ -526,7 +552,7 @@ export class AikidoTableManager {
             showTags.addEventListener('change', (e) => {
                 this.showTags = e.target.checked;
                 this.toggleShowTags();
-                localStorage.setItem('showTags', e.target.checked ? '1' : '0');
+                localStorage.setItem(this.storageKeys.showTags, e.target.checked ? '1' : '0');
             });
         }
 
@@ -538,7 +564,10 @@ export class AikidoTableManager {
                         document.querySelectorAll('#tooltipFilter input[type="checkbox"]:checked')
                     ).map(cb => cb.value)
                 );
-                localStorage.setItem('selectedTooltips', JSON.stringify(Array.from(this.selectedTooltips)));
+                localStorage.setItem(
+                    this.storageKeys.selectedTooltips,
+                    JSON.stringify(Array.from(this.selectedTooltips))
+                );
                 this.applyFilters();
             });
         }
@@ -548,7 +577,7 @@ export class AikidoTableManager {
             tagFilter.addEventListener('change', () => {
                 const selected = document.querySelector('#tagFilter input[type="radio"]:checked');
                 this.selectedTag = selected ? selected.value : 'all';
-                localStorage.setItem('selectedTag', this.selectedTag);
+                localStorage.setItem(this.storageKeys.selectedTag, this.selectedTag);
                 this.applyFilters();
             });
         }
