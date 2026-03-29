@@ -372,6 +372,7 @@
           { name: "uchi kaiten nage", links: [] },
           { name: "koshi nage", links: [
             { text: "1", url: "https://youtu.be/CJf5PdOrwjE?t=4" },
+            { text: "2", url: "https://youtu.be/glYA8pmZ-uI?t=11", tooltip: "Hoffmann" },
           ] },
           { name: "sumi otoshi", links: [] },
           { name: "aiki otoshi", links: [] },

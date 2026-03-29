@@ -306,6 +306,11 @@ body {
     width: 1%;
 }
 
+.exam-video-count.is-zero {
+    color: #c0392b;
+    font-weight: bold;
+}
+
 
 /* Compact view toggle */
 .view-controls {

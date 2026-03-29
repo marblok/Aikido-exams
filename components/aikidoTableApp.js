@@ -405,9 +405,15 @@ export class AikidoTableManager {
             const techsRendered = Object.entries(attackToTechniques[attack])
                 .map(([tech, kyus]) => {
                     const kyuArr = Array.from(kyus).sort((a, b) => a - b);
+                    const videoCount = this.getTechniqueVideoCount(attack, tech);
+                    const kyuLabel = `${kyuArr.join(', ')} kyu`;
+                    const videoCountHtml = videoCount === 0
+                        ? `<span class="exam-video-count is-zero">${videoCount}</span>`
+                        : `<span class="exam-video-count">${videoCount}</span>`;
+                    const videoLabel = `${videoCountHtml} ${videoCount === 1 ? 'video' : 'videos'}`;
                     return this.compactView
-                        ? `${tech} (${kyuArr.join(',')})` // No spaces for compact view
-                        : `${tech} (${kyuArr.join(', ')})`;
+                        ? `${tech} (${kyuArr.join(',')}/${videoCountHtml})` // No spaces for compact view
+                        : `${tech} (${kyuLabel} / ${videoLabel})`;
                 });
 
             // Use line breaks in non-compact mode, otherwise join with commas
@@ -419,6 +425,14 @@ export class AikidoTableManager {
             tr.appendChild(tdTechs);
             tbody.appendChild(tr);
         });
+    }
+
+    getTechniqueVideoCount(attack, techniqueName) {
+        const attackEntry = this.currentData.find(entry => entry.attack === attack);
+        if (!attackEntry) return 0;
+        const techniqueEntry = attackEntry.techniques.find(tech => tech.name === techniqueName);
+        if (!techniqueEntry) return 0;
+        return this.getFilteredLinks(techniqueEntry.links).length;
     }
 
     getKyuFilteredCells(examinationTechniquesTable) {
@@ -645,6 +659,7 @@ export class AikidoTableManager {
 
         this.refreshTable(allowed);
         this.updateStats(totalTechniques);
+        this.renderExamRequirementsTable(this.examinationTechniquesTable);
     }
 
     refreshTable(allowedSet = null) {

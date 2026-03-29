@@ -45,6 +45,7 @@
           { name: "Kokyu ho", links: [] },
           { name: "ikkyo", links: [
             { text: "omote", url: "https://www.youtube.com/watch?v=2EsRtHlPDpg" },
+            { text: "omote 2", url: "https://youtu.be/Cr3jbhFWXsU?t=11", tooltip: "Hoffmann" },
             { text: "ura", url: "https://youtu.be/2EsRtHlPDpg?t=12" },
             { text: "ura 2", url: "https://youtu.be/3bielRxRpOw?t=50", tooltip: "Sead Azirovic" },
             { text: "ura 3", url: "https://youtu.be/q36bI9Fz9jg?t=11", tooltip: "Hoffmann" }, 
