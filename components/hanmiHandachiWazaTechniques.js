@@ -55,7 +55,7 @@
           { name: "gokyo", links: [] },
           { name: "kote gaeshi", links: [
             { text: "omote", url: "https://youtu.be/TDeIlR6xhSA", tooltip: "Tissier" },
-            { text: "ura", url: "https://youtu.be/gCO1popi3kU?t=2" },
+            { text: "ura", url: "https://youtu.be/gCO1popi3kU?t=2", tooltip: "Pichereau" },
           ] },
           { name: "shiho nage", links: [
             { text: "omote", url: "https://youtu.be/BefpUP2-AkQ?t=7" },

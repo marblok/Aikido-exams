@@ -474,8 +474,8 @@
             { text: "ura", url: "https://youtu.be/XEkFEkClgrY?t=41", tooltip: "Tissier" }
           ]},
           { name: "nikyo", links: [
-            { text: "omote", url: "https://www.youtube.com/watch?v=zh87h8n9wcA" },
-            { text: "ura", url: "https://youtu.be/zh87h8n9wcA?t=38" }
+            { text: "omote", url: "https://www.youtube.com/watch?v=zh87h8n9wcA", tooltip: "Tissier" },
+            { text: "ura", url: "https://youtu.be/zh87h8n9wcA?t=38", tooltip: "Tissier" }
           ] },
           { name: "sankyo", links: [
             { text: "omote", url: "https://www.youtube.com/watch?v=zt_Z43_v4ZY", tooltip: "Tissier" },
@@ -597,7 +597,7 @@
           { name: "kote gaeshi", links: [
             { text: "chudan 1", url: "https://youtu.be/2DosmmcHATw", tooltip: "Tissier" },
             { text: "chudan 2", url: "https://youtu.be/7w4yyeT8UeU", tooltip: "Tissier" },
-            { text: "jodan", url: "https://www.youtube.com/watch?v=uEhHgK3RnyY" },
+            { text: "jodan", url: "https://www.youtube.com/watch?v=uEhHgK3RnyY", tooltip: "Pichereau" },
           ] },
           { name: "shiho nage", links: []},
           { name: "irimi nage", links: [
@@ -607,8 +607,8 @@
           { name: "sokumen irimi nage", links: [] },
           { name: "tenchi nage", links: [] },
           { name: "kokyu nage", links: [
-            { text: "jodan 1", url: "https://youtu.be/98pu3ZqPOmg?t=3" },
-            { text: "jodan 2", url: "https://youtu.be/98pu3ZqPOmg" },
+            { text: "jodan 1", url: "https://youtu.be/98pu3ZqPOmg?t=3", tooltip: "Pichereau" },
+            { text: "jodan 2", url: "https://youtu.be/98pu3ZqPOmg?t=14", tooltip: "Pichereau" },
             { text: "jodan (several versions)", url: "https://youtu.be/99WpfDBm3A0" },
             { text: "chudan", url: "https://youtu.be/bXPDSZwU3dk?t=12", tooltip: "Hoffmann" },
             { text: "chudan 2", url: "https://www.facebook.com/reel/2020647055550031" },
@@ -639,11 +639,11 @@
             { text: "ura", url: "https://www.youtube.com/watch?v=n07sJtm8RPg", tooltip: "Tissier" },
           ]},
           { name: "nikyo", links: [
-            { text: "omote 1", url: "https://www.youtube.com/watch?v=t_f54SvJ5IM" },
+            { text: "omote 1", url: "https://youtu.be/t_f54SvJ5IM?t=3", tooltip: "Pichereau" },
             { text: "omote 2", url: "https://youtu.be/g4qa0YQgHbk?list=PLmLk6DMwHFRAlE_Wur09Wqxr_KbUL0mw0&t=11", tooltip: "Hoffmann" },
             { text: "ura 1", url: "https://youtu.be/AYpurIi7YHk?list=PLmLk6DMwHFRAlE_Wur09Wqxr_KbUL0mw0&t=11", tooltip: "Hoffmann" },
             { text: "ura 2", url: "https://youtu.be/0qcSRQYx-dc", tooltip: "Tissier" },
-            { text: "ura 3", url: "https://youtu.be/t_f54SvJ5IM?t=28" },
+            { text: "ura 3", url: "https://youtu.be/t_f54SvJ5IM?t=28", tooltip: "Pichereau" },
           ] },
           { name: "sankyo", links: [
             { text: "omote 1", url: "https://youtu.be/--P1sYxcfZo", tooltip: "Tissier" },
@@ -685,12 +685,13 @@
             { text: "1", url: "https://www.youtube.com/watch?v=YZIzpeoIBTo", tooltip: "Tissier" },
           ] },
           { name: "uchi kaiten nage", links: [
-            { text: "1", url: "https://www.youtube.com/watch?v=GUEnIZ_b1Uk" },
+            { text: "1", url: "https://youtu.be/GUEnIZ_b1Uk?t=2", tooltip: "Pichereau" },
           ] },
           { name: "koshi nage", links: [
             { text: "1", url: "https://youtu.be/sdUJ0fkyOgI?t=840" },
-            { text: "2", url: "https://youtu.be/Hrx8EYUgV7w" },
-            { text: "3", url: "https://youtu.be/KGPyHzC-2_0?list=PLmLk6DMwHFRC0SpzYAug7rKexOxb2rcOe&t=12", tooltip: "Hoffmann" },
+            { text: "2", url: "https://youtu.be/Hrx8EYUgV7w?t=3", tooltip: "Pichereau" },
+            { text: "3", url: "https://youtu.be/Hrx8EYUgV7w?t=16", tooltip: "Pichereau" },
+            { text: "4", url: "https://youtu.be/KGPyHzC-2_0?list=PLmLk6DMwHFRC0SpzYAug7rKexOxb2rcOe&t=12", tooltip: "Hoffmann" },
           ] },
           { name: "sumi otoshi", links: [] },
           { name: "aiki otoshi", links: [] },
