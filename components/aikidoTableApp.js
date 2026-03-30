@@ -295,8 +295,7 @@ export class AikidoTableManager {
     }
 
     getLinkId(link) {
-        const text = link.text || '';
-        return `${link.url}::${text}`;
+        return link.url;
     }
 
     normalizeTagEntry(value) {
@@ -358,9 +357,32 @@ export class AikidoTableManager {
             const stored = localStorage.getItem(this.storageKeys.videoTags);
             const parsed = stored ? JSON.parse(stored) : {};
             const normalized = {};
+            let migrated = false;
             Object.entries(parsed).forEach(([key, value]) => {
-                normalized[key] = this.normalizeTagEntry(value);
+                const normalizedEntry = this.normalizeTagEntry(value);
+                const newKey = key.includes('::') ? key.split('::')[0] : key;
+                if (newKey !== key) {
+                    migrated = true;
+                }
+
+                if (!normalized[newKey]) {
+                    normalized[newKey] = normalizedEntry;
+                } else {
+                    const existing = normalized[newKey];
+                    normalized[newKey] = {
+                        status: existing.status || normalizedEntry.status || null,
+                        favorite: Boolean(existing.favorite || normalizedEntry.favorite)
+                    };
+                }
             });
+
+            if (migrated) {
+                localStorage.setItem(
+                    this.storageKeys.videoTags,
+                    JSON.stringify(normalized)
+                );
+            }
+
             return normalized;
         } catch (error) {
             return {};
