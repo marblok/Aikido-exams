@@ -115,6 +115,7 @@
           { name: "gokyo", links: [] },
           { name: "kote gaeshi", links: [
             { text: "1", url: "https://youtu.be/OQsCcfxsKcw?t=9" },
+            { text: "2", url: "https://youtu.be/yc7LJlZrfTQ", tooltip: "Tissier" },
           ] },
           { name: "shiho nage", links: [
             { text: "omote", url: "https://youtu.be/j8HHvYYaTBQ?t=7", tooltip: "Tissier" },
@@ -125,7 +126,9 @@
           ] },
           { name: "sokumen irimi nage", links: [
             { text: "omote", url: "https://youtu.be/g3frwLQlJ5U?t=19" },
-            { text: "ura", url: "https://youtu.be/g3frwLQlJ5U?t=70" }
+            { text: "ura", url: "https://youtu.be/g3frwLQlJ5U?t=70" },
+            { text: "tenkan tenshin", url: "https://youtu.be/8uxsRtBwuzU?t=8", tooltip: "Hoffmann" },
+            { text: "tenshin irimi", url: "https://youtu.be/0hZdRAbR0MI?t=11", tooltip: "Hoffmann" },
           ] },
           { name: "tenchi nage", links: [
             {text: "1", url: "https://youtu.be/63kwnsQJKRo?t=12", tooltip: "Hoffmann" },
@@ -160,7 +163,8 @@
           { name: "aiki otoshi", links: [
             {text: "1", url: "https://youtu.be/Y69RNSwFy6U?t=5"},
             {text: "2", url: "https://youtu.be/1RAuF6JZkP0?t=25"},
-            {text: "3", url: "https://youtu.be/5cL1lq_3HW0"}
+            {text: "3", url: "https://youtu.be/5cL1lq_3HW0"},
+            {text: "4", url: "https://youtu.be/XpNhD5DxAlo?t=11", tooltip: "Hoffmann" },
           ]},
           { name: "juji garami", links: [] },
           { name: "hiji kime osae", links: [] },
@@ -188,6 +192,7 @@
           { name: "gokyo", links: [] },
           { name: "kote gaeshi", links: [
             { text: "1", url: "https://www.youtube.com/watch?v=hnjD0s5devg", tooltip: "Tissier" },
+            { text: "2", url: "https://youtu.be/ML19UnSQAYM?t=11", tooltip: "Hoffmann" },
           ] },
           { name: "shiho nage", links: [
             { text: "omote", url: "https://www.youtube.com/watch?v=zJn9CI-6KrU", tooltip: "Tissier" },
@@ -196,7 +201,8 @@
           { name: "irimi nage", links: [
             { text: "1", url: "https://youtu.be/z74nXcAJEv0", tooltip: "Tissier" }
           ] },
-          { name: "sokumen irimi nage", links: [] },
+          { name: "sokumen irimi nage", links: [
+          ] },
           { name: "tenchi nage", links: [
             { text: "1", url: "https://youtu.be/6swlJP17qPA?t=11", tooltip: "Hoffmann" }
           ] },
@@ -243,6 +249,7 @@
           { name: "irimi nage", links: [] },
           { name: "sokumen irimi nage", links: [
             { text: "1", url: "https://www.youtube.com/watch?v=g3frwLQlJ5U" },
+            { text: "2", url: "https://youtu.be/7votNzwLzSk?t=12", tooltip: "Hoffmann" },
           ] },
           { name: "tenchi nage", links: [] },
           { name: "kokyu nage", links: [] },
@@ -279,13 +286,16 @@
           ] },
           { name: "shiho nage", links: []},
           { name: "irimi nage", links: [
-            { text: "1", url: "https://youtu.be/_U5o-1q77qo?t=127" }
+            { text: "1", url: "https://youtu.be/_U5o-1q77qo?t=127" },
+            { text: "2", url: "https://youtu.be/oL5i3ajC6oE?t=11", tooltip: "Hoffmann" },
           ] },
           { name: "sokumen irimi nage", links: [] },
           { name: "tenchi nage", links: [] },
           { name: "kokyu nage", links: [
             { text: "1", url: "https://youtu.be/A4gz1qIfuC8?t=99" },
-            { text: "2", url: "https://www.youtube.com/watch?v=nY6UolF9IxQ" }
+            { text: "2", url: "https://www.youtube.com/watch?v=nY6UolF9IxQ" },
+            { text: "ude kime", url: "https://youtu.be/GBDniSrumQk?t=12", tooltip: "Hoffmann" },
+            { text: "tenkan", url: "https://youtu.be/626SPuZNW0o?t=11", tooltip: "Hoffmann" },
           ] },
           { name: "soto kaiten nage", links: [] },
           { name: "uchi kaiten nage", links: [] },
@@ -351,6 +361,7 @@
           { name: "gokyo", links: [] },
           { name: "kote gaeshi", links: [
             { text: "1", url: "https://youtu.be/F02bTcJYL1o?t=128" },
+            { text: "2", url: "https://youtu.be/D9uX9IRNM4A?t=11", tooltip: "Hoffmann" },
           ] },
           { name: "shiho nage", links: [
             { text: "omote 1", url: "https://youtu.be/r8THFOc2PrU?list=PLmLk6DMwHFRAlE_Wur09Wqxr_KbUL0mw0&t=12", tooltip: "Hoffmann" },
@@ -364,6 +375,8 @@
           { name: "sokumen irimi nage", links: [] },
           { name: "tenchi nage", links: [
             { text: "1", url: "https://youtu.be/Aue9NIMEPEs?t=15" },
+            { text: "irimi", url: "https://youtu.be/_k1vK12T6SY?t=10", tooltip: "Hoffmann" },
+            { text: "tenkan", url: "https://youtu.be/_PJBpTOrWYA?t=10", tooltip: "Hoffmann" },
           ] },
           { name: "kokyu nage", links: [
             { text: "1", url: "https://www.youtube.com/watch?v=BpvNRd2jgEg" },
@@ -395,7 +408,9 @@
           { name: "kote gaeshi", links: [] },
           { name: "shiho nage", links: []},
           { name: "irimi nage", links: [] },
-          { name: "sokumen irimi nage", links: [] },
+          { name: "sokumen irimi nage", links: [
+            { text: "1", url: "https://www.youtube.com/watch?v=MCFig0BhqCQ", tooltip: "Pichereau" },
+          ] },
           { name: "tenchi nage", links: [] },
           { name: "kokyu nage", links: [
             { text: "1", url: "https://youtu.be/fbQ0aT60W90?list=PLmLk6DMwHFRC0SpzYAug7rKexOxb2rcOe&t=10", tooltip: "Hoffmann" },
@@ -656,7 +671,9 @@
           ] },
           { name: "yonkyo", links: [
             { text: "omote", url: "https://youtu.be/VchT_WOLtIM" },
+            { text: "omote 2", url: "https://youtu.be/OfJRFrVOkS8?t=12", tooltip: "Hoffmann" },
             { text: "ura", url: "https://youtu.be/VchT_WOLtIM?t=26" },
+            { text: "ura 2", url: "https://youtu.be/TBIZpUSyhEo?t=12", tooltip: "Hoffmann" },
           ] },
           { name: "gokyo", links: [] },
           { name: "kote gaeshi", links: [
@@ -684,6 +701,7 @@
           ] },
           { name: "soto kaiten nage", links: [
             { text: "1", url: "https://www.youtube.com/watch?v=YZIzpeoIBTo", tooltip: "Tissier" },
+            { text: "2", url: "https://youtu.be/bqICA2ng_LQ?t=11", tooltip: "Hoffmann" },
           ] },
           { name: "uchi kaiten nage", links: [
             { text: "1", url: "https://youtu.be/GUEnIZ_b1Uk?t=2", tooltip: "Pichereau" },

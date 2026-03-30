@@ -75,6 +75,8 @@
           { name: "kokyu nage", links: [] },
           { name: "soto kaiten nage", links: [
             { text: "1", url: "https://www.youtube.com/watch?v=wkm2I-aditY" },
+            { text: "omote", url: "https://youtu.be/-_G-C24DgeE?t=3", tooltip: "Pichereau" },
+            { text: "ura", url: "https://youtu.be/-_G-C24DgeE?t=24", tooltip: "Pichereau" },
           ] },
           { name: "uchi kaiten nage", links: [
             { text: "1", url: "https://youtu.be/DTQeBUGzk5Q?list=PLmLk6DMwHFRAlE_Wur09Wqxr_KbUL0mw0&t=11", tooltip: "Hoffmann" },
@@ -139,6 +141,7 @@
           { name: "shiho nage", links: []},
           { name: "irimi nage", links: [
             { text: "1", url: "https://youtu.be/QQAb-7Rz2No?t=63" },
+            { text: "2", url: "https://youtu.be/NynO0b-z_z0?t=11", tooltip: "Hoffmann" },
             { text: "omote", url: "https://youtu.be/78oiUVFgMrs?t=9" },
             { text: "ura", url: "https://youtu.be/78oiUVFgMrs?t=44" },
           ] },
