@@ -191,30 +191,34 @@ body {
 
 .video-tag-button {
     border: 1px solid var(--border-cell);
-    background: var(--bg-controls);
+    background: transparent;
     color: var(--text-dark);
     border-radius: 4px;
     padding: 1px 4px;
     font-size: 11px;
     cursor: pointer;
     line-height: 1;
+    filter: grayscale(1);
+    opacity: 0.55;
 }
 
 .video-tag-button.is-active {
-    background: var(--text-link);
-    color: var(--text-header);
-    border-color: var(--text-link);
+    background: transparent;
+    color: var(--text-dark);
+    border-color: var(--border-cell);
+    filter: none;
+    opacity: 1;
 }
 
 .video-tag-button[data-tag="not-ok"].is-active {
-    background: #c0392b;
-    border-color: #c0392b;
+    background: transparent;
+    border-color: var(--border-cell);
 }
 
 .video-tag-button[data-tag="favorite"].is-active {
-    background: #f1c40f;
-    border-color: #f1c40f;
-    color: #2c3e50;
+    background: transparent;
+    border-color: var(--border-cell);
+    color: var(--text-dark);
 }
 
 .main-table a:hover {
