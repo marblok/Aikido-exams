@@ -217,7 +217,7 @@
           { name: "gokyo", links: [] },
           { name: "kote gaeshi", links: [
             { text: "1", url: "https://www.youtube.com/watch?v=xlTkd9q6V9E" },
-            { text: "2 (chuudan)", url: "https://youtu.be/wOriRW7g20w?t=11", tooltip: "Hoffmann" },
+            { text: "2 (chudan)", url: "https://youtu.be/wOriRW7g20w?t=11", tooltip: "Hoffmann" },
           ] },
           { name: "shiho nage", links: []},
           { name: "irimi nage", links: [
