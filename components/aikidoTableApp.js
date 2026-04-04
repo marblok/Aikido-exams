@@ -40,7 +40,8 @@ export class AikidoTableManager {
             showExamRequirements: 'showExamRequirements',
             limitTableHeight: 'limitTableHeight',
             videoTags: 'videoTags',
-            showTags: 'showTags'
+            showTags: 'showTags',
+            randomLinkToggle: 'randomLinkToggle'
         };
         this.tagOptions = [
             { value: 'all', label: 'All' },
@@ -117,6 +118,8 @@ export class AikidoTableManager {
                 this.initCheckbox('showExamRequirements', true)
                 this.initCheckbox('limitTableHeight', false)
                 this.initCheckbox('showTags', true)
+                this.initCheckbox('randomLinkToggle', false)
+                this.updateLinkedRandomButtons();
 
                 this.applyFilters();
                 this.tableReady = true;
@@ -565,6 +568,11 @@ export class AikidoTableManager {
         const randomLinkToggle = document.getElementById('randomLinkToggle');
         if (randomLinkToggle) {
             randomLinkToggle.addEventListener('change', () => {
+                localStorage.setItem(
+                    this.storageKeys.randomLinkToggle,
+                    randomLinkToggle.checked ? '1' : '0'
+                );
+                this.updateLinkedRandomButtons();
                 this.updateClearButtonState();
             });
         }
@@ -658,6 +666,20 @@ export class AikidoTableManager {
         this.updateClearButtonState();
     }
 
+    updateLinkedRandomButtons() {
+        const linkToggle = document.getElementById('randomLinkToggle');
+        const randomAttackButton = document.getElementById('randomAttackButton');
+        const randomTechniqueButton = document.getElementById('randomTechniqueButton');
+
+        if (!linkToggle || !randomAttackButton || !randomTechniqueButton) {
+            return;
+        }
+
+        const isLinked = linkToggle.checked;
+        randomAttackButton.classList.toggle('is-linked', isLinked);
+        randomTechniqueButton.classList.toggle('is-linked', isLinked);
+    }
+
     normalizeAttackText(value) {
         return (value || '')
             .replace(/<br\s*\/?\s*>/gi, ' ')
@@ -734,8 +756,8 @@ export class AikidoTableManager {
         }
 
         const selection = candidates[Math.floor(Math.random() * candidates.length)];
-        attackInput.value = selection.attack.replace(/<br\s*\/?\s*>/gi, ' ');
-        this.attackSearchTerm = this.normalizeAttackText(attackInput.value);
+        attackInput.value = this.normalizeAttackText(selection.attack);
+        this.attackSearchTerm = attackInput.value.toLowerCase();
         this.techniqueSearchTerm = techniqueInput.value.toLowerCase();
         this.applyFilters();
     }
@@ -821,8 +843,8 @@ export class AikidoTableManager {
                 new Set(filteredPairs.map(pair => pair.attack))
             );
             const randomAttack = attackCandidates[Math.floor(Math.random() * attackCandidates.length)];
-            attackInput.value = randomAttack.replace(/<br\s*\/?\s*>/gi, ' ');
-            this.attackSearchTerm = this.normalizeAttackText(attackInput.value);
+            attackInput.value = this.normalizeAttackText(randomAttack)
+            this.attackSearchTerm = attackInput.value.toLowerCase();
 
             const techniqueCandidates = filteredPairs.filter(pair => pair.attack === randomAttack);
             const randomTechnique = techniqueCandidates[Math.floor(Math.random() * techniqueCandidates.length)].technique;
@@ -838,8 +860,8 @@ export class AikidoTableManager {
 
             const attackCandidates = filteredPairs.filter(pair => pair.technique === randomTechnique);
             const randomAttack = attackCandidates[Math.floor(Math.random() * attackCandidates.length)].attack;
-            attackInput.value = randomAttack.replace(/<br\s*\/?\s*>/gi, ' ');
-            this.attackSearchTerm = this.normalizeAttackText(attackInput.value);
+            attackInput.value = this.normalizeAttackText(randomAttack)
+            this.attackSearchTerm = attackInput.value.toLowerCase();
         }
 
         this.applyFilters();
