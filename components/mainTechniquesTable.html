@@ -69,11 +69,24 @@
 
     <h2 id="attackListTitle">Technique Reference</h2>
     <div class="controls" style="flex-direction: column;">
-        <div class="search-box">
-            <input id="attackInput" type="text" placeholder="Filter attacks (e.g. shomen)">
+        <div class="filter-row">
+            <button id="randomAttackButton" class="random-filter-button" type="button" title="Random attack">🎲</button>
+            <button id="clearAttackButton" class="clear-filter-button" type="button" title="Clear attack filter">✖</button>
+            <div class="search-box">
+                <input id="attackInput" type="text" placeholder="Filter attacks (e.g. shomen)">
+            </div>
         </div>
-        <div class="search-box">
-            <input id="techniqueInput" type="text" placeholder="Filter techniques (e.g. ikkyo)">
+        <div class="filter-row">
+            <label class="random-link-toggle">
+                <input id="randomLinkToggle" type="checkbox"> Link random filters
+            </label>
+        </div>
+        <div class="filter-row">
+            <button id="randomTechniqueButton" class="random-filter-button" type="button" title="Random technique">🎲</button>
+            <button id="clearTechniqueButton" class="clear-filter-button" type="button" title="Clear technique filter">✖</button>
+            <div class="search-box">
+                <input id="techniqueInput" type="text" placeholder="Filter techniques (e.g. ikkyo)">
+            </div>
         </div>
         <div class="filter-section">
             <div class="tooltip-selector" id="tooltipFilter"></div>

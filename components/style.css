@@ -28,6 +28,65 @@ body {
     align-items: center;
 }
 
+.filter-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    align-items: center;
+    width: 100%;
+}
+
+.random-filter-button {
+    border: 1px solid var(--border-input);
+    background: var(--bg-container);
+    color: var(--text-dark);
+    border-radius: 6px;
+    padding: 6px 10px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.2s ease;
+    line-height: 1;
+}
+
+.clear-filter-button {
+    border: 1px solid var(--border-input);
+    background: transparent;
+    color: var(--text-muted);
+    border-radius: 6px;
+    padding: 6px 10px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.2s ease, color 0.2s ease;
+    line-height: 1;
+}
+
+.clear-filter-button:hover {
+    background: var(--bg-link-hover);
+    color: var(--text-dark);
+}
+
+.clear-filter-button.is-active {
+    color: #c0392b;
+    border-color: #c0392b;
+}
+
+.random-filter-button:hover {
+    background: var(--bg-link-hover);
+    transform: translateY(-1px);
+}
+
+.random-filter-button:active {
+    transform: translateY(0);
+}
+
+.random-link-toggle {
+    font-size: 13px;
+    color: var(--text-dark);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
 .search-box {
     flex: 1;
     min-width: 250px;

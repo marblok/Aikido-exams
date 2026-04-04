@@ -534,6 +534,41 @@ export class AikidoTableManager {
             this.applyFilters();
         });
 
+        const randomAttackButton = document.getElementById('randomAttackButton');
+        if (randomAttackButton) {
+            randomAttackButton.addEventListener('click', () => {
+                this.applyRandomAttackFilter();
+            });
+        }
+
+        const randomTechniqueButton = document.getElementById('randomTechniqueButton');
+        if (randomTechniqueButton) {
+            randomTechniqueButton.addEventListener('click', () => {
+                this.applyRandomTechniqueFilter();
+            });
+        }
+
+        const clearAttackButton = document.getElementById('clearAttackButton');
+        if (clearAttackButton) {
+            clearAttackButton.addEventListener('click', () => {
+                this.clearAttackFilter();
+            });
+        }
+
+        const clearTechniqueButton = document.getElementById('clearTechniqueButton');
+        if (clearTechniqueButton) {
+            clearTechniqueButton.addEventListener('click', () => {
+                this.clearTechniqueFilter();
+            });
+        }
+
+        const randomLinkToggle = document.getElementById('randomLinkToggle');
+        if (randomLinkToggle) {
+            randomLinkToggle.addEventListener('change', () => {
+                this.updateClearButtonState();
+            });
+        }
+
         // Kyu selection
         document.getElementById('kyuSelector').addEventListener('change', () => {
             this.renderExamRequirementsTable(this.examinationTechniquesTable);
@@ -620,6 +655,7 @@ export class AikidoTableManager {
 
         // Table highlighting
         this.setupTableHighlighting();
+        this.updateClearButtonState();
     }
 
     normalizeAttackText(value) {
@@ -628,6 +664,242 @@ export class AikidoTableManager {
             .replace(/\s+/g, ' ')
             .trim()
             .toLowerCase();
+    }
+
+    getAvailableRandomPairs({ lockAttack = false, lockTechnique = false } = {}) {
+        const allowed = this.getKyuFilteredCells(this.examinationTechniquesTable);
+        const candidates = [];
+
+        const attackInput = document.getElementById('attackInput');
+        const techniqueInput = document.getElementById('techniqueInput');
+        const lockedAttackValue = lockAttack ? this.normalizeAttackText(attackInput?.value) : '';
+        const lockedTechniqueValue = lockTechnique ? (techniqueInput?.value || '').toLowerCase().trim() : '';
+
+        this.currentData.forEach(attackEntry => {
+            if (attackEntry.attack.includes('__test__')) return;
+            const normalizedAttack = this.normalizeAttackText(attackEntry.attack);
+            if (lockAttack && lockedAttackValue && !normalizedAttack.includes(lockedAttackValue)) return;
+
+            attackEntry.techniques.forEach(tech => {
+                const key = `${attackEntry.attack}::${tech.name}`;
+                if (!allowed.has(key)) return;
+                if (lockTechnique && lockedTechniqueValue && !tech.name.toLowerCase().includes(lockedTechniqueValue)) return;
+                const filteredLinks = this.getFilteredLinks(tech.links);
+                if (filteredLinks.length === 0) return;
+                candidates.push({
+                    attack: attackEntry.attack,
+                    technique: tech.name
+                });
+            });
+        });
+
+        return candidates;
+    }
+
+    applyRandomAttackFilter({ skipLinkedCheck = false } = {}) {
+        const attackInput = document.getElementById('attackInput');
+        const techniqueInput = document.getElementById('techniqueInput');
+        const linkToggle = document.getElementById('randomLinkToggle');
+        if (!attackInput || !techniqueInput) return;
+
+        if (!skipLinkedCheck && linkToggle && linkToggle.checked) {
+            this.applyLinkedRandomSelection('attack');
+            return;
+        }
+
+        const techniqueConstraint = techniqueInput.value.trim();
+        const currentAttackValue = this.normalizeAttackText(attackInput.value);
+        attackInput.value = '';
+        this.attackSearchTerm = '';
+
+        let candidates = this.getAvailableRandomPairs({
+            lockTechnique: techniqueConstraint.length > 0
+        });
+
+        if (currentAttackValue) {
+            const filtered = candidates.filter(candidate =>
+                this.normalizeAttackText(candidate.attack) !== currentAttackValue
+            );
+            if (filtered.length > 0) {
+                candidates = filtered;
+            }
+        }
+
+        if (candidates.length === 0 && techniqueConstraint.length > 0) {
+            candidates = this.getAvailableRandomPairs();
+        }
+
+        if (candidates.length === 0) {
+            return;
+        }
+
+        const selection = candidates[Math.floor(Math.random() * candidates.length)];
+        attackInput.value = selection.attack.replace(/<br\s*\/?\s*>/gi, ' ');
+        this.attackSearchTerm = this.normalizeAttackText(attackInput.value);
+        this.techniqueSearchTerm = techniqueInput.value.toLowerCase();
+        this.applyFilters();
+    }
+
+    applyRandomTechniqueFilter({ skipLinkedCheck = false } = {}) {
+        const attackInput = document.getElementById('attackInput');
+        const techniqueInput = document.getElementById('techniqueInput');
+        const linkToggle = document.getElementById('randomLinkToggle');
+        if (!attackInput || !techniqueInput) return;
+
+        if (!skipLinkedCheck && linkToggle && linkToggle.checked) {
+            this.applyLinkedRandomSelection('technique');
+            return;
+        }
+
+        const attackConstraint = attackInput.value.trim();
+        const currentTechniqueValue = techniqueInput.value.trim().toLowerCase();
+        techniqueInput.value = '';
+        this.techniqueSearchTerm = '';
+
+        let candidates = this.getAvailableRandomPairs({
+            lockAttack: attackConstraint.length > 0
+        });
+
+        if (currentTechniqueValue) {
+            const filtered = candidates.filter(candidate =>
+                candidate.technique.toLowerCase() !== currentTechniqueValue
+            );
+            if (filtered.length > 0) {
+                candidates = filtered;
+            }
+        }
+
+        if (candidates.length === 0 && attackConstraint.length > 0) {
+            candidates = this.getAvailableRandomPairs();
+        }
+
+        if (candidates.length === 0) {
+            return;
+        }
+
+        const selection = candidates[Math.floor(Math.random() * candidates.length)];
+        techniqueInput.value = selection.technique;
+        this.attackSearchTerm = this.normalizeAttackText(attackInput.value);
+        this.techniqueSearchTerm = techniqueInput.value.toLowerCase();
+        this.applyFilters();
+    }
+
+    applyLinkedRandomSelection(primary) {
+        const attackInput = document.getElementById('attackInput');
+        const techniqueInput = document.getElementById('techniqueInput');
+        if (!attackInput || !techniqueInput) return;
+
+        const currentAttackValue = this.normalizeAttackText(attackInput.value);
+        const currentTechniqueValue = techniqueInput.value.trim().toLowerCase();
+
+        attackInput.value = '';
+        techniqueInput.value = '';
+        this.attackSearchTerm = '';
+        this.techniqueSearchTerm = '';
+
+        const availablePairs = this.getAvailableRandomPairs();
+        if (availablePairs.length === 0) return;
+
+        let filteredPairs = availablePairs;
+        if (currentAttackValue || currentTechniqueValue) {
+            const filtered = availablePairs.filter(pair => {
+                const sameAttack = currentAttackValue
+                    ? this.normalizeAttackText(pair.attack) === currentAttackValue
+                    : false;
+                const sameTechnique = currentTechniqueValue
+                    ? pair.technique.toLowerCase() === currentTechniqueValue
+                    : false;
+                return !(sameAttack && sameTechnique);
+            });
+            if (filtered.length > 0) {
+                filteredPairs = filtered;
+            }
+        }
+
+        if (primary === 'attack') {
+            const attackCandidates = Array.from(
+                new Set(filteredPairs.map(pair => pair.attack))
+            );
+            const randomAttack = attackCandidates[Math.floor(Math.random() * attackCandidates.length)];
+            attackInput.value = randomAttack.replace(/<br\s*\/?\s*>/gi, ' ');
+            this.attackSearchTerm = this.normalizeAttackText(attackInput.value);
+
+            const techniqueCandidates = filteredPairs.filter(pair => pair.attack === randomAttack);
+            const randomTechnique = techniqueCandidates[Math.floor(Math.random() * techniqueCandidates.length)].technique;
+            techniqueInput.value = randomTechnique;
+            this.techniqueSearchTerm = techniqueInput.value.toLowerCase();
+        } else {
+            const techniqueCandidates = Array.from(
+                new Set(filteredPairs.map(pair => pair.technique))
+            );
+            const randomTechnique = techniqueCandidates[Math.floor(Math.random() * techniqueCandidates.length)];
+            techniqueInput.value = randomTechnique;
+            this.techniqueSearchTerm = techniqueInput.value.toLowerCase();
+
+            const attackCandidates = filteredPairs.filter(pair => pair.technique === randomTechnique);
+            const randomAttack = attackCandidates[Math.floor(Math.random() * attackCandidates.length)].attack;
+            attackInput.value = randomAttack.replace(/<br\s*\/?\s*>/gi, ' ');
+            this.attackSearchTerm = this.normalizeAttackText(attackInput.value);
+        }
+
+        this.applyFilters();
+    }
+
+    clearAttackFilter() {
+        const attackInput = document.getElementById('attackInput');
+        const techniqueInput = document.getElementById('techniqueInput');
+        const linkToggle = document.getElementById('randomLinkToggle');
+        if (!attackInput || !techniqueInput) return;
+
+        attackInput.value = '';
+        this.attackSearchTerm = '';
+
+        if (linkToggle && linkToggle.checked) {
+            techniqueInput.value = '';
+            this.techniqueSearchTerm = '';
+        }
+
+        this.applyFilters();
+        this.updateClearButtonState();
+    }
+
+    clearTechniqueFilter() {
+        const attackInput = document.getElementById('attackInput');
+        const techniqueInput = document.getElementById('techniqueInput');
+        const linkToggle = document.getElementById('randomLinkToggle');
+        if (!attackInput || !techniqueInput) return;
+
+        techniqueInput.value = '';
+        this.techniqueSearchTerm = '';
+
+        if (linkToggle && linkToggle.checked) {
+            attackInput.value = '';
+            this.attackSearchTerm = '';
+        }
+
+        this.applyFilters();
+        this.updateClearButtonState();
+    }
+
+    updateClearButtonState() {
+        const attackInput = document.getElementById('attackInput');
+        const techniqueInput = document.getElementById('techniqueInput');
+        const linkToggle = document.getElementById('randomLinkToggle');
+        const clearAttackButton = document.getElementById('clearAttackButton');
+        const clearTechniqueButton = document.getElementById('clearTechniqueButton');
+
+        if (!attackInput || !techniqueInput || !clearAttackButton || !clearTechniqueButton) {
+            return;
+        }
+
+        const attackHasValue = attackInput.value.trim().length > 0;
+        const techniqueHasValue = techniqueInput.value.trim().length > 0;
+        const isLinked = linkToggle && linkToggle.checked;
+        const attackActive = isLinked ? (attackHasValue || techniqueHasValue) : attackHasValue;
+        const techniqueActive = isLinked ? (attackHasValue || techniqueHasValue) : techniqueHasValue;
+
+        clearAttackButton.classList.toggle('is-active', attackActive);
+        clearTechniqueButton.classList.toggle('is-active', techniqueActive);
     }
 
     applyFilters() {
@@ -682,6 +954,7 @@ export class AikidoTableManager {
         this.refreshTable(allowed);
         this.updateStats(totalTechniques);
         this.renderExamRequirementsTable(this.examinationTechniquesTable);
+        this.updateClearButtonState();
     }
 
     refreshTable(allowedSet = null) {
